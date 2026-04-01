@@ -10,33 +10,114 @@ $latestGalerien = getGalerien(6);
 include 'includes/header.php';
 ?>
 
-<!-- Hero -->
-<section class="fw-hero">
-    <div class="container fw-hero__content">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <p class="fw-hero__eyebrow">
-                    <i class="bi bi-shield-fill-exclamation me-1"></i>
-                    Freiwillige Feuerwehr · Langensendelbach
-                </p>
-                <h1>Für Euch da – rund um die Uhr.</h1>
-                <p>
-                    Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.
-                    Ehrenamtlich. Entschlossen. Engagiert.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="/nachrichten.php" class="btn-fw">
-                        <i class="bi bi-newspaper"></i> Aktuelle Meldungen
-                    </a>
-                    <a href="/formulare.php" class="btn-fw-outline">
-                        <i class="bi bi-person-plus-fill"></i> Jetzt Mitglied werden
-                    </a>
+<!-- Hero Carousel -->
+<?php
+// Slide-Konfiguration – Texte hier anpassen, Bilder unter /images/hero/ ablegen
+$heroSlides = [
+    [
+        'image'    => '/images/hero/slide-1.jpg',
+        'gradient' => 'linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%)',
+        'icon'     => 'fire',
+        'eyebrow'  => 'Freiwillige Feuerwehr · Langensendelbach',
+        'title'    => 'Für Euch da –<br>rund um die Uhr.',
+        'text'     => 'Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.',
+        'btn1_href'=> '/nachrichten.php', 'btn1_label' => 'Aktuelle Meldungen', 'btn1_icon' => 'newspaper',
+        'btn2_href'=> '/formulare.php',   'btn2_label' => 'Jetzt Mitglied werden','btn2_icon'=> 'person-plus-fill',
+    ],
+    [
+        'image'    => '/images/hero/slide-2.jpg',
+        'gradient' => 'linear-gradient(135deg,#1a1a1a 0%,#3a0000 50%,#cc0000 100%)',
+        'icon'     => 'gear-wide-connected',
+        'eyebrow'  => 'Ausbildung &amp; Übungen',
+        'title'    => 'Bestens ausgebildet –<br>für jeden Einsatz.',
+        'text'     => 'Regelmäßige Übungen und Fortbildungen sorgen dafür, dass unsere Mannschaft immer einsatzbereit ist.',
+        'btn1_href'=> '/kalender.php',    'btn1_label' => 'Termine ansehen',     'btn1_icon' => 'calendar3',
+        'btn2_href'=> '/galerie.php',     'btn2_label' => 'Bildergalerie',        'btn2_icon' => 'images',
+    ],
+    [
+        'image'    => '/images/hero/slide-3.jpg',
+        'gradient' => 'linear-gradient(135deg,#0d2a0d 0%,#1a4a1a 50%,#1a7a3c 100%)',
+        'icon'     => 'people-fill',
+        'eyebrow'  => 'Gemeinschaft &amp; Nachwuchs',
+        'title'    => 'Werde Teil unserer<br>Feuerwehrfamilie.',
+        'text'     => 'Ob aktives Mitglied, Jugendfeuerwehr oder Fördermitglied – bei uns ist jeder willkommen!',
+        'btn1_href'=> '/jugendfeuerwehr.php','btn1_label'=> 'Jugendfeuerwehr',   'btn1_icon' => 'stars',
+        'btn2_href'=> '/ueber-uns.php',   'btn2_label' => 'Über uns',            'btn2_icon' => 'info-circle',
+    ],
+];
+?>
+<div id="heroCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <?php foreach ($heroSlides as $i => $slide): ?>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?= $i ?>"
+                <?= $i === 0 ? 'class="active" aria-current="true"' : '' ?>
+                aria-label="Slide <?= $i + 1 ?>"></button>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <?php foreach ($heroSlides as $i => $slide):
+            $hasImage = file_exists(__DIR__ . $slide['image']);
+        ?>
+        <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                 <?php if ($hasImage): ?>
+                 style="background-image:url('<?= h($slide['image']) ?>'), <?= $slide['gradient'] ?>;"
+                 <?php else: ?>
+                 style="background:<?= $slide['gradient'] ?>;"
+                 <?php endif; ?>>
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                <?php if (!$hasImage): ?>
+                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-<?= $slide['icon'] ?>"></i>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        <?= $slide['eyebrow'] ?>
+                    </p>
+                    <h1 class="animate-slide"><?= $slide['title'] ?></h1>
+                    <p class="fw-slide-text animate-fade"><?= h($slide['text']) ?></p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="<?= h($slide['btn1_href']) ?>" class="btn-fw">
+                            <i class="bi bi-<?= $slide['btn1_icon'] ?>"></i>
+                            <?= h($slide['btn1_label']) ?>
+                        </a>
+                        <a href="<?= h($slide['btn2_href']) ?>" class="btn-fw-outline">
+                            <i class="bi bi-<?= $slide['btn2_icon'] ?>"></i>
+                            <?= h($slide['btn2_label']) ?>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <i class="bi bi-fire fw-hero-icon"></i>
+        <?php endforeach; ?>
     </div>
-</section>
+
+    <!-- Prev / Next controls -->
+    <button class="carousel-control-prev fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Zurück</span>
+    </button>
+    <button class="carousel-control-next fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Weiter</span>
+    </button>
+</div>
 
 <!-- Stats Bar -->
 <div class="fw-stats">

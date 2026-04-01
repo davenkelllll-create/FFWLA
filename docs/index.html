@@ -85,33 +85,138 @@
     </div>
 </nav>
 
-<!-- Hero -->
-<section class="fw-hero">
-    <div class="container fw-hero__content">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <p class="fw-hero__eyebrow">
-                    <i class="bi bi-shield-fill-exclamation me-1"></i>
-                    Freiwillige Feuerwehr · Langensendelbach
-                </p>
-                <h1>Für Euch da – rund um die Uhr.</h1>
-                <p>
-                    Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.
-                    Ehrenamtlich. Entschlossen. Engagiert.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="nachrichten.html" class="btn-fw">
-                        <i class="bi bi-newspaper"></i> Aktuelle Meldungen
-                    </a>
-                    <a href="formulare.html" class="btn-fw-outline">
-                        <i class="bi bi-person-plus-fill"></i> Jetzt Mitglied werden
-                    </a>
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+                class="active" aria-current="true"                aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+            </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+                <div class="carousel-item active">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background:linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-fire"></i>
+                </div>
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Freiwillige Feuerwehr · Langensendelbach                    </p>
+                    <h1 class="animate-slide">Für Euch da –<br>rund um die Uhr.</h1>
+                    <p class="fw-slide-text animate-fade">Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="nachrichten.html" class="btn-fw">
+                            <i class="bi bi-newspaper"></i>
+                            Aktuelle Meldungen                        </a>
+                        <a href="formulare.html" class="btn-fw-outline">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Jetzt Mitglied werden                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <i class="bi bi-fire fw-hero-icon"></i>
-    </div>
-</section>
+                <div class="carousel-item ">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background:linear-gradient(135deg,#1a1a1a 0%,#3a0000 50%,#cc0000 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-gear-wide-connected"></i>
+                </div>
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Ausbildung &amp; Übungen                    </p>
+                    <h1 class="animate-slide">Bestens ausgebildet –<br>für jeden Einsatz.</h1>
+                    <p class="fw-slide-text animate-fade">Regelmäßige Übungen und Fortbildungen sorgen dafür, dass unsere Mannschaft immer einsatzbereit ist.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="kalender.html" class="btn-fw">
+                            <i class="bi bi-calendar3"></i>
+                            Termine ansehen                        </a>
+                        <a href="galerie.html" class="btn-fw-outline">
+                            <i class="bi bi-images"></i>
+                            Bildergalerie                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="carousel-item ">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background:linear-gradient(135deg,#0d2a0d 0%,#1a4a1a 50%,#1a7a3c 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Gemeinschaft &amp; Nachwuchs                    </p>
+                    <h1 class="animate-slide">Werde Teil unserer<br>Feuerwehrfamilie.</h1>
+                    <p class="fw-slide-text animate-fade">Ob aktives Mitglied, Jugendfeuerwehr oder Fördermitglied – bei uns ist jeder willkommen!</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="jugendfeuerwehr.html" class="btn-fw">
+                            <i class="bi bi-stars"></i>
+                            Jugendfeuerwehr                        </a>
+                        <a href="ueber-uns.html" class="btn-fw-outline">
+                            <i class="bi bi-info-circle"></i>
+                            Über uns                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+    <!-- Prev / Next controls -->
+    <button class="carousel-control-prev fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Zurück</span>
+    </button>
+    <button class="carousel-control-next fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Weiter</span>
+    </button>
+</div>
 
 <!-- Stats Bar -->
 <div class="fw-stats">

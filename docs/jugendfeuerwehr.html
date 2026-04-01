@@ -85,35 +85,96 @@
     </div>
 </nav>
 
-<!-- JFW Hero -->
-<section class="fw-jfw-hero">
-    <div class="container" style="position:relative;z-index:1;">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <p class="fw-hero__eyebrow">
-                    <i class="bi bi-stars me-1"></i>
-                    Jugendfeuerwehr · Langensendelbach
-                </p>
-                <h1 style="font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:1rem;">
-                    Feuer &amp; Flamme<br>für die Zukunft.
-                </h1>
-                <p style="font-size:1.1rem;opacity:.9;max-width:520px;margin-bottom:2rem;">
-                    In der Jugendfeuerwehr lernst du echte Feuerwehrtechnik, übst Teamwork und
-                    übernimmst Verantwortung – und das mit einer Menge Spaß!
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="formulare.html" class="btn bg-white fw-bold" style="color:#e07800;">
-                        <i class="bi bi-file-earmark-arrow-down me-1"></i>Anmeldung herunterladen
-                    </a>
-                    <a href="kontakt.html" class="btn-fw-outline">
-                        <i class="bi bi-envelope me-1"></i>Kontakt aufnehmen
-                    </a>
+<!-- JFW Hero Carousel -->
+<div id="jfwCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5500">
+    <div class="carousel-indicators">
+                <button type="button" data-bs-target="#jfwCarousel" data-bs-slide-to="0"
+                class="active" aria-current="true"                aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#jfwCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#jfwCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+            </div>
+    <div class="carousel-inner">
+                <div class="carousel-item active">
+            <div class="fw-slide-bg"
+                 style="background:linear-gradient(135deg,#7a3800 0%,#e07800 60%,#ffaa00 100%);">
+                <div class="fw-slide-overlay" style="background:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.1) 100%);"></div>
+                                <div class="fw-slide-placeholder-icon"><i class="bi bi-stars"></i></div>
+                            </div>
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-stars me-1"></i>Jugendfeuerwehr · Langensendelbach                    </p>
+                    <h1 class="animate-slide">Feuer &amp; Flamme<br>für die Zukunft.</h1>
+                    <p class="fw-slide-text animate-fade">In der Jugendfeuerwehr lernst du echte Feuerwehrtechnik, übst Teamwork und übernimmst Verantwortung – und das mit einer Menge Spaß!</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="formulare.html"
+                           class="btn fw-bold"
+                           style="background:#e07800;color:#fff;border:none;">
+                            <i class="bi bi-file-earmark-arrow-down me-1"></i>Anmeldung herunterladen                        </a>
+                        <a href="kontakt.html" class="btn-fw-outline">
+                            <i class="bi bi-envelope me-1"></i>Kontakt aufnehmen                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <i class="bi bi-stars fw-hero-icon" style="color:rgba(255,255,255,.12);font-size:9rem;position:absolute;right:-1rem;top:50%;transform:translateY(-50%);"></i>
-    </div>
-</section>
+                <div class="carousel-item ">
+            <div class="fw-slide-bg"
+                 style="background:linear-gradient(135deg,#4a2800 0%,#c05800 60%,#e07800 100%);">
+                <div class="fw-slide-overlay" style="background:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.1) 100%);"></div>
+                                <div class="fw-slide-placeholder-icon"><i class="bi bi-trophy-fill"></i></div>
+                            </div>
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-stars me-1"></i>Wettbewerbe &amp; Leistungsabzeichen                    </p>
+                    <h1 class="animate-slide">Trainieren, lernen,<br>gewinnen.</h1>
+                    <p class="fw-slide-text animate-fade">Wir nehmen an Kreisbewerben und überregionalen Wettbewerben teil und bereiten uns mit Spaß und Ehrgeiz vor.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="kalender.html"
+                           class="btn fw-bold"
+                           style="background:#c05800;color:#fff;border:none;">
+                            <i class="bi bi-calendar3 me-1"></i>Termine ansehen                        </a>
+                        <a href="galerie.html" class="btn-fw-outline">
+                            <i class="bi bi-images me-1"></i>Bildergalerie                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="carousel-item ">
+            <div class="fw-slide-bg"
+                 style="background:linear-gradient(135deg,#3a2000 0%,#a04000 60%,#d06000 100%);">
+                <div class="fw-slide-overlay" style="background:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.1) 100%);"></div>
+                                <div class="fw-slide-placeholder-icon"><i class="bi bi-people-fill"></i></div>
+                            </div>
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-stars me-1"></i>Kameradschaft &amp; Gemeinschaft                    </p>
+                    <h1 class="animate-slide">Neue Freunde,<br>echte Erlebnisse.</h1>
+                    <p class="fw-slide-text animate-fade">Zeltlager, Ausflüge und gemeinsame Aktionen – in der Jugendfeuerwehr entstehen Freundschaften fürs Leben.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="#mitmachen"
+                           class="btn fw-bold"
+                           style="background:#a04000;color:#fff;border:none;">
+                            <i class="bi bi-person-plus-fill me-1"></i>Jetzt mitmachen                        </a>
+                        <a href="nachrichten.html" class="btn-fw-outline">
+                            <i class="bi bi-newspaper me-1"></i>Aktuelle Berichte                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+    <button class="carousel-control-prev fw-carousel-ctrl" type="button" data-bs-target="#jfwCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Zurück</span>
+    </button>
+    <button class="carousel-control-next fw-carousel-ctrl" type="button" data-bs-target="#jfwCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Weiter</span>
+    </button>
+</div>
 
 <!-- Stats -->
 <div style="background:#1a1a1a;padding:1.5rem 0;">

@@ -5,35 +5,94 @@ $pageDescription = 'Jugendfeuerwehr Langensendelbach – Für Jugendliche von 12
 include 'includes/header.php';
 ?>
 
-<!-- JFW Hero -->
-<section class="fw-jfw-hero">
-    <div class="container" style="position:relative;z-index:1;">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <p class="fw-hero__eyebrow">
-                    <i class="bi bi-stars me-1"></i>
-                    Jugendfeuerwehr · Langensendelbach
-                </p>
-                <h1 style="font-size:clamp(1.8rem,5vw,3rem);font-weight:800;line-height:1.15;margin-bottom:1rem;">
-                    Feuer &amp; Flamme<br>für die Zukunft.
-                </h1>
-                <p style="font-size:1.1rem;opacity:.9;max-width:520px;margin-bottom:2rem;">
-                    In der Jugendfeuerwehr lernst du echte Feuerwehrtechnik, übst Teamwork und
-                    übernimmst Verantwortung – und das mit einer Menge Spaß!
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="/formulare.php" class="btn bg-white fw-bold" style="color:#e07800;">
-                        <i class="bi bi-file-earmark-arrow-down me-1"></i>Anmeldung herunterladen
-                    </a>
-                    <a href="/kontakt.php" class="btn-fw-outline">
-                        <i class="bi bi-envelope me-1"></i>Kontakt aufnehmen
-                    </a>
+<!-- JFW Hero Carousel -->
+<?php
+$jfwSlides = [
+    [
+        'image'    => '/images/jfw/slide-1.jpg',
+        'gradient' => 'linear-gradient(135deg,#7a3800 0%,#e07800 60%,#ffaa00 100%)',
+        'icon'     => 'stars',
+        'eyebrow'  => 'Jugendfeuerwehr · Langensendelbach',
+        'title'    => 'Feuer &amp; Flamme<br>für die Zukunft.',
+        'text'     => 'In der Jugendfeuerwehr lernst du echte Feuerwehrtechnik, übst Teamwork und übernimmst Verantwortung – und das mit einer Menge Spaß!',
+        'btn1_href'=> '/formulare.php',  'btn1_label' => 'Anmeldung herunterladen', 'btn1_icon' => 'file-earmark-arrow-down',
+        'btn2_href'=> '/kontakt.php',    'btn2_label' => 'Kontakt aufnehmen',       'btn2_icon' => 'envelope',
+        'accent'   => '#e07800',
+    ],
+    [
+        'image'    => '/images/jfw/slide-2.jpg',
+        'gradient' => 'linear-gradient(135deg,#4a2800 0%,#c05800 60%,#e07800 100%)',
+        'icon'     => 'trophy-fill',
+        'eyebrow'  => 'Wettbewerbe &amp; Leistungsabzeichen',
+        'title'    => 'Trainieren, lernen,<br>gewinnen.',
+        'text'     => 'Wir nehmen an Kreisbewerben und überregionalen Wettbewerben teil und bereiten uns mit Spaß und Ehrgeiz vor.',
+        'btn1_href'=> '/kalender.php',   'btn1_label' => 'Termine ansehen',         'btn1_icon' => 'calendar3',
+        'btn2_href'=> '/galerie.php',    'btn2_label' => 'Bildergalerie',            'btn2_icon' => 'images',
+        'accent'   => '#c05800',
+    ],
+    [
+        'image'    => '/images/jfw/slide-3.jpg',
+        'gradient' => 'linear-gradient(135deg,#3a2000 0%,#a04000 60%,#d06000 100%)',
+        'icon'     => 'people-fill',
+        'eyebrow'  => 'Kameradschaft &amp; Gemeinschaft',
+        'title'    => 'Neue Freunde,<br>echte Erlebnisse.',
+        'text'     => 'Zeltlager, Ausflüge und gemeinsame Aktionen – in der Jugendfeuerwehr entstehen Freundschaften fürs Leben.',
+        'btn1_href'=> '#mitmachen',      'btn1_label' => 'Jetzt mitmachen',          'btn1_icon' => 'person-plus-fill',
+        'btn2_href'=> '/nachrichten.php','btn2_label' => 'Aktuelle Berichte',        'btn2_icon' => 'newspaper',
+        'accent'   => '#a04000',
+    ],
+];
+?>
+<div id="jfwCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5500">
+    <div class="carousel-indicators">
+        <?php foreach ($jfwSlides as $i => $s): ?>
+        <button type="button" data-bs-target="#jfwCarousel" data-bs-slide-to="<?= $i ?>"
+                <?= $i === 0 ? 'class="active" aria-current="true"' : '' ?>
+                aria-label="Slide <?= $i + 1 ?>"></button>
+        <?php endforeach; ?>
+    </div>
+    <div class="carousel-inner">
+        <?php foreach ($jfwSlides as $i => $s):
+            $hasImage = file_exists(__DIR__ . $s['image']); ?>
+        <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
+            <div class="fw-slide-bg"
+                 <?= $hasImage ? "style=\"background-image:url('{$s['image']}'), {$s['gradient']};\"" : "style=\"background:{$s['gradient']};\"" ?>>
+                <div class="fw-slide-overlay" style="background:linear-gradient(to right,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.1) 100%);"></div>
+                <?php if (!$hasImage): ?>
+                <div class="fw-slide-placeholder-icon"><i class="bi bi-<?= $s['icon'] ?>"></i></div>
+                <?php endif; ?>
+            </div>
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-stars me-1"></i><?= $s['eyebrow'] ?>
+                    </p>
+                    <h1 class="animate-slide"><?= $s['title'] ?></h1>
+                    <p class="fw-slide-text animate-fade"><?= h($s['text']) ?></p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="<?= h($s['btn1_href']) ?>"
+                           class="btn fw-bold"
+                           style="background:<?= $s['accent'] ?>;color:#fff;border:none;">
+                            <i class="bi bi-<?= $s['btn1_icon'] ?> me-1"></i><?= h($s['btn1_label']) ?>
+                        </a>
+                        <a href="<?= h($s['btn2_href']) ?>" class="btn-fw-outline">
+                            <i class="bi bi-<?= $s['btn2_icon'] ?> me-1"></i><?= h($s['btn2_label']) ?>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <i class="bi bi-stars fw-hero-icon" style="color:rgba(255,255,255,.12);font-size:9rem;position:absolute;right:-1rem;top:50%;transform:translateY(-50%);"></i>
+        <?php endforeach; ?>
     </div>
-</section>
+    <button class="carousel-control-prev fw-carousel-ctrl" type="button" data-bs-target="#jfwCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Zurück</span>
+    </button>
+    <button class="carousel-control-next fw-carousel-ctrl" type="button" data-bs-target="#jfwCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Weiter</span>
+    </button>
+</div>
 
 <!-- Stats -->
 <div style="background:#1a1a1a;padding:1.5rem 0;">
