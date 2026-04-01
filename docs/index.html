@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Offizielle Website der Freiwilligen Feuerwehr Langensendelbach – Aktuelles, Einsätze, Veranstaltungen und mehr.">
+    <meta property="og:title" content="Freiwillige Feuerwehr Langensendelbach">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <title>Freiwillige Feuerwehr Langensendelbach</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Emergency Alert Strip (shown when data/alert.json is active) -->
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fw-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+            <div class="fw-logo-circle">
+                <i class="bi bi-shield-fill-exclamation"></i>
+            </div>
+            <div class="fw-brand-text">
+                <span class="fw-brand-name">FF Langensendelbach</span>
+                <span class="fw-brand-sub">Freiwillige Feuerwehr</span>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Navigation öffnen">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Startseite</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Aktuelles
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="nachrichten.html">
+                            <i class="bi bi-newspaper me-2"></i>Nachrichten</a></li>
+                        <li><a class="dropdown-item" href="kalender.html">
+                            <i class="bi bi-calendar3 me-2"></i>Veranstaltungskalender</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="galerie.html">Galerie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="formulare.html">Formulare</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ueber-uns.html">Über uns</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kontakt.html">Kontakt</a>
+                </li>
+            </ul>
+            <a href="tel:112" class="fw-notruf ms-lg-3">
+                <i class="bi bi-telephone-fill"></i> Notruf 112
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="fw-hero">
+    <div class="container fw-hero__content">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <p class="fw-hero__eyebrow">
+                    <i class="bi bi-shield-fill-exclamation me-1"></i>
+                    Freiwillige Feuerwehr · Langensendelbach
+                </p>
+                <h1>Für Euch da – rund um die Uhr.</h1>
+                <p>
+                    Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.
+                    Ehrenamtlich. Entschlossen. Engagiert.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="nachrichten.html" class="btn-fw">
+                        <i class="bi bi-newspaper"></i> Aktuelle Meldungen
+                    </a>
+                    <a href="formulare.html" class="btn-fw-outline">
+                        <i class="bi bi-person-plus-fill"></i> Jetzt Mitglied werden
+                    </a>
+                </div>
+            </div>
+        </div>
+        <i class="bi bi-fire fw-hero-icon"></i>
+    </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="fw-stats">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-6 col-md-3">
+                <div class="fw-stat">
+                    <div class="fw-stat__number">45+</div>
+                    <div class="fw-stat__label">Aktive Mitglieder</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="fw-stat">
+                    <div class="fw-stat__number">50+</div>
+                    <div class="fw-stat__label">Einsätze pro Jahr</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="fw-stat">
+                    <div class="fw-stat__number">24/7</div>
+                    <div class="fw-stat__label">Einsatzbereit</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="fw-stat">
+                    <div class="fw-stat__number">1952</div>
+                    <div class="fw-stat__label">Gegründet</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Latest News -->
+<section class="fw-section">
+    <div class="container">
+        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-section-title">Aktuelles</h2>
+                <p class="text-muted mt-2 mb-0">Die neuesten Meldungen aus unserem Bereich</p>
+            </div>
+            <a href="nachrichten.html" class="btn btn-outline-danger btn-sm">
+                Alle Nachrichten <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+                <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                <div class="fw-card">
+                                        <div class="fw-card__img--placeholder">
+                        <i class="bi bi-gear-wide-connected"></i>
+                    </div>
+                                        <div class="fw-card__body">
+                        <div class="fw-card__meta">
+                            <span class="fw-badge badge-uebung">
+                                Übung                            </span>
+                            <span><i class="bi bi-calendar3 me-1"></i>15.03.2024</span>
+                        </div>
+                        <h3 class="fw-card__title">
+                            <a href="nachrichten-detail.html?id=uebung-atemschutz-2024-03">Atemschutzübung im Ortsteil Nord</a>
+                        </h3>
+                        <p class="fw-card__excerpt">Am vergangenen Samstag führte die FF Langensendelbach eine mehrstündige Atemschutzübung im nördlichen Ortsteil durch. Insgesamt 18 Einsatzkräfte nahmen teil.</p>
+                    </div>
+                    <div class="fw-card__footer">
+                        <a href="nachrichten-detail.html?id=uebung-atemschutz-2024-03" class="btn btn-link btn-sm text-danger p-0">
+                            Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-6 col-lg-4">
+                <div class="fw-card">
+                                        <div class="fw-card__img--placeholder">
+                        <i class="bi bi-fire"></i>
+                    </div>
+                                        <div class="fw-card__body">
+                        <div class="fw-card__meta">
+                            <span class="fw-badge badge-einsatz">
+                                Einsatz                            </span>
+                            <span><i class="bi bi-calendar3 me-1"></i>28.02.2024</span>
+                        </div>
+                        <h3 class="fw-card__title">
+                            <a href="nachrichten-detail.html?id=einsatz-brand-scheune-2024-02">Scheunenbrand – Schnelles Eingreifen verhindert Schlimmeres</a>
+                        </h3>
+                        <p class="fw-card__excerpt">In den frühen Morgenstunden des 28. Februar wurden wir zu einem Scheunenbrand alarmiert. Dank des schnellen Eingreifens konnte ein Übergreifen auf das Wohngebäude verhindert werden.</p>
+                    </div>
+                    <div class="fw-card__footer">
+                        <a href="nachrichten-detail.html?id=einsatz-brand-scheune-2024-02" class="btn btn-link btn-sm text-danger p-0">
+                            Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-md-6 col-lg-4">
+                <div class="fw-card">
+                                        <div class="fw-card__img--placeholder">
+                        <i class="bi bi-calendar-event"></i>
+                    </div>
+                                        <div class="fw-card__body">
+                        <div class="fw-card__meta">
+                            <span class="fw-badge badge-veranstaltung">
+                                Veranstaltung                            </span>
+                            <span><i class="bi bi-calendar3 me-1"></i>20.01.2024</span>
+                        </div>
+                        <h3 class="fw-card__title">
+                            <a href="nachrichten-detail.html?id=jahresfeier-2024-01">Jahreshauptversammlung 2024 – Ehrungen und Neuwahlen</a>
+                        </h3>
+                        <p class="fw-card__excerpt">Bei der diesjährigen Jahreshauptversammlung wurden verdiente Mitglieder geehrt und der Vorstand neu gewählt. Rückblick auf ein erfolgreiches Einsatzjahr.</p>
+                    </div>
+                    <div class="fw-card__footer">
+                        <a href="nachrichten-detail.html?id=jahresfeier-2024-01" class="btn btn-link btn-sm text-danger p-0">
+                            Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+                    </div>
+            </div>
+</section>
+
+<!-- Upcoming Events -->
+
+<!-- Gallery Preview -->
+<section class="fw-section">
+    <div class="container">
+        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-section-title">Galerie</h2>
+                <p class="text-muted mt-2 mb-0">Eindrücke aus Einsätzen und Veranstaltungen</p>
+            </div>
+            <a href="galerie.html" class="btn btn-outline-danger btn-sm">
+                Alle Alben <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+        <div class="fw-gallery-grid">
+                        <a href="galerie-detail.html?id=uebung-atemschutz-2024-03" class="fw-album-card text-decoration-none" title="Atemschutzübung März 2024">
+                                <div class="fw-album-card__placeholder"><i class="bi bi-images"></i></div>
+                                                <div class="fw-album-card__overlay">
+                    <div class="fw-album-card__title">Atemschutzübung März 2024</div>
+                    <div class="fw-album-card__meta">15.03.2024</div>
+                </div>
+            </a>
+                        <a href="galerie-detail.html?id=jahresfeier-2024" class="fw-album-card text-decoration-none" title="Jahreshauptversammlung 2024">
+                                <div class="fw-album-card__placeholder"><i class="bi bi-images"></i></div>
+                                                <div class="fw-album-card__overlay">
+                    <div class="fw-album-card__title">Jahreshauptversammlung 2024</div>
+                    <div class="fw-album-card__meta">20.01.2024</div>
+                </div>
+            </a>
+                    </div>
+    </div>
+</section>
+
+<!-- CTA: Mitmachen -->
+<section class="fw-section fw-section--red">
+    <div class="container text-center">
+        <i class="bi bi-people-fill fs-1 mb-3 d-block opacity-75"></i>
+        <h2 class="mb-3">Werde Teil unserer Gemeinschaft</h2>
+        <p class="mb-4" style="max-width:520px; margin:0 auto 1.5rem;">
+            Ob aktive Feuerwehrfrau / Feuerwehrmann, Fördermitglied oder Jugendfeuerwehr –
+            bei uns ist jeder willkommen!
+        </p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="formulare.html" class="btn-fw-outline">
+                <i class="bi bi-file-earmark-arrow-down"></i> Formulare herunterladen
+            </a>
+            <a href="kontakt.html" class="btn bg-white text-danger fw-bold">
+                <i class="bi bi-envelope me-1"></i> Kontakt aufnehmen
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Back to top -->
+<button id="backToTop" class="btn btn-danger btn-sm rounded-circle"
+        style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;display:none;z-index:999;align-items:center;justify-content:center;"
+        title="Nach oben">
+    <i class="bi bi-arrow-up"></i>
+</button>
+<style>#backToTop.show{display:flex!important;}</style>
+
+<footer class="fw-footer mt-auto">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Brand column -->
+            <div class="col-lg-4">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="fw-logo-circle fw-logo-circle--sm">
+                        <i class="bi bi-shield-fill-exclamation"></i>
+                    </div>
+                    <span class="fw-footer-brand">Freiwillige Feuerwehr Langensendelbach</span>
+                </div>
+                <p class="text-muted small">Im Dienst für die Gemeinschaft – ehrenamtlich und engagiert.</p>
+                <div class="mt-3">
+                    <a href="tel:112" class="btn btn-danger btn-sm me-2">
+                        <i class="bi bi-telephone-fill me-1"></i>Notruf 112
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick links -->
+            <div class="col-sm-6 col-lg-2">
+                <h6 class="fw-footer-heading">Schnelllinks</h6>
+                <ul class="list-unstyled fw-footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="nachrichten.html">Nachrichten</a></li>
+                    <li><a href="kalender.html">Kalender</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="formulare.html">Formulare</a></li>
+                </ul>
+            </div>
+
+            <!-- More links -->
+            <div class="col-sm-6 col-lg-2">
+                <h6 class="fw-footer-heading">Informationen</h6>
+                <ul class="list-unstyled fw-footer-links">
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-4">
+                <h6 class="fw-footer-heading">Kontakt</h6>
+                <ul class="list-unstyled fw-footer-contact">
+                                        <li>
+                        <i class="bi bi-geo-alt-fill me-2"></i>
+                        Gerätehaus, Musterstraße 1, 91094 Langensendelbach                    </li>
+                                                            <li>
+                        <i class="bi bi-telephone-fill me-2"></i>
+                        <a href="tel:+499126XXXXX">+49 9126 XXXXX</a>
+                    </li>
+                                                            <li>
+                        <i class="bi bi-envelope-fill me-2"></i>
+                        <a href="mailto:info@feuerwehr-langensendelbach.de">info@feuerwehr-langensendelbach.de</a>
+                    </li>
+                                    </ul>
+            </div>
+        </div>
+
+        <hr class="fw-footer-divider">
+
+        <div class="row align-items-center">
+            <div class="col-md-6 text-muted small">
+                &copy; 2026 Freiwillige Feuerwehr Langensendelbach – Alle Rechte vorbehalten.
+            </div>
+            <div class="col-md-6 text-md-end text-muted small">
+                <a href="impressum.html" class="text-muted me-3">Impressum</a>
+                <a href="datenschutz.html" class="text-muted">Datenschutzerklärung</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
