@@ -30,11 +30,14 @@ PAGES=(
   "nachrichten.php:nachrichten.html"
   "kalender.php:kalender.html"
   "galerie.php:galerie.html"
+  "jugendfeuerwehr.php:jugendfeuerwehr.html"
   "formulare.php:formulare.html"
   "ueber-uns.php:ueber-uns.html"
+  "links.php:links.html"
   "kontakt.php:kontakt.html"
   "impressum.php:impressum.html"
   "datenschutz.php:datenschutz.html"
+  "404.php:404.html"
 )
 for entry in "${PAGES[@]}"; do
   src="${entry%%:*}"
@@ -54,8 +57,9 @@ echo "→ Links anpassen (.php → .html)..."
 PHP_LINKS=(
   "index.php" "nachrichten.php" "nachrichten-detail.php"
   "kalender.php" "galerie.php" "galerie-detail.php"
-  "formulare.php" "ueber-uns.php" "kontakt.php"
-  "impressum.php" "datenschutz.php"
+  "jugendfeuerwehr.php" "formulare.php" "ueber-uns.php"
+  "links.php" "kontakt.php" "impressum.php" "datenschutz.php"
+  "404.php"
 )
 for f in "$DOCS_DIR"/*.html; do
   # Absolute /page.php → relative page.html

@@ -5,6 +5,11 @@ $siteName  = $config['site_name']  ?? 'Freiwillige Feuerwehr Langensendelbach';
 $siteEmail = $config['site_email'] ?? '';
 $sitePhone = $config['site_phone'] ?? '';
 $siteAddr  = $config['site_address'] ?? '';
+
+// Social Media – Platzhalter, bitte in config.json eintragen
+$socialFacebook  = $config['social_facebook']  ?? '';
+$socialInstagram = $config['social_instagram'] ?? '';
+$socialYoutube   = $config['social_youtube']   ?? '';
 ?>
 <footer class="fw-footer mt-auto">
     <div class="container">
@@ -19,10 +24,30 @@ $siteAddr  = $config['site_address'] ?? '';
                 </div>
                 <p class="text-muted small">Im Dienst für die Gemeinschaft – ehrenamtlich und engagiert.</p>
                 <div class="mt-3">
-                    <a href="tel:112" class="btn btn-danger btn-sm me-2">
+                    <a href="tel:112" class="btn btn-danger btn-sm">
                         <i class="bi bi-telephone-fill me-1"></i>Notruf 112
                     </a>
                 </div>
+                <!-- Social Media -->
+                <?php if ($socialFacebook || $socialInstagram || $socialYoutube): ?>
+                <div class="fw-social-links">
+                    <?php if ($socialFacebook): ?>
+                    <a href="<?= h($socialFacebook) ?>" target="_blank" rel="noopener" class="fw-social-btn" title="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <?php endif; ?>
+                    <?php if ($socialInstagram): ?>
+                    <a href="<?= h($socialInstagram) ?>" target="_blank" rel="noopener" class="fw-social-btn" title="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <?php endif; ?>
+                    <?php if ($socialYoutube): ?>
+                    <a href="<?= h($socialYoutube) ?>" target="_blank" rel="noopener" class="fw-social-btn" title="YouTube">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
             </div>
 
             <!-- Quick links -->
@@ -34,6 +59,7 @@ $siteAddr  = $config['site_address'] ?? '';
                     <li><a href="/kalender.php">Kalender</a></li>
                     <li><a href="/galerie.php">Galerie</a></li>
                     <li><a href="/formulare.php">Formulare</a></li>
+                    <li><a href="/jugendfeuerwehr.php">Jugendfeuerwehr</a></li>
                 </ul>
             </div>
 
@@ -43,6 +69,7 @@ $siteAddr  = $config['site_address'] ?? '';
                 <ul class="list-unstyled fw-footer-links">
                     <li><a href="/ueber-uns.php">Über uns</a></li>
                     <li><a href="/kontakt.php">Kontakt</a></li>
+                    <li><a href="/links.php">Links &amp; Partner</a></li>
                     <li><a href="/impressum.php">Impressum</a></li>
                     <li><a href="/datenschutz.php">Datenschutz</a></li>
                 </ul>
@@ -71,6 +98,22 @@ $siteAddr  = $config['site_address'] ?? '';
                     </li>
                     <?php endif; ?>
                 </ul>
+                <!-- KBI Verweis -->
+                <div class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,.1);">
+                    <p class="text-muted small mb-2" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;">Übergeordnete Stellen</p>
+                    <a href="https://www.erlangen-hoechstadt.de/buergerservice/feuerwehr/" target="_blank" rel="noopener"
+                       class="d-flex align-items-center gap-2 text-muted small" style="text-decoration:none;">
+                        <i class="bi bi-shield-fill text-danger"></i>
+                        Kreisbrandinspektion ERH
+                        <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
+                    </a>
+                    <a href="https://www.feuerwehr-bayern.de" target="_blank" rel="noopener"
+                       class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
+                        <i class="bi bi-shield-fill text-danger"></i>
+                        Landesfeuerwehrverband Bayern
+                        <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -94,5 +137,6 @@ $siteAddr  = $config['site_address'] ?? '';
 <script src="<?= h($js) ?>"></script>
 <?php endforeach; endif; ?>
 <script src="/js/main.js"></script>
+<script src="/js/cookie-banner.js"></script>
 </body>
 </html>

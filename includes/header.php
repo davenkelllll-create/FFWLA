@@ -88,10 +88,22 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
                     <a class="nav-link<?= isActive('galerie.php') ?>" href="/galerie.php">Galerie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?= isActive('formulare.php') ?>" href="/formulare.php">Formulare</a>
+                    <a class="nav-link<?= isActive('jugendfeuerwehr.php') ?>" href="/jugendfeuerwehr.php">Jugendfeuerwehr</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link<?= isActive('ueber-uns.php') ?>" href="/ueber-uns.php">Über uns</a>
+                    <a class="nav-link<?= isActive('formulare.php') ?>" href="/formulare.php">Formulare</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle<?= isActiveParent(['ueber-uns.php','links.php']) ?>"
+                       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Über uns
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item<?= isActive('ueber-uns.php') ?>" href="/ueber-uns.php">
+                            <i class="bi bi-people-fill me-2"></i>Über uns</a></li>
+                        <li><a class="dropdown-item<?= isActive('links.php') ?>" href="/links.php">
+                            <i class="bi bi-link-45deg me-2"></i>Links &amp; Partner</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link<?= isActive('kontakt.php') ?>" href="/kontakt.php">Kontakt</a>

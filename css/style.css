@@ -694,3 +694,122 @@ img { max-width: 100%; height: auto; }
     .fw-gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .fw-photo-grid   { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ---- Cookie-Banner ---- */
+#fw-cookie-banner {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: var(--fw-black);
+    color: rgba(255,255,255,.9);
+    box-shadow: 0 -4px 24px rgba(0,0,0,.3);
+    transform: translateY(100%);
+    transition: transform 350ms ease;
+}
+#fw-cookie-banner.fw-cookie--visible { transform: translateY(0); }
+#fw-cookie-banner.fw-cookie--hiding  { transform: translateY(100%); }
+
+.fw-cookie__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+.fw-cookie__icon {
+    font-size: 1.8rem;
+    color: var(--fw-red-light);
+    flex-shrink: 0;
+    display: none;
+}
+@media (min-width: 768px) { .fw-cookie__icon { display: block; } }
+
+.fw-cookie__text { flex: 1; min-width: 200px; font-size: .875rem; }
+.fw-cookie__text strong { display: block; margin-bottom: .2rem; color: #fff; }
+.fw-cookie__text p { margin: 0; color: rgba(255,255,255,.7); line-height: 1.5; }
+.fw-cookie__text a { color: var(--fw-red-light); }
+
+.fw-cookie__actions { display: flex; gap: .75rem; flex-shrink: 0; flex-wrap: wrap; }
+.fw-cookie__btn {
+    padding: .5rem 1.2rem;
+    border-radius: var(--radius-sm);
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity var(--transition);
+}
+.fw-cookie__btn:hover { opacity: .85; }
+.fw-cookie__btn--accept { background: var(--fw-red); color: #fff; }
+.fw-cookie__btn--decline {
+    background: transparent;
+    color: rgba(255,255,255,.6);
+    border: 1px solid rgba(255,255,255,.25);
+}
+
+/* ---- Social Media Buttons ---- */
+.fw-social-links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+.fw-social-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.1);
+    color: rgba(255,255,255,.7);
+    font-size: 1rem;
+    transition: background var(--transition), color var(--transition);
+    text-decoration: none;
+}
+.fw-social-btn:hover { background: var(--fw-red); color: #fff; text-decoration: none; }
+
+/* ---- KBI / Partner Links ---- */
+.fw-partner-card {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--fw-gray-200);
+    transition: box-shadow var(--transition);
+    text-decoration: none; color: var(--fw-black);
+}
+.fw-partner-card:hover { box-shadow: var(--shadow-md); text-decoration: none; color: var(--fw-black); }
+.fw-partner-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: var(--fw-red-pale);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; color: var(--fw-red);
+}
+
+/* ---- Jugendfeuerwehr ---- */
+.fw-jfw-hero {
+    background: linear-gradient(135deg, #e07800 0%, #ff8c00 60%, #ffaa00 100%);
+    color: #fff; padding: 4rem 0 3rem; position: relative; overflow: hidden;
+}
+.fw-jfw-hero h1, .fw-jfw-hero p { color: #fff; }
+.fw-jfw-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ---- 404 Page ---- */
+.fw-404-section {
+    min-height: 60vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 1rem;
+}
+.fw-404-code {
+    font-size: clamp(5rem, 20vw, 10rem);
+    font-weight: 900;
+    color: var(--fw-red);
+    line-height: 1;
+    opacity: .15;
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+}
+.fw-404-content { position: relative; z-index: 1; }
