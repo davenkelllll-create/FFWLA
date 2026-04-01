@@ -1,0 +1,41 @@
+Options -Indexes
+
+# Security Headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-XSS-Protection "1; mode=block"
+
+# Protect sensitive files
+<Files "*.json">
+    Require all denied
+</Files>
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# Allow data JSON files to be read by PHP only (not directly in browser)
+# data/ folder is read server-side via PHP functions.php
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/plain
+</IfModule>
+
+# Browser caching for static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 20M
+    php_value post_max_size 25M
+    php_value max_execution_time 60
+</IfModule>
