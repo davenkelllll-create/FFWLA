@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/functions.php';
+$fuehrung  = getFuehrung();
 $pageTitle = 'Jugendfeuerwehr';
 $pageDescription = 'Jugendfeuerwehr Langensendelbach – Für Jugendliche von 12 bis 18 Jahren. Spaß, Teamgeist und verantwortungsvolles Handeln.';
 include 'includes/header.php';
@@ -196,32 +197,30 @@ $jfwSlides = [
     <div class="container">
         <h2 class="fw-section-title mb-4">Ansprechpartner</h2>
         <div class="row g-4">
+            <?php foreach ($fuehrung['jugendfeuerwehr'] as $p): ?>
             <div class="col-md-6 col-lg-4">
                 <div class="admin-card p-4 text-center">
                     <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
                          style="width:72px;height:72px;background:var(--fw-red-pale);">
                         <i class="bi bi-person-fill text-danger" style="font-size:2rem;"></i>
                     </div>
-                    <h6 class="fw-bold mb-1">Maria Schmidt</h6>
-                    <p class="text-muted small mb-2">Jugendwartin</p>
+                    <h6 class="fw-bold mb-1"><?= h($p['name']) ?></h6>
+                    <p class="text-muted small mb-2"><?= h($p['funktion']) ?></p>
+                    <?php if (!empty($p['email'])): ?>
+                    <a href="mailto:<?= h($p['email']) ?>" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-envelope me-1"></i>E-Mail
+                    </a>
+                    <?php else: ?>
                     <a href="/kontakt.php" class="btn btn-outline-danger btn-sm">
                         <i class="bi bi-envelope me-1"></i>Kontakt
                     </a>
+                    <?php endif; ?>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="admin-card p-4 text-center">
-                    <div class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                         style="width:72px;height:72px;background:var(--fw-red-pale);">
-                        <i class="bi bi-person-fill text-danger" style="font-size:2rem;"></i>
-                    </div>
-                    <h6 class="fw-bold mb-1">Thomas Weber</h6>
-                    <p class="text-muted small mb-2">Stellv. Jugendwart</p>
-                    <a href="/kontakt.php" class="btn btn-outline-danger btn-sm">
-                        <i class="bi bi-envelope me-1"></i>Kontakt
-                    </a>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            <?php if (empty($fuehrung['jugendfeuerwehr'])): ?>
+            <div class="col-12 text-muted">Keine Ansprechpartner hinterlegt.</div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

@@ -29,6 +29,9 @@ function adminActive(string $page): string {
         <a href="/admin/formulare.php" class="admin-nav-link<?= adminActive('formulare.php') ?>">
             <i class="bi bi-file-earmark-pdf"></i> Formulare
         </a>
+        <a href="/admin/einstellungen.php" class="admin-nav-link<?= adminActive('einstellungen.php') ?>">
+            <i class="bi bi-gear-fill"></i> Einstellungen
+        </a>
         <hr style="border-color:rgba(255,255,255,.1);margin:.75rem 0;">
         <a href="/" target="_blank" class="admin-nav-link">
             <i class="bi bi-box-arrow-up-right"></i> Website

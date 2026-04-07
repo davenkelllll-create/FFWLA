@@ -101,10 +101,10 @@ $socialYoutube   = $config['social_youtube']   ?? '';
                 <!-- KBI Verweis -->
                 <div class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,.1);">
                     <p class="text-muted small mb-2" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;">Übergeordnete Stellen</p>
-                    <a href="https://www.erlangen-hoechstadt.de/buergerservice/feuerwehr/" target="_blank" rel="noopener"
+                    <a href="https://www.landkreis-forchheim.de/Landratsamt/Fachbereiche/Brandschutz-und-Rettungswesen/" target="_blank" rel="noopener"
                        class="d-flex align-items-center gap-2 text-muted small" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i>
-                        Kreisbrandinspektion ERH
+                        Kreisbrandinspektion Forchheim
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>
                     <a href="https://www.feuerwehr-bayern.de" target="_blank" rel="noopener"

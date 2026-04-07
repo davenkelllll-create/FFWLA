@@ -3,6 +3,7 @@ require_once 'includes/functions.php';
 $pageTitle = 'Über uns';
 $pageDescription = 'Geschichte, Mannschaft und Fahrzeuge der Freiwilligen Feuerwehr Langensendelbach.';
 
+$fuehrung = getFuehrung();
 include 'includes/header.php';
 ?>
 
@@ -75,10 +76,18 @@ include 'includes/header.php';
                 <div class="mt-3 p-4 rounded" style="background:var(--fw-gray-100);">
                     <h6 class="fw-bold mb-2"><i class="bi bi-person-badge me-2 text-danger"></i>Führung</h6>
                     <ul class="list-unstyled mb-0 small">
-                        <li class="py-1 border-bottom"><strong>Kommandant:</strong> Stefan Müller</li>
-                        <li class="py-1 border-bottom"><strong>Stv. Kommandant:</strong> Thomas Weber</li>
-                        <li class="py-1 border-bottom"><strong>Jugendwart:</strong> Maria Schmidt</li>
-                        <li class="py-1"><strong>Kassier:</strong> Hans Meier</li>
+                        <?php
+                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr']);
+                        foreach ($alle as $idx => $p):
+                            $last = $idx === count($alle) - 1;
+                        ?>
+                        <li class="py-1<?= $last ? '' : ' border-bottom' ?>">
+                            <strong><?= h($p['funktion']) ?>:</strong> <?= h($p['name']) ?>
+                            <?php if (!empty($p['email'])): ?>
+                                <a href="mailto:<?= h($p['email']) ?>" class="text-muted ms-1"><i class="bi bi-envelope-fill"></i></a>
+                            <?php endif; ?>
+                        </li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>

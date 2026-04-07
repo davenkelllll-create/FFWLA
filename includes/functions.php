@@ -130,6 +130,18 @@ function getFormulare(): array {
     return loadJson('formulare.json');
 }
 
+function getFuehrung(): array {
+    $data = loadJson('fuehrung.json');
+    return [
+        'aktive_wehr'      => $data['aktive_wehr']      ?? [],
+        'jugendfeuerwehr'  => $data['jugendfeuerwehr']  ?? [],
+    ];
+}
+
+function saveFuehrung(array $data): bool {
+    return saveJson('fuehrung.json', $data);
+}
+
 function getTypLabel(string $type): string {
     return match($type) {
         'einsatz'     => 'Einsatz',

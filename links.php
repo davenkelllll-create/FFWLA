@@ -24,22 +24,22 @@ include 'includes/header.php';
                 <h2 class="fw-section-title mb-4">Übergeordnete Stellen</h2>
                 <div class="d-flex flex-column gap-3">
 
-                    <a href="https://www.erlangen-hoechstadt.de/buergerservice/feuerwehr/" target="_blank" rel="noopener"
+                    <a href="https://www.landkreis-forchheim.de/Landratsamt/Fachbereiche/Brandschutz-und-Rettungswesen/" target="_blank" rel="noopener"
                        class="fw-partner-card">
                         <div class="fw-partner-icon">
                             <i class="bi bi-shield-fill"></i>
                         </div>
                         <div>
-                            <strong class="d-block">Kreisbrandinspektion Erlangen-Höchstadt</strong>
-                            <span class="text-muted small">Zuständige Kreisbrandinspektion für den Landkreis ERH</span>
+                            <strong class="d-block">Kreisbrandinspektion Forchheim</strong>
+                            <span class="text-muted small">Zuständige Kreisbrandinspektion für den Landkreis Forchheim</span>
                             <div class="mt-1">
-                                <span class="fw-badge badge-secondary">erlangen-hoechstadt.de</span>
+                                <span class="fw-badge badge-secondary">landkreis-forchheim.de</span>
                             </div>
                         </div>
                         <i class="bi bi-box-arrow-up-right text-muted ms-auto flex-shrink-0"></i>
                     </a>
 
-                    <a href="https://www.lkfv.de" target="_blank" rel="noopener"
+                    <a href="https://www.lfv-bayern.de" target="_blank" rel="noopener"
                        class="fw-partner-card">
                         <div class="fw-partner-icon">
                             <i class="bi bi-shield-fill"></i>
@@ -48,22 +48,22 @@ include 'includes/header.php';
                             <strong class="d-block">Landesfeuerwehrverband Bayern e.V.</strong>
                             <span class="text-muted small">Dachverband der bayerischen Feuerwehren</span>
                             <div class="mt-1">
-                                <span class="fw-badge badge-secondary">lkfv.de</span>
+                                <span class="fw-badge badge-secondary">lfv-bayern.de</span>
                             </div>
                         </div>
                         <i class="bi bi-box-arrow-up-right text-muted ms-auto flex-shrink-0"></i>
                     </a>
 
-                    <a href="https://www.feuerwehr-franken.de" target="_blank" rel="noopener"
+                    <a href="https://www.feuerwehr-oberfranken.de" target="_blank" rel="noopener"
                        class="fw-partner-card">
                         <div class="fw-partner-icon">
                             <i class="bi bi-shield-fill"></i>
                         </div>
                         <div>
-                            <strong class="d-block">Bezirksfeuerwehrverband Mittelfranken</strong>
-                            <span class="text-muted small">Bezirksverband für den Regierungsbezirk Mittelfranken</span>
+                            <strong class="d-block">Bezirksfeuerwehrverband Oberfranken</strong>
+                            <span class="text-muted small">Bezirksverband für den Regierungsbezirk Oberfranken</span>
                             <div class="mt-1">
-                                <span class="fw-badge badge-secondary">feuerwehr-franken.de</span>
+                                <span class="fw-badge badge-secondary">feuerwehr-oberfranken.de</span>
                             </div>
                         </div>
                         <i class="bi bi-box-arrow-up-right text-muted ms-auto flex-shrink-0"></i>
