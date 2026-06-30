@@ -91,6 +91,13 @@ include 'includes/header.php';
             </div>
 
             <!-- Map -->
+            <?php
+            // Koordinaten des Gerätehauses – im Admin unter Einstellungen pflegbar.
+            $lat = (float)($config['map_lat'] ?? 49.6470);
+            $lon = (float)($config['map_lon'] ?? 11.0690);
+            $d   = 0.006; // Kartenausschnitt um den Marker
+            $bbox = sprintf('%.5f,%.5f,%.5f,%.5f', $lon - $d, $lat - $d, $lon + $d, $lat + $d);
+            ?>
             <div class="col-lg-7">
                 <h2 class="fw-section-title mb-4">Anfahrt</h2>
                 <div class="rounded overflow-hidden" style="height:400px;border:1px solid var(--fw-gray-200);">
@@ -101,12 +108,12 @@ include 'includes/header.php';
                         height="100%"
                         frameborder="0"
                         loading="lazy"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=11.030,49.638,11.071,49.660&amp;layer=mapnik&amp;marker=49.6489,11.0506"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=<?= h($bbox) ?>&amp;layer=mapnik&amp;marker=<?= h(sprintf('%.5f,%.5f', $lat, $lon)) ?>"
                         style="border:none;">
                     </iframe>
                 </div>
                 <p class="text-muted small mt-2">
-                    <a href="https://www.openstreetmap.org/?mlat=49.6489&mlon=11.0506#map=16/49.6489/11.0506" target="_blank" rel="noopener">
+                    <a href="https://www.openstreetmap.org/?mlat=<?= h(sprintf('%.5f', $lat)) ?>&mlon=<?= h(sprintf('%.5f', $lon)) ?>#map=17/<?= h(sprintf('%.5f', $lat)) ?>/<?= h(sprintf('%.5f', $lon)) ?>" target="_blank" rel="noopener">
                         <i class="bi bi-box-arrow-up-right me-1"></i>Größere Karte öffnen
                     </a>
                 </p>

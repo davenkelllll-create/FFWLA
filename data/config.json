@@ -1,9 +1,11 @@
 {
   "site_name": "Freiwillige Feuerwehr Langensendelbach",
   "site_short": "FF Langensendelbach",
-  "site_email": "info@feuerwehr-langensendelbach.de",
+  "site_email": "vorstand@ff-langensendelbach.de",
   "site_phone": "",
   "site_address": "Zum Berg 7, 91094 Langensendelbach",
+  "map_lat": "49.6470",
+  "map_lon": "11.0690",
   "social_facebook":  "",
   "social_instagram": "",
   "social_youtube":   ""

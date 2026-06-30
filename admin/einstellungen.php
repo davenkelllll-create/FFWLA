@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_config'])) {
         $config['site_email']   = trim($_POST['site_email'] ?? '');
         $config['site_phone']   = trim($_POST['site_phone'] ?? '');
         $config['site_address'] = trim($_POST['site_address'] ?? '');
+        $config['map_lat']      = trim($_POST['map_lat'] ?? '');
+        $config['map_lon']      = trim($_POST['map_lon'] ?? '');
         $config['social_facebook']  = trim($_POST['social_facebook']  ?? '');
         $config['social_instagram'] = trim($_POST['social_instagram'] ?? '');
         $config['social_youtube']   = trim($_POST['social_youtube']   ?? '');
@@ -193,6 +195,27 @@ $pageTitle = 'Einstellungen';
                                 <input type="text" class="form-control" name="site_address"
                                        placeholder="Zum Berg 7, 91094 Langensendelbach"
                                        value="<?= h($config['site_address'] ?? '') ?>">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <h6 class="fw-bold mb-1"><i class="bi bi-geo-alt me-2"></i>Karte (Standort Gerätehaus)</h6>
+                        <p class="text-muted small mb-3">
+                            Exakten Punkt finden: auf
+                            <a href="https://www.openstreetmap.org" target="_blank" rel="noopener">openstreetmap.org</a>
+                            den Standort suchen, mit der <strong>rechten Maustaste</strong> aufs Gerätehaus klicken →
+                            „Adresse anzeigen" / „Hier zentrieren". Die beiden Zahlen (Breite, Länge) hier eintragen.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label" for="map_lat">Breitengrad (lat)</label>
+                                <input type="text" class="form-control" id="map_lat" name="map_lat"
+                                       placeholder="49.6470" value="<?= h($config['map_lat'] ?? '') ?>">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="map_lon">Längengrad (lon)</label>
+                                <input type="text" class="form-control" id="map_lon" name="map_lon"
+                                       placeholder="11.0690" value="<?= h($config['map_lon'] ?? '') ?>">
                             </div>
                         </div>
 

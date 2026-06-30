@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/functions.php';
 $pageTitle = 'Über uns';
-$pageDescription = 'Geschichte, Mannschaft und Fahrzeuge der Freiwilligen Feuerwehr Langensendelbach.';
+$pageDescription = 'Die Freiwillige Feuerwehr Langensendelbach – Fahrzeuge und Ansprechpartner.';
 
 $fuehrung = getFuehrung();
 include 'includes/header.php';
@@ -14,82 +14,45 @@ include 'includes/header.php';
             <a href="/">Startseite</a> / Über uns
         </nav>
         <h1><i class="bi bi-people-fill me-2 text-fw-red"></i>Über uns</h1>
-        <p class="text-muted mb-0">Geschichte, Mannschaft und Ausstattung der FF Langensendelbach</p>
+        <p class="text-muted mb-0">Unsere Wehr, Fahrzeuge und Ansprechpartner</p>
     </div>
 </div>
 
-<!-- Geschichte -->
+<!-- Gründungsjahr + Ansprechpartner -->
 <section class="fw-section">
     <div class="container">
         <div class="row g-5 align-items-start">
-            <div class="col-lg-7">
-                <h2 class="fw-section-title mb-4">Unsere Geschichte</h2>
-                <div class="fw-timeline">
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">1952</div>
-                        <div class="fw-timeline-title">Gründung der Freiwilligen Feuerwehr Langensendelbach</div>
-                        <p class="text-muted small">Mit 24 Gründungsmitgliedern wurde die Freiwillige Feuerwehr Langensendelbach ins Leben gerufen. Die ersten Übungen fanden auf dem Sportplatz statt.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">1968</div>
-                        <div class="fw-timeline-title">Bezug des neuen Gerätehauses</div>
-                        <p class="text-muted small">Das erste eigene Gerätehaus wurde gebaut und bezogen. Damit verbesserten sich die Ausrückzeiten erheblich.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">1985</div>
-                        <div class="fw-timeline-title">Gründung der Jugendfeuerwehr</div>
-                        <p class="text-muted small">Die Jugendfeuerwehr wurde gegründet, um Nachwuchs für die aktive Wehr zu gewinnen und Jugendlichen eine sinnvolle Freizeitgestaltung zu bieten.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">2003</div>
-                        <div class="fw-timeline-title">Erweiterung und Modernisierung des Gerätehauses</div>
-                        <p class="text-muted small">Das Gerätehaus wurde erweitert und mit moderner Ausstattung versehen. Neue Fahrzeuge wurden in Dienst gestellt.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">Heute</div>
-                        <div class="fw-timeline-title">Moderne Feuerwehr für die Zukunft</div>
-                        <p class="text-muted small mb-0">Mit über 45 aktiven Mitgliedern und moderner Technik sind wir für alle Herausforderungen gerüstet.</p>
-                    </div>
+            <div class="col-lg-4">
+                <div class="p-4 rounded text-center" style="background:var(--fw-red);color:#fff;">
+                    <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;opacity:.85;">Gegründet</div>
+                    <div style="font-size:3rem;font-weight:900;line-height:1.1;">1952</div>
+                    <p class="mb-0 small" style="opacity:.9;">Im Dienst für Langensendelbach und seine Bürgerinnen und Bürger.</p>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="p-4 rounded" style="background:var(--fw-red);color:#fff;">
-                    <h4 class="text-white mb-3"><i class="bi bi-info-circle me-2"></i>Auf einen Blick</h4>
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex justify-content-between border-bottom border-white border-opacity-25 py-2">
-                            <span>Gegründet</span><strong>1952</strong>
-                        </li>
-                        <li class="d-flex justify-content-between border-bottom border-white border-opacity-25 py-2">
-                            <span>Aktive Mitglieder</span><strong>45+</strong>
-                        </li>
-                        <li class="d-flex justify-content-between border-bottom border-white border-opacity-25 py-2">
-                            <span>Jugendliche</span><strong>12</strong>
-                        </li>
-                        <li class="d-flex justify-content-between border-bottom border-white border-opacity-25 py-2">
-                            <span>Fahrzeuge</span><strong>3</strong>
-                        </li>
-                        <li class="d-flex justify-content-between py-2">
-                            <span>Einsätze 2023</span><strong>47</strong>
-                        </li>
-                    </ul>
-                </div>
-                <div class="mt-3 p-4 rounded" style="background:var(--fw-gray-100);">
-                    <h6 class="fw-bold mb-2"><i class="bi bi-person-badge me-2 text-danger"></i>Führung</h6>
-                    <ul class="list-unstyled mb-0 small">
-                        <?php
-                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr'], $fuehrung['kinderfeuerwehr']);
-                        foreach ($alle as $idx => $p):
-                            $last = $idx === count($alle) - 1;
-                        ?>
-                        <li class="py-1<?= $last ? '' : ' border-bottom' ?>">
-                            <strong><?= h($p['funktion']) ?>:</strong> <?= h($p['name']) ?>
-                            <?php if (!empty($p['email'])): ?>
-                                <a href="mailto:<?= h($p['email']) ?>" class="text-muted ms-1"><i class="bi bi-envelope-fill"></i></a>
-                            <?php endif; ?>
-                        </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
+            <div class="col-lg-8">
+                <h2 class="fw-section-title mb-4">Ansprechpartner</h2>
+                <?php
+                $gruppen = [
+                    'Vorstandschaft & Wehrführung' => $fuehrung['aktive_wehr'],
+                    'Jugendfeuerwehr'              => $fuehrung['jugendfeuerwehr'],
+                    'Kinderfeuerwehr'              => $fuehrung['kinderfeuerwehr'],
+                ];
+                foreach ($gruppen as $titel => $personen):
+                    if (empty($personen)) continue; ?>
+                <h6 class="fw-bold text-uppercase text-muted mb-2" style="font-size:.78rem;letter-spacing:.06em;"><?= h($titel) ?></h6>
+                <ul class="list-unstyled mb-4">
+                    <?php foreach ($personen as $p): ?>
+                    <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                        <span><strong><?= h($p['funktion']) ?>:</strong> <?= h($p['name']) ?></span>
+                        <?php if (!empty($p['email'])): ?>
+                        <a href="mailto:<?= h($p['email']) ?>" class="btn btn-sm btn-outline-danger" title="E-Mail an <?= h($p['name']) ?>" aria-label="E-Mail an <?= h($p['name']) ?>">
+                            <i class="bi bi-envelope"></i>
+                        </a>
+                        <?php endif; ?>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -145,37 +108,6 @@ include 'includes/header.php';
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Ausrüstung -->
-<section class="fw-section">
-    <div class="container">
-        <h2 class="fw-section-title mb-4">Ausrüstung &amp; Technik</h2>
-        <div class="row g-4">
-            <?php
-            $ausruestung = [
-                ['icon' => 'wind', 'titel' => 'Atemschutz', 'text' => '10 Atemschutzgeräte für den sicheren Einsatz in verrauchten Bereichen'],
-                ['icon' => 'droplet-fill', 'titel' => 'Brandbekämpfung', 'text' => 'Pumpen, Schläuche, Strahlrohre für verschiedene Einsatzszenarien'],
-                ['icon' => 'tools', 'titel' => 'Technische Hilfe', 'text' => 'Hydraulische Rettungsgeräte (Spreizer, Schere) für Verkehrsunfälle'],
-                ['icon' => 'lightning-charge-fill', 'titel' => 'Stromversorgung', 'text' => 'Stromerzeuger und Beleuchtungsgeräte für den Nachtbetrieb'],
-                ['icon' => 'water', 'titel' => 'Wassertechnik', 'text' => 'Tragkraftspritzen und Pumpen zur Wasserförderung über lange Strecken'],
-                ['icon' => 'heart-pulse-fill', 'titel' => 'Erste Hilfe', 'text' => 'Sanitätstasche und Defibrillatoren für die medizinische Erstversorgung'],
-            ];
-            foreach ($ausruestung as $a): ?>
-            <div class="col-md-6 col-lg-4">
-                <div class="d-flex gap-3 p-3 rounded" style="background:var(--fw-gray-100);">
-                    <div style="width:44px;height:44px;background:var(--fw-red);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                        <i class="bi bi-<?= $a['icon'] ?> text-white fs-5"></i>
-                    </div>
-                    <div>
-                        <strong class="d-block mb-1"><?= h($a['titel']) ?></strong>
-                        <span class="text-muted small"><?= h($a['text']) ?></span>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
         </div>
     </div>
 </section>

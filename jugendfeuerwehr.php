@@ -118,28 +118,22 @@ $jfwSlides = [
 <!-- Was machen wir? -->
 <section class="fw-section">
     <div class="container">
-        <h2 class="fw-section-title mb-2">Was machen wir?</h2>
-        <p class="text-muted mb-4">Bei unseren regelmäßigen Treffen ist immer etwas los:</p>
+        <h2 class="fw-section-title mb-4">Was machen wir?</h2>
         <div class="row g-4">
             <?php
             $aktivitaeten = [
-                ['icon' => 'fire',              'color' => '#CC0000', 'titel' => 'Feuerwehrtechnik',    'text' => 'Löscheinsätze üben, Schläuche kuppeln, Strahlrohre bedienen – echte Feuerwehrarbeit hautnah.'],
-                ['icon' => 'tools',             'color' => '#1a4a8a', 'titel' => 'Technische Hilfe',    'text' => 'Erste Hilfe, Verkehrsunfall-Simulation und der Umgang mit Werkzeug und Geräten.'],
-                ['icon' => 'people-fill',       'color' => '#1a7a3c', 'titel' => 'Teamgeist',           'text' => 'Gemeinsame Unternehmungen, Ausflüge und die Kameradschaft, die ein Leben lang hält.'],
-                ['icon' => 'trophy-fill',       'color' => '#e07800', 'titel' => 'Wettbewerbe',         'text' => 'Jugendfeuerwehr-Leistungsabzeichen, Kreisbewerbe und überregionale Wettkämpfe.'],
-                ['icon' => 'map-fill',          'color' => '#6f42c1', 'titel' => 'Ausflüge & Zeltlager','text' => 'Jährliches Zeltlager, Besuche bei Berufsfeuerwehren und gemeinsame Erlebnisse.'],
-                ['icon' => 'book-half',         'color' => '#495057', 'titel' => 'Ausbildung',          'text' => 'Erste Hilfe Kurs, Brandschutzerziehung in Schulen und Vorbereitung auf den aktiven Dienst.'],
+                ['icon' => 'fire',        'color' => '#CC0000', 'titel' => 'Feuerwehrtechnik'],
+                ['icon' => 'people-fill', 'color' => '#1a7a3c', 'titel' => 'Teamgeist'],
+                ['icon' => 'trophy-fill', 'color' => '#e07800', 'titel' => 'Wettbewerbe'],
+                ['icon' => 'map-fill',    'color' => '#6f42c1', 'titel' => 'Ausflüge & Zeltlager'],
             ];
             foreach ($aktivitaeten as $a): ?>
-            <div class="col-md-6 col-lg-4">
-                <div class="d-flex gap-3 p-3 rounded h-100" style="background:var(--fw-gray-100);">
+            <div class="col-md-6 col-lg-3">
+                <div class="d-flex align-items-center gap-3 p-3 rounded h-100" style="background:var(--fw-gray-100);">
                     <div style="width:48px;height:48px;background:<?= $a['color'] ?>;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                         <i class="bi bi-<?= $a['icon'] ?> text-white fs-5"></i>
                     </div>
-                    <div>
-                        <strong class="d-block mb-1"><?= h($a['titel']) ?></strong>
-                        <span class="text-muted small"><?= h($a['text']) ?></span>
-                    </div>
+                    <strong><?= h($a['titel']) ?></strong>
                 </div>
             </div>
             <?php endforeach; ?>

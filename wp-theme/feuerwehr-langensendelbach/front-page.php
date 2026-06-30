@@ -92,18 +92,6 @@ $slides = [
     </button>
 </div>
 
-<!-- Stats Bar -->
-<div class="fw-stats">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-6 col-md-3"><div class="fw-stat"><div class="fw-stat__number"><?= fw_option('fw_members','45') ?>+</div><div class="fw-stat__label">Aktive Mitglieder</div></div></div>
-            <div class="col-6 col-md-3"><div class="fw-stat"><div class="fw-stat__number">50+</div><div class="fw-stat__label">Einsätze pro Jahr</div></div></div>
-            <div class="col-6 col-md-3"><div class="fw-stat"><div class="fw-stat__number">24/7</div><div class="fw-stat__label">Einsatzbereit</div></div></div>
-            <div class="col-6 col-md-3"><div class="fw-stat"><div class="fw-stat__number"><?= fw_option('fw_founded','1952') ?></div><div class="fw-stat__label">Gegründet</div></div></div>
-        </div>
-    </div>
-</div>
-
 <!-- Neueste Nachrichten -->
 <section class="fw-section">
     <div class="container">

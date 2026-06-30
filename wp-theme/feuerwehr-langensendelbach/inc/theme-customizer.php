@@ -17,7 +17,7 @@ function fw_customizer_register(WP_Customize_Manager $wp_customize): void {
     ]);
     foreach ([
         'fw_phone'   => ['label' => 'Telefonnummer',  'type' => 'text',  'default' => ''],
-        'fw_email'   => ['label' => 'E-Mail-Adresse', 'type' => 'email', 'default' => 'info@feuerwehr-langensendelbach.de'],
+        'fw_email'   => ['label' => 'E-Mail-Adresse', 'type' => 'email', 'default' => 'vorstand@ff-langensendelbach.de'],
         'fw_address' => ['label' => 'Adresse',        'type' => 'text',  'default' => 'Zum Berg 7, 91094 Langensendelbach'],
         'fw_founded' => ['label' => 'Gründungsjahr',  'type' => 'number','default' => '1952'],
         'fw_members' => ['label' => 'Aktive Mitglieder', 'type' => 'number', 'default' => '45'],
