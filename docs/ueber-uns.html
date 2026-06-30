@@ -7,6 +7,10 @@
     <meta property="og:title" content="Über uns – FF Langensendelbach">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
+    <meta property="og:image" content="images/og-default.svg">
+    <meta name="theme-color" content="#CC0000">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="mask-icon" href="favicon.svg" color="#CC0000">
     <title>Über uns – FF Langensendelbach</title>
 
     <!-- Bootstrap 5 -->
@@ -17,6 +21,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- Skip to content (Tastatur-Bedienung) -->
+<a href="#main-content" class="fw-skip-link">Zum Inhalt springen</a>
 
 <!-- Emergency Alert Strip (shown when data/alert.json is active) -->
 
@@ -84,6 +91,8 @@
         </div>
     </div>
 </nav>
+
+<main id="main-content">
 
 <!-- Page Header -->
 <div class="fw-page-header">
@@ -319,6 +328,8 @@
     </div>
 </section>
 
+</main><!-- /#main-content -->
+
 <footer class="fw-footer mt-auto">
     <div class="container">
         <div class="row g-4">
@@ -371,11 +382,7 @@
                                         <li>
                         <i class="bi bi-geo-alt-fill me-2"></i>
                         Am Weiher, 91094 Langensendelbach                    </li>
-                                                            <li>
-                        <i class="bi bi-telephone-fill me-2"></i>
-                        <a href="tel:+499126XXXXX">+49 9126 XXXXX</a>
-                    </li>
-                                                            <li>
+                                                                                <li>
                         <i class="bi bi-envelope-fill me-2"></i>
                         <a href="mailto:info@feuerwehr-langensendelbach.de">info@feuerwehr-langensendelbach.de</a>
                     </li>
@@ -389,7 +396,7 @@
                         Kreisbrandinspektion Forchheim
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>
-                    <a href="https://www.feuerwehr-bayern.de" target="_blank" rel="noopener"
+                    <a href="https://www.lfv-bayern.de" target="_blank" rel="noopener"
                        class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i>
                         Landesfeuerwehrverband Bayern
@@ -412,6 +419,11 @@
         </div>
     </div>
 </footer>
+
+<!-- Back-to-top (alle Seiten) -->
+<button id="backToTop" type="button" aria-label="Nach oben scrollen" title="Nach oben">
+    <i class="bi bi-arrow-up"></i>
+</button>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

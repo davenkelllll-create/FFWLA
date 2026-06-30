@@ -75,15 +75,15 @@
                     <?php endif; ?>
                 </ul>
                 <!-- KBI Verweis -->
-                <?php $kbi_url = fw_option_url('fw_kbi_url', 'https://www.erlangen-hoechstadt.de/buergerservice/feuerwehr/');
-                      $kbi_name = fw_option('fw_kbi_name', 'Kreisbrandinspektion Erlangen-Höchstadt'); ?>
+                <?php $kbi_url = fw_option_url('fw_kbi_url', 'https://www.landkreis-forchheim.de/Landratsamt/Fachbereiche/Brandschutz-und-Rettungswesen/');
+                      $kbi_name = fw_option('fw_kbi_name', 'Kreisbrandinspektion Forchheim'); ?>
                 <div class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,.1);">
                     <p class="text-muted small mb-2" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;">Übergeordnete Stellen</p>
                     <a href="<?= $kbi_url ?>" target="_blank" rel="noopener" class="d-flex align-items-center gap-2 text-muted small" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i><?= $kbi_name ?>
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>
-                    <a href="https://www.lkfv.de" target="_blank" rel="noopener" class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
+                    <a href="https://www.lfv-bayern.de" target="_blank" rel="noopener" class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i>Landesfeuerwehrverband Bayern
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>

@@ -16,9 +16,9 @@ function fw_customizer_register(WP_Customize_Manager $wp_customize): void {
         'panel' => 'fw_settings',
     ]);
     foreach ([
-        'fw_phone'   => ['label' => 'Telefonnummer',  'type' => 'text',  'default' => '+49 9126 XXXXX'],
+        'fw_phone'   => ['label' => 'Telefonnummer',  'type' => 'text',  'default' => ''],
         'fw_email'   => ['label' => 'E-Mail-Adresse', 'type' => 'email', 'default' => 'info@feuerwehr-langensendelbach.de'],
-        'fw_address' => ['label' => 'Adresse',        'type' => 'text',  'default' => 'Gerätehaus, Musterstraße 1, 91094 Langensendelbach'],
+        'fw_address' => ['label' => 'Adresse',        'type' => 'text',  'default' => 'Am Weiher, 91094 Langensendelbach'],
         'fw_founded' => ['label' => 'Gründungsjahr',  'type' => 'number','default' => '1952'],
         'fw_members' => ['label' => 'Aktive Mitglieder', 'type' => 'number', 'default' => '45'],
     ] as $id => $args) {
@@ -57,8 +57,8 @@ function fw_customizer_register(WP_Customize_Manager $wp_customize): void {
         'title' => 'Partner-Links',
         'panel' => 'fw_settings',
     ]);
-    $wp_customize->add_setting('fw_kbi_url',  ['default' => 'https://www.erlangen-hoechstadt.de/buergerservice/feuerwehr/', 'sanitize_callback' => 'esc_url_raw']);
-    $wp_customize->add_setting('fw_kbi_name', ['default' => 'Kreisbrandinspektion Erlangen-Höchstadt', 'sanitize_callback' => 'sanitize_text_field']);
+    $wp_customize->add_setting('fw_kbi_url',  ['default' => 'https://www.landkreis-forchheim.de/Landratsamt/Fachbereiche/Brandschutz-und-Rettungswesen/', 'sanitize_callback' => 'esc_url_raw']);
+    $wp_customize->add_setting('fw_kbi_name', ['default' => 'Kreisbrandinspektion Forchheim', 'sanitize_callback' => 'sanitize_text_field']);
     $wp_customize->add_control('fw_kbi_url',  ['label' => 'KBI-Website URL',  'section' => 'fw_links', 'type' => 'url']);
     $wp_customize->add_control('fw_kbi_name', ['label' => 'KBI Name',         'section' => 'fw_links', 'type' => 'text']);
 }

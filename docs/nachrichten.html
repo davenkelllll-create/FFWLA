@@ -7,6 +7,10 @@
     <meta property="og:title" content="Nachrichten – FF Langensendelbach">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
+    <meta property="og:image" content="images/og-default.svg">
+    <meta name="theme-color" content="#CC0000">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="mask-icon" href="favicon.svg" color="#CC0000">
     <title>Nachrichten – FF Langensendelbach</title>
 
     <!-- Bootstrap 5 -->
@@ -17,6 +21,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- Skip to content (Tastatur-Bedienung) -->
+<a href="#main-content" class="fw-skip-link">Zum Inhalt springen</a>
 
 <!-- Emergency Alert Strip (shown when data/alert.json is active) -->
 
@@ -85,6 +92,8 @@
     </div>
 </nav>
 
+<main id="main-content">
+
 <!-- Page Header -->
 <div class="fw-page-header">
     <div class="container">
@@ -129,12 +138,12 @@
                             <span><i class="bi bi-calendar3 me-1"></i>15.03.2024</span>
                         </div>
                         <h3 class="fw-card__title">
-                            <a href="nachrichten-detail.html?id=uebung-atemschutz-2024-03">Atemschutzübung im Ortsteil Nord</a>
+                            <a href="nachrichten-detail-uebung-atemschutz-2024-03.html">Atemschutzübung im Ortsteil Nord</a>
                         </h3>
                         <p class="fw-card__excerpt">Am vergangenen Samstag führte die FF Langensendelbach eine mehrstündige Atemschutzübung im nördlichen Ortsteil durch. Insgesamt 18 Einsatzkräfte nahmen teil.</p>
                     </div>
                     <div class="fw-card__footer d-flex align-items-center justify-content-between">
-                        <a href="nachrichten-detail.html?id=uebung-atemschutz-2024-03" class="btn btn-link btn-sm text-danger p-0">
+                        <a href="nachrichten-detail-uebung-atemschutz-2024-03.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                                                 <small class="text-muted"><i class="bi bi-person me-1"></i>Pressewart</small>
@@ -153,12 +162,12 @@
                             <span><i class="bi bi-calendar3 me-1"></i>28.02.2024</span>
                         </div>
                         <h3 class="fw-card__title">
-                            <a href="nachrichten-detail.html?id=einsatz-brand-scheune-2024-02">Scheunenbrand – Schnelles Eingreifen verhindert Schlimmeres</a>
+                            <a href="nachrichten-detail-einsatz-brand-scheune-2024-02.html">Scheunenbrand – Schnelles Eingreifen verhindert Schlimmeres</a>
                         </h3>
                         <p class="fw-card__excerpt">In den frühen Morgenstunden des 28. Februar wurden wir zu einem Scheunenbrand alarmiert. Dank des schnellen Eingreifens konnte ein Übergreifen auf das Wohngebäude verhindert werden.</p>
                     </div>
                     <div class="fw-card__footer d-flex align-items-center justify-content-between">
-                        <a href="nachrichten-detail.html?id=einsatz-brand-scheune-2024-02" class="btn btn-link btn-sm text-danger p-0">
+                        <a href="nachrichten-detail-einsatz-brand-scheune-2024-02.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                                                 <small class="text-muted"><i class="bi bi-person me-1"></i>Pressewart</small>
@@ -177,12 +186,12 @@
                             <span><i class="bi bi-calendar3 me-1"></i>20.01.2024</span>
                         </div>
                         <h3 class="fw-card__title">
-                            <a href="nachrichten-detail.html?id=jahresfeier-2024-01">Jahreshauptversammlung 2024 – Ehrungen und Neuwahlen</a>
+                            <a href="nachrichten-detail-jahresfeier-2024-01.html">Jahreshauptversammlung 2024 – Ehrungen und Neuwahlen</a>
                         </h3>
                         <p class="fw-card__excerpt">Bei der diesjährigen Jahreshauptversammlung wurden verdiente Mitglieder geehrt und der Vorstand neu gewählt. Rückblick auf ein erfolgreiches Einsatzjahr.</p>
                     </div>
                     <div class="fw-card__footer d-flex align-items-center justify-content-between">
-                        <a href="nachrichten-detail.html?id=jahresfeier-2024-01" class="btn btn-link btn-sm text-danger p-0">
+                        <a href="nachrichten-detail-jahresfeier-2024-01.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
                                                 <small class="text-muted"><i class="bi bi-person me-1"></i>Kommandant</small>
@@ -192,6 +201,8 @@
                     </div>
             </div>
 </section>
+
+</main><!-- /#main-content -->
 
 <footer class="fw-footer mt-auto">
     <div class="container">
@@ -245,11 +256,7 @@
                                         <li>
                         <i class="bi bi-geo-alt-fill me-2"></i>
                         Am Weiher, 91094 Langensendelbach                    </li>
-                                                            <li>
-                        <i class="bi bi-telephone-fill me-2"></i>
-                        <a href="tel:+499126XXXXX">+49 9126 XXXXX</a>
-                    </li>
-                                                            <li>
+                                                                                <li>
                         <i class="bi bi-envelope-fill me-2"></i>
                         <a href="mailto:info@feuerwehr-langensendelbach.de">info@feuerwehr-langensendelbach.de</a>
                     </li>
@@ -263,7 +270,7 @@
                         Kreisbrandinspektion Forchheim
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>
-                    <a href="https://www.feuerwehr-bayern.de" target="_blank" rel="noopener"
+                    <a href="https://www.lfv-bayern.de" target="_blank" rel="noopener"
                        class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i>
                         Landesfeuerwehrverband Bayern
@@ -286,6 +293,11 @@
         </div>
     </div>
 </footer>
+
+<!-- Back-to-top (alle Seiten) -->
+<button id="backToTop" type="button" aria-label="Nach oben scrollen" title="Nach oben">
+    <i class="bi bi-arrow-up"></i>
+</button>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

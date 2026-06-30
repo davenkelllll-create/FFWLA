@@ -1,0 +1,7 @@
+# Freiwillige Feuerwehr Langensendelbach
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /data/
+Disallow: /includes/
+Disallow: /uploads/formulare/

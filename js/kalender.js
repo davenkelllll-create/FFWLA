@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const calEl = document.getElementById('fw-calendar');
     if (!calEl || typeof FullCalendar === 'undefined') return;
 
+    // Escape any text injected into the modal via innerHTML.
+    const esc = (s) => String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
     const calendar = new FullCalendar.Calendar(calEl, {
         locale: 'de',
         initialView: 'dayGridMonth',
@@ -29,9 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }) : '';
             const end = ev.end ? ' – ' + ev.end.toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'}) + ' Uhr' : '';
 
-            let html = `<p class="mb-2"><i class="bi bi-calendar3 me-2 text-danger"></i><strong>${start}${end}</strong></p>`;
-            if (props.location) html += `<p class="mb-2"><i class="bi bi-geo-alt me-2 text-danger"></i>${props.location}</p>`;
-            if (props.description) html += `<p class="mb-0 text-muted">${props.description}</p>`;
+            let html = `<p class="mb-2"><i class="bi bi-calendar3 me-2 text-danger"></i><strong>${esc(start)}${esc(end)}</strong></p>`;
+            if (props.location) html += `<p class="mb-2"><i class="bi bi-geo-alt me-2 text-danger"></i>${esc(props.location)}</p>`;
+            if (props.description) html += `<p class="mb-0 text-muted">${esc(props.description)}</p>`;
 
             document.getElementById('terminModalLabel').textContent = ev.title;
             document.getElementById('terminModalBody').innerHTML = html;

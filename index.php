@@ -296,12 +296,4 @@ $heroSlides = [
     </div>
 </section>
 
-<!-- Back to top -->
-<button id="backToTop" class="btn btn-danger btn-sm rounded-circle"
-        style="position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;display:none;z-index:999;align-items:center;justify-content:center;"
-        title="Nach oben">
-    <i class="bi bi-arrow-up"></i>
-</button>
-<style>#backToTop.show{display:flex!important;}</style>
-
 <?php include 'includes/footer.php'; ?>

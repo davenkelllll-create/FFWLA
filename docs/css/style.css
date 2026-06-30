@@ -921,3 +921,93 @@ img { max-width: 100%; height: auto; }
     pointer-events: none;
 }
 .fw-404-content { position: relative; z-index: 1; }
+
+/* ============================================================
+   Refinements (Audit 2026): a11y, badges, back-to-top,
+   reduced-motion & print
+   ============================================================ */
+
+/* Skip-to-content link – visible only on keyboard focus */
+.fw-skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 2000;
+    background: var(--fw-red);
+    color: #fff;
+    padding: .6rem 1rem;
+    border-radius: 0 0 6px 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top .15s ease;
+}
+.fw-skip-link:focus {
+    top: 0;
+    color: #fff;
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Additional category badges */
+.badge-presse        { background: #ede7f6; color: #5e35b1; }
+.badge-jugend        { background: #fff3e0; color: #e07800; }
+.badge-mitgliedschaft{ background: #e3f2fd; color: #1565c0; }
+.badge-finanzen      { background: #e8f5ee; color: var(--fw-green); }
+
+/* Back-to-top button (site-wide, injected in footer) */
+#backToTop {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background: var(--fw-red);
+    color: #fff;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    cursor: pointer;
+    z-index: 999;
+    transition: background .15s ease, transform .15s ease;
+}
+#backToTop:hover { background: var(--fw-red-dark); transform: translateY(-2px); }
+#backToTop.show  { display: flex; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .carousel-item { transition: none !important; }
+}
+
+/* Print: drop ink-heavy chrome, keep the content readable */
+@media print {
+    .fw-navbar,
+    .alert-strip,
+    .fw-hero-carousel,
+    .fw-footer,
+    #backToTop,
+    #fw-cookie-banner,
+    .carousel-control-prev,
+    .carousel-control-next,
+    .fw-skip-link,
+    .btn,
+    .fw-breadcrumb {
+        display: none !important;
+    }
+    body { color: #000; background: #fff; }
+    a { color: #000; text-decoration: underline; }
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
+    .fw-section { padding: 1rem 0 !important; }
+    .container { max-width: 100% !important; width: 100% !important; }
+}

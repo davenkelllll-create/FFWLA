@@ -59,7 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 newsCards.forEach(card => {
                     const show = type === 'alle' || card.dataset.newsType === type;
-                    card.closest('.col')?.classList.toggle('d-none', !show);
+                    // The [data-news-type] element IS the Bootstrap column wrapper,
+                    // so toggle it directly (it has no plain `.col` ancestor).
+                    card.classList.toggle('d-none', !show);
                 });
             });
         });

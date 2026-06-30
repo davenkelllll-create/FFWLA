@@ -10,6 +10,7 @@ $error   = '';
 
 // ---- DELETE ----
 if ($action === 'delete' && $id) {
+    requireCsrf();
     $items = loadJson('formulare.json');
     $deleted = null;
     $items = array_values(array_filter($items, function($i) use ($id, &$deleted) {
@@ -26,6 +27,7 @@ if ($action === 'delete' && $id) {
 
 // ---- UPLOAD ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    requireCsrf();
     $titel       = trim($_POST['titel'] ?? '');
     $beschreibung = trim($_POST['beschreibung'] ?? '');
     $kategorie   = $_POST['kategorie'] ?? 'sonstiges';
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $items = loadJson('formulare.json');
 
         // Handle file upload for new formulare
-        $dateiName = $postId ? '' : '';
+        $dateiName = '';
         if (!$postId && !empty($_FILES['datei']['tmp_name'])) {
             $tmpFile  = $_FILES['datei']['tmp_name'];
             $origName = basename($_FILES['datei']['name']);
@@ -66,7 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             if ($mimeType === 'application/pdf') {
                                 $safeFile = slugify(pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME)) . '.pdf';
                                 move_uploaded_file($tmpFile, UPLOADS_DIR . 'formulare/' . $safeFile);
-                                $item['datei'] = $safeFile;
+                                $item['datei']   = $safeFile;
+                                $item['version'] = date('Y-m'); // refresh version when the PDF is replaced
                             }
                         }
                         break;
@@ -163,8 +166,8 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
                         <td class="text-muted small font-monospace"><?= $h($item['datei']) ?></td>
                         <td><?= file_exists(UPLOADS_DIR . 'formulare/' . $item['datei']) ? '<span class="badge bg-success">Ja</span>' : '<span class="badge bg-danger">Fehlt</span>' ?></td>
                         <td>
-                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></a>
-                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Formular wirklich löschen?')"><i class="bi bi-trash"></i></a>
+                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten" aria-label="Formular bearbeiten"><i class="bi bi-pencil"></i></a>
+                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>&token=<?= csrfToken() ?>" class="btn btn-sm btn-outline-danger" title="Löschen" aria-label="Formular löschen" onclick="return confirm('Formular wirklich löschen?')"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -179,6 +182,7 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
         <div class="admin-card p-4" style="max-width:600px;">
             <h5 class="fw-bold mb-4"><?= $editItem ? 'Formular bearbeiten' : 'Formular hochladen' ?></h5>
             <form method="POST" enctype="multipart/form-data">
+                <?= csrfField() ?>
                 <?php if ($editItem): ?>
                 <input type="hidden" name="id" value="<?= $h($editItem['id']) ?>">
                 <?php endif; ?>

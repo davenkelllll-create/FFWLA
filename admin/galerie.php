@@ -12,25 +12,52 @@ $allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
 
 // ---- DELETE ALBUM ----
 if ($action === 'delete' && $id) {
+    requireCsrf();
     $items = loadJson('galerien.json');
     $items = array_values(array_filter($items, fn($i) => $i['id'] !== $id));
     saveJson('galerien.json', $items);
+    // Remove the album directory and all photos so nothing is orphaned on disk.
+    $albumDir = UPLOADS_DIR . 'galerie/' . basename($id) . '/';
+    if (is_dir($albumDir)) {
+        foreach (glob($albumDir . '*') ?: [] as $f) { @unlink($f); }
+        @rmdir($albumDir);
+    }
     header('Location: /admin/galerie.php?msg=deleted');
     exit;
 }
 
 // ---- DELETE PHOTO ----
 if ($action === 'deletephoto' && $id) {
-    $albumId = $_GET['album'] ?? '';
-    $photoFile = $_GET['file'] ?? '';
+    requireCsrf();
+    // basename() neutralises any ../ traversal in the album/file parameters.
+    $albumId   = basename($_GET['album'] ?? '');
+    $photoFile = basename($_GET['file'] ?? '');
     if ($albumId && $photoFile) {
         $albumDir = UPLOADS_DIR . 'galerie/' . $albumId . '/';
         $indexFile = $albumDir . 'index.json';
         $photos = file_exists($indexFile) ? (json_decode(file_get_contents($indexFile), true) ?? []) : [];
-        $photos = array_values(array_filter($photos, fn($p) => $p['full'] !== $photoFile && $p['thumb'] !== $photoFile));
+        $thumbToDelete = null;
+        foreach ($photos as $p) {
+            if (($p['full'] ?? '') === $photoFile) { $thumbToDelete = basename($p['thumb'] ?? ''); break; }
+        }
+        $photos = array_values(array_filter($photos, fn($p) => ($p['full'] ?? '') !== $photoFile && ($p['thumb'] ?? '') !== $photoFile));
         file_put_contents($indexFile, json_encode($photos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         @unlink($albumDir . $photoFile);
-        @unlink($albumDir . 'thumb_' . $photoFile);
+        if ($thumbToDelete) @unlink($albumDir . $thumbToDelete);
+
+        // Keep galerien.json in sync: photo count and cover image.
+        $galerien = loadJson('galerien.json');
+        foreach ($galerien as &$g) {
+            if ($g['id'] === $albumId) {
+                $g['photo_count'] = count($photos);
+                $g['cover_thumb'] = !empty($photos[0]['thumb'])
+                    ? '/uploads/galerie/' . $albumId . '/' . $photos[0]['thumb']
+                    : '';
+                break;
+            }
+        }
+        unset($g);
+        saveJson('galerien.json', $galerien);
     }
     header('Location: /admin/galerie.php?action=photos&id=' . urlencode($albumId) . '&msg=photodelete');
     exit;
@@ -38,7 +65,8 @@ if ($action === 'deletephoto' && $id) {
 
 // ---- UPLOAD PHOTOS ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'upload') {
-    $albumId = $_POST['album_id'] ?? '';
+    requireCsrf();
+    $albumId = basename($_POST['album_id'] ?? '');
     $albumDir = UPLOADS_DIR . 'galerie/' . $albumId . '/';
 
     if (!$albumId || !is_dir($albumDir)) {
@@ -50,13 +78,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'upload') {
         $photos = file_exists($indexFile) ? (json_decode(file_get_contents($indexFile), true) ?? []) : [];
         $uploaded = 0;
 
+        // Derive the extension from the DETECTED mime type, never from the
+        // user-supplied filename – otherwise a polyglot image named *.php could
+        // land in this web-served directory.
+        $extMap = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif', 'image/webp' => 'webp'];
+        $skipped = 0;
         foreach ($_FILES['photos']['tmp_name'] as $i => $tmpName) {
-            if ($_FILES['photos']['error'][$i] !== UPLOAD_ERR_OK) continue;
-            $origName = $_FILES['photos']['name'][$i];
+            if ($_FILES['photos']['error'][$i] !== UPLOAD_ERR_OK) { $skipped++; continue; }
             $mimeType = mime_content_type($tmpName);
-            if (!in_array($mimeType, $allowedImageTypes)) continue;
+            if (!isset($extMap[$mimeType])) { $skipped++; continue; }
+            if (($_FILES['photos']['size'][$i] ?? 0) > 12 * 1024 * 1024) { $skipped++; continue; } // max 12 MB
 
-            $ext  = pathinfo($origName, PATHINFO_EXTENSION) ?: 'jpg';
+            $ext  = $extMap[$mimeType];
             $base = uniqid('img_', true);
             $fullFile  = $base . '.' . $ext;
             $thumbFile = 'thumb_' . $base . '.' . $ext;
@@ -85,13 +118,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'upload') {
         unset($g);
         saveJson('galerien.json', $galerien);
 
-        header('Location: /admin/galerie.php?action=photos&id=' . urlencode($albumId) . '&msg=' . $uploaded . 'uploaded');
+        header('Location: /admin/galerie.php?action=photos&id=' . urlencode($albumId) . '&msg=' . $uploaded . 'uploaded&skipped=' . $skipped);
         exit;
     }
 }
 
 // ---- SAVE ALBUM (new/edit) ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action !== 'upload') {
+    requireCsrf();
     $postId      = trim($_POST['id'] ?? '');
     $title       = trim($_POST['title'] ?? '');
     $date        = $_POST['date'] ?? date('Y-m-d');
@@ -143,7 +177,11 @@ if ($msg === 'saved')   $message = 'Album gespeichert.';
 if ($msg === 'created') $message = 'Album erstellt. Jetzt Fotos hochladen!';
 if ($msg === 'deleted') $message = 'Album gelöscht.';
 if ($msg === 'photodelete') $message = 'Foto gelöscht.';
-if (str_ends_with($msg, 'uploaded')) $message = (int)$msg . ' Foto(s) hochgeladen.';
+if (str_ends_with($msg, 'uploaded')) {
+    $message = (int)$msg . ' Foto(s) hochgeladen.';
+    $skip = (int)($_GET['skipped'] ?? 0);
+    if ($skip > 0) $message .= " $skip Datei(en) übersprungen (kein Bild, zu groß oder fehlerhaft).";
+}
 
 $editItem = null;
 if (($action === 'edit') && $id) {
@@ -217,9 +255,9 @@ if ($action === 'photos' && $id) {
                         <td class="text-muted small"><?= formatDate($item['date']) ?></td>
                         <td class="text-muted small"><?= (int)($item['photo_count'] ?? 0) ?></td>
                         <td>
-                            <a href="?action=photos&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-primary me-1" title="Fotos"><i class="bi bi-images"></i></a>
-                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten"><i class="bi bi-pencil"></i></a>
-                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-danger" title="Löschen" onclick="return confirm('Album wirklich löschen?')"><i class="bi bi-trash"></i></a>
+                            <a href="?action=photos&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-primary me-1" title="Fotos" aria-label="Fotos verwalten"><i class="bi bi-images"></i></a>
+                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten" aria-label="Album bearbeiten"><i class="bi bi-pencil"></i></a>
+                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>&token=<?= csrfToken() ?>" class="btn btn-sm btn-outline-danger" title="Löschen" aria-label="Album löschen" onclick="return confirm('Album wirklich löschen?')"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -236,6 +274,7 @@ if ($action === 'photos' && $id) {
         <div class="admin-card p-4" style="max-width:600px;">
             <h5 class="fw-bold mb-4"><?= $editItem ? 'Album bearbeiten' : 'Neues Album' ?></h5>
             <form method="POST">
+                <?= csrfField() ?>
                 <?php if ($editItem): ?>
                 <input type="hidden" name="id" value="<?= $h($editItem['id']) ?>">
                 <?php endif; ?>
@@ -279,6 +318,7 @@ if ($action === 'photos' && $id) {
         <div class="admin-card p-4 mb-4" style="max-width:700px;">
             <h6 class="fw-bold mb-3"><i class="bi bi-upload me-2 text-danger"></i>Fotos hochladen</h6>
             <form method="POST" action="?action=upload" enctype="multipart/form-data">
+                <?= csrfField() ?>
                 <input type="hidden" name="album_id" value="<?= $h($currentAlbum['id']) ?>">
                 <div class="mb-3">
                     <input type="file" class="form-control" name="photos[]" multiple accept="image/*" required>
@@ -301,11 +341,12 @@ if ($action === 'photos' && $id) {
                     <img src="/uploads/galerie/<?= $h($currentAlbum['id']) ?>/<?= $h($photo['thumb']) ?>"
                          alt="<?= $h($photo['caption'] ?? '') ?>"
                          class="img-fluid rounded" style="aspect-ratio:4/3;object-fit:cover;width:100%;">
-                    <a href="?action=deletephoto&id=<?= urlencode($currentAlbum['id']) ?>&album=<?= urlencode($currentAlbum['id']) ?>&file=<?= urlencode($photo['full']) ?>"
+                    <a href="?action=deletephoto&id=<?= urlencode($currentAlbum['id']) ?>&album=<?= urlencode($currentAlbum['id']) ?>&file=<?= urlencode($photo['full']) ?>&token=<?= csrfToken() ?>"
                        class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1 p-1"
                        style="line-height:1;"
                        onclick="return confirm('Foto löschen?')"
-                       title="Löschen">
+                       title="Löschen"
+                       aria-label="Foto löschen">
                         <i class="bi bi-x"></i>
                     </a>
                     <?php if (!empty($photo['caption'])): ?>

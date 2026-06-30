@@ -2,10 +2,8 @@
   "site_name": "Freiwillige Feuerwehr Langensendelbach",
   "site_short": "FF Langensendelbach",
   "site_email": "info@feuerwehr-langensendelbach.de",
-  "site_phone": "+49 9126 XXXXX",
+  "site_phone": "",
   "site_address": "Am Weiher, 91094 Langensendelbach",
-  "admin_password_hash": "$2y$12$x3ZcBSnNLs16bRIesG2q..cdsN5H2kGqS8KjmNEtvQq0.E3QCy4yG",
-  "csrf_secret": "fw-lgsb-csrf-change-this-in-production",
   "social_facebook":  "",
   "social_instagram": "",
   "social_youtube":   ""

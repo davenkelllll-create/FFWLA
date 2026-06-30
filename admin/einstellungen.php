@@ -24,18 +24,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_config'])) {
         // Password change only if both fields filled and match
         $pw1 = $_POST['new_password']     ?? '';
         $pw2 = $_POST['new_password_confirm'] ?? '';
+        $newHash = null;
         if ($pw1 !== '') {
             if ($pw1 !== $pw2) {
                 $error = 'Passwörter stimmen nicht überein.';
             } elseif (strlen($pw1) < 8) {
                 $error = 'Passwort muss mindestens 8 Zeichen haben.';
             } else {
-                $config['admin_password_hash'] = password_hash($pw1, PASSWORD_BCRYPT);
+                $newHash = password_hash($pw1, PASSWORD_BCRYPT);
             }
         }
 
         if (!$error) {
+            // Credentials never belong in config.json (could leak via a static export).
+            unset($config['admin_password_hash'], $config['csrf_secret']);
             saveJson('config.json', $config);
+            if ($newHash !== null) {
+                $secrets = loadSecrets();
+                $secrets['admin_password_hash'] = $newHash;
+                saveSecrets($secrets);
+            }
             $message = 'Einstellungen gespeichert.';
         }
     }
@@ -83,7 +91,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_fuehrung'])) {
     }
 }
 
-$csrf = generateCsrfToken();
+// ---- SAVE NOTFALL-HINWEIS (Banner auf allen Seiten) ----
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_alert'])) {
+    if (!verifyCsrfToken($_POST['csrf_token'] ?? '')) {
+        $error = 'Ungültiges Sicherheitstoken.';
+    } else {
+        saveJson('alert.json', [
+            'active'  => !empty($_POST['alert_active']),
+            'message' => trim($_POST['alert_message'] ?? ''),
+        ]);
+        $message = 'Notfall-Hinweis gespeichert.';
+    }
+}
+
+$alert = loadJson('alert.json');
+$csrf  = generateCsrfToken();
 
 $pageTitle = 'Einstellungen';
 ?>
@@ -147,8 +169,9 @@ $pageTitle = 'Einstellungen';
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Telefon</label>
                                 <input type="text" class="form-control" name="site_phone"
-                                       placeholder="+49 9191 XXXXX"
+                                       placeholder="z.B. +49 9133 1234"
                                        value="<?= h($config['site_phone'] ?? '') ?>">
+                                <div class="form-text">Leer lassen, wenn keine öffentliche Nummer angezeigt werden soll.</div>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Adresse Gerätehaus</label>
@@ -206,6 +229,33 @@ $pageTitle = 'Einstellungen';
                                 <i class="bi bi-save me-1"></i>Einstellungen speichern
                             </button>
                         </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ======================== NOTFALL-HINWEIS ======================== -->
+            <div class="admin-card mb-4">
+                <div class="admin-card-header">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Notfall-Hinweis (Banner)
+                </div>
+                <div class="p-4">
+                    <p class="text-muted small">Ein aktivierter Hinweis erscheint als rotes Band ganz oben auf jeder Seite – z.&nbsp;B. bei Unwetterwarnungen oder kurzfristigen Absagen.</p>
+                    <form method="post">
+                        <input type="hidden" name="csrf_token" value="<?= h($csrf) ?>">
+                        <input type="hidden" name="save_alert" value="1">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="alert_active" name="alert_active" value="1" <?= !empty($alert['active']) ? 'checked' : '' ?>>
+                            <label class="form-check-label" for="alert_active">Hinweis aktiv anzeigen</label>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="alert_message">Hinweistext</label>
+                            <input type="text" class="form-control" id="alert_message" name="alert_message"
+                                   maxlength="200" placeholder="z.B. Achtung: Tag der offenen Tür wegen Unwetter verschoben."
+                                   value="<?= h($alert['message'] ?? '') ?>">
+                        </div>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-save me-1"></i>Hinweis speichern
+                        </button>
                     </form>
                 </div>
             </div>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#CC0000"/>
+  <rect y="540" width="1200" height="90" fill="#990000"/>
+  <g transform="translate(600 250)" fill="#fff" text-anchor="middle" font-family="Arial, sans-serif">
+    <text font-size="62" font-weight="900">Freiwillige Feuerwehr</text>
+    <text y="80" font-size="84" font-weight="900">Langensendelbach</text>
+    <text y="150" font-size="34" fill="rgba(255,255,255,.85)">Im Dienst für die Gemeinschaft</text>
+  </g>
+</svg>

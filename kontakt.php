@@ -101,12 +101,12 @@ include 'includes/header.php';
                         height="100%"
                         frameborder="0"
                         loading="lazy"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=10.985,49.569,11.065,49.609&amp;layer=mapnik&amp;marker=49.589,11.025"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=11.030,49.638,11.071,49.660&amp;layer=mapnik&amp;marker=49.6489,11.0506"
                         style="border:none;">
                     </iframe>
                 </div>
                 <p class="text-muted small mt-2">
-                    <a href="https://www.openstreetmap.org/?mlat=49.589&mlon=11.025#map=16/49.589/11.025" target="_blank" rel="noopener">
+                    <a href="https://www.openstreetmap.org/?mlat=49.6489&mlon=11.0506#map=16/49.6489/11.0506" target="_blank" rel="noopener">
                         <i class="bi bi-box-arrow-up-right me-1"></i>Größere Karte öffnen
                     </a>
                 </p>

@@ -16,22 +16,32 @@ include 'includes/header.php';
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
+                <?php
+                $fuehrung   = getFuehrung();
+                $kommandant = null;
+                foreach ($fuehrung['aktive_wehr'] as $p) {
+                    if (stripos($p['funktion'] ?? '', 'Kommandant') !== false && stripos($p['funktion'], 'Stv') === false) {
+                        $kommandant = $p; break;
+                    }
+                }
+                $adresse = $config['site_address'] ?? 'Am Weiher, 91094 Langensendelbach';
+                ?>
                 <h2>Angaben gemäß § 5 TMG</h2>
                 <p>
-                    <?= h($config['site_name']) ?><br>
-                    Musterstraße 1<br>
-                    91094 Langensendelbach
+                    <?= h($config['site_name'] ?? '') ?><br>
+                    <?= nl2br(h($adresse)) ?>
                 </p>
                 <h3>Kontakt</h3>
                 <p>
-                    Telefon: <?= h($config['site_phone'] ?? '') ?><br>
+                    <?php if (!empty($config['site_phone'])): ?>
+                    Telefon: <?= h($config['site_phone']) ?><br>
+                    <?php endif; ?>
                     E-Mail: <a href="mailto:<?= h($config['site_email'] ?? '') ?>"><?= h($config['site_email'] ?? '') ?></a>
                 </p>
                 <h3>Verantwortlich für den Inhalt (§ 55 Abs. 2 RStV)</h3>
                 <p>
-                    Kommandant Stefan Müller<br>
-                    Musterstraße 1<br>
-                    91094 Langensendelbach
+                    <?= $kommandant ? h($kommandant['funktion'] . ' ' . $kommandant['name']) : 'Der/die Kommandant/in' ?><br>
+                    <?= nl2br(h($adresse)) ?>
                 </p>
                 <h3>Haftungsausschluss</h3>
                 <p>Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die Richtigkeit,

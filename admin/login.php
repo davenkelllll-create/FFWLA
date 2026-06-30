@@ -8,13 +8,30 @@ if (isLoggedIn()) {
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $password = $_POST['password'] ?? '';
-    if (attemptLogin($password)) {
-        header('Location: /admin/');
-        exit;
+    $now       = time();
+    $attempts  = $_SESSION['login_attempts']   ?? 0;
+    $lockUntil = $_SESSION['login_lock_until']  ?? 0;
+
+    if ($lockUntil > $now) {
+        // Temporary lock-out after repeated failures
+        $error = 'Zu viele Fehlversuche. Bitte ' . ($lockUntil - $now) . ' Sekunden warten.';
+    } else {
+        $password = $_POST['password'] ?? '';
+        if (attemptLogin($password)) {
+            unset($_SESSION['login_attempts'], $_SESSION['login_lock_until']);
+            header('Location: /admin/');
+            exit;
+        }
+        $attempts++;
+        $_SESSION['login_attempts'] = $attempts;
+        if ($attempts >= 5) {
+            $_SESSION['login_lock_until'] = $now + 60; // lock for 60s
+            $error = 'Zu viele Fehlversuche. Der Login ist für 60 Sekunden gesperrt.';
+        } else {
+            sleep(min($attempts, 3)); // escalating brute-force delay
+            $error = 'Falsches Passwort. Bitte versuchen Sie es erneut.';
+        }
     }
-    $error = 'Falsches Passwort. Bitte versuchen Sie es erneut.';
-    sleep(1); // Brute-force delay
 }
 ?>
 <!DOCTYPE html>

@@ -10,6 +10,7 @@ $error   = '';
 
 // ---- DELETE ----
 if ($action === 'delete' && $id) {
+    requireCsrf();
     $items = loadJson('nachrichten.json');
     $items = array_values(array_filter($items, fn($i) => $i['id'] !== $id));
     saveJson('nachrichten.json', $items);
@@ -19,6 +20,7 @@ if ($action === 'delete' && $id) {
 
 // ---- SAVE (new or edit) ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    requireCsrf();
     $postId    = trim($_POST['id'] ?? '');
     $title     = trim($_POST['title'] ?? '');
     $type      = $_POST['type'] ?? 'veranstaltung';
@@ -148,8 +150,8 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
                         <td class="text-muted small"><?= formatDate($item['date']) ?></td>
                         <td class="text-muted small"><?= $h($item['author']) ?></td>
                         <td>
-                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten"><i class="bi bi-pencil"></i></a>
-                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-danger" title="Löschen" onclick="return confirm('Artikel wirklich löschen?')"><i class="bi bi-trash"></i></a>
+                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten" aria-label="Artikel bearbeiten"><i class="bi bi-pencil"></i></a>
+                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>&token=<?= csrfToken() ?>" class="btn btn-sm btn-outline-danger" title="Löschen" aria-label="Artikel löschen" onclick="return confirm('Artikel wirklich löschen?')"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -166,6 +168,7 @@ $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
         <div class="admin-card p-4" style="max-width:800px;">
             <h5 class="fw-bold mb-4"><?= $editItem ? 'Artikel bearbeiten' : 'Neuer Artikel' ?></h5>
             <form method="POST">
+                <?= csrfField() ?>
                 <?php if ($editItem): ?>
                 <input type="hidden" name="id" value="<?= $h($editItem['id']) ?>">
                 <?php endif; ?>

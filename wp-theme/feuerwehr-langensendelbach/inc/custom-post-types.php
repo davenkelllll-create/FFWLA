@@ -60,15 +60,20 @@ function fw_termin_meta_box_html(WP_Post $post): void {
     $color    = get_post_meta($post->ID, 'fw_termin_color',    true) ?: '#CC0000';
     $public   = get_post_meta($post->ID, 'fw_termin_public',   true) ?: '1';
     $cat      = get_post_meta($post->ID, 'fw_termin_category', true);
+
+    // Stored as MySQL DATETIME ('Y-m-d H:i:s'); the HTML5 datetime-local control
+    // expects an ISO 'Y-m-d\TH:i' value, so convert the space back to a 'T'.
+    $start_input = $start ? str_replace(' ', 'T', $start) : '';
+    $end_input   = $end   ? str_replace(' ', 'T', $end)   : '';
     ?>
     <table class="form-table" style="width:100%">
         <tr>
             <th><label>Start *</label></th>
-            <td><input type="datetime-local" name="fw_termin_start" value="<?= esc_attr($start) ?>" style="width:260px" required></td>
+            <td><input type="datetime-local" name="fw_termin_start" value="<?= esc_attr($start_input) ?>" style="width:260px" required></td>
         </tr>
         <tr>
             <th><label>Ende</label></th>
-            <td><input type="datetime-local" name="fw_termin_end" value="<?= esc_attr($end) ?>" style="width:260px"></td>
+            <td><input type="datetime-local" name="fw_termin_end" value="<?= esc_attr($end_input) ?>" style="width:260px"></td>
         </tr>
         <tr>
             <th><label>Ort</label></th>
@@ -102,14 +107,38 @@ function fw_termin_meta_box_html(WP_Post $post): void {
     <?php
 }
 
+/**
+ * Normalize a datetime-local value ("Y-m-d\TH:i") to MySQL DATETIME ("Y-m-d H:i:s").
+ * Returns an empty string for an empty input so optional fields stay empty.
+ */
+function fw_normalize_datetime(string $val): string {
+    $val = trim($val);
+    if ($val === '') return '';
+    $val = str_replace('T', ' ', $val);
+    // Append seconds if the control only supplied "Y-m-d H:i".
+    if (preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/', $val)) {
+        $val .= ':00';
+    }
+    return $val;
+}
+
 function fw_termin_save_meta(int $post_id): void {
     if (!isset($_POST['fw_termin_nonce']) || !wp_verify_nonce($_POST['fw_termin_nonce'], 'fw_termin_save')) return;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (!current_user_can('edit_post', $post_id)) return;
 
-    foreach (['fw_termin_start','fw_termin_end','fw_termin_location','fw_termin_color','fw_termin_category'] as $field) {
+    foreach (['fw_termin_location','fw_termin_color','fw_termin_category'] as $field) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
+        }
+    }
+
+    // Datetime fields: the datetime-local control yields "YYYY-MM-DDTHH:MM".
+    // Store as MySQL DATETIME ("Y-m-d H:i:s") so meta_query CAST(... AS DATETIME)
+    // works reliably (the 'T' separator is not reliably cast by MySQL).
+    foreach (['fw_termin_start','fw_termin_end'] as $field) {
+        if (isset($_POST[$field])) {
+            update_post_meta($post_id, $field, fw_normalize_datetime(sanitize_text_field($_POST[$field])));
         }
     }
     update_post_meta($post_id, 'fw_termin_public', isset($_POST['fw_termin_public']) ? '1' : '0');

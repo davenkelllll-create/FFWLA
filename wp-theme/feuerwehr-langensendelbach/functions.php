@@ -52,6 +52,7 @@ function fw_enqueue_assets(): void {
     if (is_page_template('page-templates/template-galerie.php') || is_singular('fw_galerie')) {
         wp_enqueue_style('glightbox', 'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css', [], null);
         wp_enqueue_script('glightbox', 'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js', [], null, true);
+        wp_enqueue_script('fw-galerie', FW_THEME_URI . '/assets/js/galerie.js', ['glightbox'], FW_THEME_VERSION, true);
     }
 
     // FullCalendar (Kalender page)
@@ -132,6 +133,10 @@ function fw_get_termine_for_calendar(): array {
         $end      = get_post_meta($post->ID, 'fw_termin_end', true);
         $location = get_post_meta($post->ID, 'fw_termin_location', true);
         $color    = get_post_meta($post->ID, 'fw_termin_color', true) ?: '#CC0000';
+        // Stored as MySQL DATETIME ('Y-m-d H:i:s'); FullCalendar expects ISO8601
+        // with a 'T' separator.
+        $start    = $start ? str_replace(' ', 'T', $start) : '';
+        $end      = $end   ? str_replace(' ', 'T', $end)   : '';
         $events[] = [
             'id'            => $post->ID,
             'title'         => get_the_title($post),

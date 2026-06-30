@@ -11,6 +11,8 @@ $socialFacebook  = $config['social_facebook']  ?? '';
 $socialInstagram = $config['social_instagram'] ?? '';
 $socialYoutube   = $config['social_youtube']   ?? '';
 ?>
+</main><!-- /#main-content -->
+
 <footer class="fw-footer mt-auto">
     <div class="container">
         <div class="row g-4">
@@ -107,7 +109,7 @@ $socialYoutube   = $config['social_youtube']   ?? '';
                         Kreisbrandinspektion Forchheim
                         <i class="bi bi-box-arrow-up-right ms-auto" style="font-size:.7rem;"></i>
                     </a>
-                    <a href="https://www.feuerwehr-bayern.de" target="_blank" rel="noopener"
+                    <a href="https://www.lfv-bayern.de" target="_blank" rel="noopener"
                        class="d-flex align-items-center gap-2 text-muted small mt-1" style="text-decoration:none;">
                         <i class="bi bi-shield-fill text-danger"></i>
                         Landesfeuerwehrverband Bayern
@@ -130,6 +132,11 @@ $socialYoutube   = $config['social_youtube']   ?? '';
         </div>
     </div>
 </footer>
+
+<!-- Back-to-top (alle Seiten) -->
+<button id="backToTop" type="button" aria-label="Nach oben scrollen" title="Nach oben">
+    <i class="bi bi-arrow-up"></i>
+</button>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

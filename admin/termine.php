@@ -10,6 +10,7 @@ $error   = '';
 
 // ---- DELETE ----
 if ($action === 'delete' && $id) {
+    requireCsrf();
     $items = loadJson('termine.json');
     $items = array_values(array_filter($items, fn($i) => $i['id'] !== $id));
     saveJson('termine.json', $items);
@@ -19,6 +20,7 @@ if ($action === 'delete' && $id) {
 
 // ---- SAVE ----
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    requireCsrf();
     $postId      = trim($_POST['id'] ?? '');
     $title       = trim($_POST['title'] ?? '');
     $startDate   = $_POST['start_date'] ?? '';
@@ -79,7 +81,7 @@ if (($action === 'edit') && $id) {
 }
 
 $allItems = getTermine();
-usort($allItems, fn($a, $b) => strcmp($b['start'], $a['start']));
+usort($allItems, fn($a, $b) => strcmp($b['start'] ?? '', $a['start'] ?? ''));
 $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
 
 $colors = [
@@ -145,8 +147,8 @@ $colors = [
                         <td class="text-muted small"><?= $h($item['location'] ?? '') ?></td>
                         <td><?= !empty($item['public']) ? '<span class="badge bg-success">Ja</span>' : '<span class="badge bg-secondary">Nein</span>' ?></td>
                         <td>
-                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></a>
-                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Termin wirklich löschen?')"><i class="bi bi-trash"></i></a>
+                            <a href="?action=edit&id=<?= urlencode($item['id']) ?>" class="btn btn-sm btn-outline-secondary me-1" title="Bearbeiten" aria-label="Termin bearbeiten"><i class="bi bi-pencil"></i></a>
+                            <a href="?action=delete&id=<?= urlencode($item['id']) ?>&token=<?= csrfToken() ?>" class="btn btn-sm btn-outline-danger" title="Löschen" aria-label="Termin löschen" onclick="return confirm('Termin wirklich löschen?')"><i class="bi bi-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -169,6 +171,7 @@ $colors = [
         <div class="admin-card p-4" style="max-width:700px;">
             <h5 class="fw-bold mb-4"><?= $editItem ? 'Termin bearbeiten' : 'Neuer Termin' ?></h5>
             <form method="POST">
+                <?= csrfField() ?>
                 <?php if ($editItem): ?>
                 <input type="hidden" name="id" value="<?= $h($editItem['id']) ?>">
                 <?php endif; ?>

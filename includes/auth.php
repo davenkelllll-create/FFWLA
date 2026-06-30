@@ -25,9 +25,11 @@ function requireLogin(): void {
 }
 
 function attemptLogin(string $password): bool {
-    $config = loadConfig();
-    if (empty($config['admin_password_hash'])) return false;
-    if (password_verify($password, $config['admin_password_hash'])) {
+    // Hash lives in data/secrets.json; fall back to legacy config.json location.
+    $secrets = loadSecrets();
+    $hash    = $secrets['admin_password_hash'] ?? (loadConfig()['admin_password_hash'] ?? '');
+    if (empty($hash)) return false;
+    if (password_verify($password, $hash)) {
         session_regenerate_id(true);
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_login_time'] = time();

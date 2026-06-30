@@ -27,7 +27,7 @@
     <div class="fw-cookie__icon"><i class="bi bi-shield-check"></i></div>
     <div class="fw-cookie__text">
         <strong>Datenschutzhinweis</strong>
-        <p>Diese Website lädt Ressourcen von externen CDN-Diensten (Bootstrap, jsDelivr) sowie eine Karte von OpenStreetMap. Dabei werden technisch bedingt IP-Adressen übertragen. Wir verwenden keine Werbe- oder Tracking-Cookies. Details in der <a href="/datenschutz.php">Datenschutzerklärung</a>.</p>
+        <p>Diese Website lädt Ressourcen von externen CDN-Diensten (Bootstrap, jsDelivr) sowie eine Karte von OpenStreetMap. Dabei werden technisch bedingt IP-Adressen übertragen. Wir verwenden keine Werbe- oder Tracking-Cookies. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
     </div>
     <div class="fw-cookie__actions">
         <button id="fw-cookie-accept" class="fw-cookie__btn fw-cookie__btn--accept">

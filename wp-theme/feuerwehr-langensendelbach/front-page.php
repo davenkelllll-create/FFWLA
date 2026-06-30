@@ -151,7 +151,7 @@ $slides = [
             'post_status'    => 'publish',
             'meta_query'     => [
                 ['key' => 'fw_termin_public', 'value' => '1'],
-                ['key' => 'fw_termin_start',  'value' => current_time('Y-m-d\TH:i'), 'compare' => '>=', 'type' => 'DATETIME'],
+                ['key' => 'fw_termin_start',  'value' => current_time('Y-m-d H:i:s'), 'compare' => '>=', 'type' => 'DATETIME'],
             ],
             'meta_key'  => 'fw_termin_start',
             'orderby'   => 'meta_value',

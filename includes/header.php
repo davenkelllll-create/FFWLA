@@ -22,10 +22,14 @@ function isActiveParent(array $pages): string {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= h($pageDescription ?? 'Offizielle Website der ' . $siteName . ' – Aktuelles, Einsätze, Galerie und Veranstaltungen.') ?>">
-    <meta property="og:title" content="<?= h(($pageTitle ?? '') ? $pageTitle . ' – ' . $siteShort : $siteName) ?>">
+    <meta property="og:title" content="<?= h(!empty($pageTitle) ? $pageTitle . ' – ' . $siteShort : $siteName) ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
-    <title><?= h(isset($pageTitle) ? $pageTitle . ' – ' . $siteShort : $siteName) ?></title>
+    <meta property="og:image" content="/images/og-default.svg">
+    <meta name="theme-color" content="#CC0000">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="mask-icon" href="/favicon.svg" color="#CC0000">
+    <title><?= h(!empty($pageTitle) ? $pageTitle . ' – ' . $siteShort : $siteName) ?></title>
 
     <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -39,11 +43,14 @@ function isActiveParent(array $pages): string {
 </head>
 <body>
 
+<!-- Skip to content (Tastatur-Bedienung) -->
+<a href="#main-content" class="fw-skip-link">Zum Inhalt springen</a>
+
 <!-- Emergency Alert Strip (shown when data/alert.json is active) -->
 <?php
 $alert = loadJson('alert.json');
 if (!empty($alert['active']) && !empty($alert['message'])): ?>
-<div class="alert-strip">
+<div class="alert-strip" role="alert">
     <div class="container">
         <i class="bi bi-exclamation-triangle-fill me-2"></i>
         <?= h($alert['message']) ?>
@@ -115,3 +122,5 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
         </div>
     </div>
 </nav>
+
+<main id="main-content">
