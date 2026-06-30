@@ -24,7 +24,7 @@ include 'includes/header.php';
                         $kommandant = $p; break;
                     }
                 }
-                $adresse = $config['site_address'] ?? 'Am Weiher, 91094 Langensendelbach';
+                $adresse = $config['site_address'] ?? 'Zum Berg 7, 91094 Langensendelbach';
                 ?>
                 <h2>Angaben gemäß § 5 TMG</h2>
                 <p>

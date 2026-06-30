@@ -8,13 +8,20 @@ get_header();
 // Bei Bedarf später über ein eigenes CPT / ACF pflegbar.
 $fuehrung = [
     'aktive_wehr' => [
-        ['funktion' => 'Kommandant',      'name' => 'Stefan Müller', 'email' => ''],
-        ['funktion' => 'Stv. Kommandant', 'name' => 'Thomas Weber',  'email' => ''],
-        ['funktion' => 'Kassier',         'name' => 'Hans Meier',    'email' => ''],
+        ['funktion' => '1. Vorstand',   'name' => 'Sebastian Baumgärtel', 'email' => ''],
+        ['funktion' => '2. Vorstand',   'name' => 'Alexander Güthlein',   'email' => ''],
+        ['funktion' => '1. Kommandant', 'name' => 'Martin Hofmann',       'email' => ''],
+        ['funktion' => 'Schriftführer', 'name' => 'Florian Eger',         'email' => ''],
+        ['funktion' => 'Kassier',       'name' => 'Maximilian Erlwein',   'email' => ''],
     ],
     'jugendfeuerwehr' => [
-        ['funktion' => 'Jugendwart',      'name' => 'Maria Schmidt', 'email' => ''],
-        ['funktion' => 'Stv. Jugendwart', 'name' => 'Thomas Weber',  'email' => ''],
+        ['funktion' => 'Jugendwart',                 'name' => 'Steffen Kupfer',   'email' => ''],
+        ['funktion' => 'Betreuer Jugendfeuerwehr',   'name' => 'Laurin Reichel',   'email' => ''],
+        ['funktion' => 'Betreuerin Jugendfeuerwehr', 'name' => 'Elena Baumgärtel', 'email' => ''],
+    ],
+    'kinderfeuerwehr' => [
+        ['funktion' => 'Leiterin Kinderfeuerwehr',   'name' => 'Christina Langguth', 'email' => ''],
+        ['funktion' => 'Betreuerin Kinderfeuerwehr', 'name' => 'Lara Arold',         'email' => ''],
     ],
 ];
 $founded = fw_option('fw_founded', '1952');
@@ -101,7 +108,7 @@ $members = fw_option('fw_members', '45');
                     <h6 class="fw-bold mb-2"><i class="bi bi-person-badge me-2 text-danger"></i>Führung</h6>
                     <ul class="list-unstyled mb-0 small">
                         <?php
-                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr']);
+                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr'], $fuehrung['kinderfeuerwehr']);
                         foreach ($alle as $idx => $p):
                             $last = $idx === count($alle) - 1;
                         ?>

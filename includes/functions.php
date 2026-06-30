@@ -181,6 +181,7 @@ function getFuehrung(): array {
     return [
         'aktive_wehr'      => $data['aktive_wehr']      ?? [],
         'jugendfeuerwehr'  => $data['jugendfeuerwehr']  ?? [],
+        'kinderfeuerwehr'  => $data['kinderfeuerwehr']  ?? [],
     ];
 }
 

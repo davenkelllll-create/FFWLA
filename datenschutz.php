@@ -31,7 +31,7 @@ include 'includes/header.php';
                 <h3>Verantwortliche Stelle</h3>
                 <p>
                     <?= h($config['site_name'] ?? '') ?><br>
-                    <?= h($config['site_address'] ?? 'Am Weiher, 91094 Langensendelbach') ?><br>
+                    <?= h($config['site_address'] ?? 'Zum Berg 7, 91094 Langensendelbach') ?><br>
                     E-Mail: <a href="mailto:<?= h($config['site_email'] ?? '') ?>"><?= h($config['site_email'] ?? '') ?></a>
                 </p>
 

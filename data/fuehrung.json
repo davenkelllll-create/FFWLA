@@ -1,20 +1,32 @@
 {
   "aktive_wehr": [
     {
-      "funktion": "Kommandant",
-      "name": "Stefan Müller",
+      "funktion": "1. Vorstand",
+      "name": "Sebastian Baumgärtel",
       "telefon": "",
       "email": ""
     },
     {
-      "funktion": "Stv. Kommandant",
-      "name": "Thomas Weber",
+      "funktion": "2. Vorstand",
+      "name": "Alexander Güthlein",
+      "telefon": "",
+      "email": ""
+    },
+    {
+      "funktion": "1. Kommandant",
+      "name": "Martin Hofmann",
+      "telefon": "",
+      "email": ""
+    },
+    {
+      "funktion": "Schriftführer",
+      "name": "Florian Eger",
       "telefon": "",
       "email": ""
     },
     {
       "funktion": "Kassier",
-      "name": "Hans Meier",
+      "name": "Maximilian Erlwein",
       "telefon": "",
       "email": ""
     }
@@ -22,13 +34,33 @@
   "jugendfeuerwehr": [
     {
       "funktion": "Jugendwart",
-      "name": "Maria Schmidt",
+      "name": "Steffen Kupfer",
       "telefon": "",
       "email": ""
     },
     {
-      "funktion": "Stv. Jugendwart",
-      "name": "Thomas Weber",
+      "funktion": "Betreuer Jugendfeuerwehr",
+      "name": "Laurin Reichel",
+      "telefon": "",
+      "email": ""
+    },
+    {
+      "funktion": "Betreuerin Jugendfeuerwehr",
+      "name": "Elena Baumgärtel",
+      "telefon": "",
+      "email": ""
+    }
+  ],
+  "kinderfeuerwehr": [
+    {
+      "funktion": "Leiterin Kinderfeuerwehr",
+      "name": "Christina Langguth",
+      "telefon": "",
+      "email": ""
+    },
+    {
+      "funktion": "Betreuerin Kinderfeuerwehr",
+      "name": "Lara Arold",
       "telefon": "",
       "email": ""
     }

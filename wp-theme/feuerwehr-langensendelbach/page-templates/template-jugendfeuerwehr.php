@@ -6,8 +6,9 @@ get_header();
 
 // Ansprechpartner Jugendfeuerwehr – Sample-Inhalte (WordPress hat keine fuehrung.json).
 $jugend = [
-    ['funktion' => 'Jugendwart',      'name' => 'Maria Schmidt', 'email' => ''],
-    ['funktion' => 'Stv. Jugendwart', 'name' => 'Thomas Weber',  'email' => ''],
+    ['funktion' => 'Jugendwart',                 'name' => 'Steffen Kupfer',   'email' => ''],
+    ['funktion' => 'Betreuer Jugendfeuerwehr',   'name' => 'Laurin Reichel',   'email' => ''],
+    ['funktion' => 'Betreuerin Jugendfeuerwehr', 'name' => 'Elena Baumgärtel', 'email' => ''],
 ];
 
 $jfwSlides = [

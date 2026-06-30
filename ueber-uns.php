@@ -77,7 +77,7 @@ include 'includes/header.php';
                     <h6 class="fw-bold mb-2"><i class="bi bi-person-badge me-2 text-danger"></i>Führung</h6>
                     <ul class="list-unstyled mb-0 small">
                         <?php
-                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr']);
+                        $alle = array_merge($fuehrung['aktive_wehr'], $fuehrung['jugendfeuerwehr'], $fuehrung['kinderfeuerwehr']);
                         foreach ($alle as $idx => $p):
                             $last = $idx === count($alle) - 1;
                         ?>

@@ -85,7 +85,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_fuehrung'])) {
             ];
         }
 
-        saveFuehrung(['aktive_wehr' => $aktive, 'jugendfeuerwehr' => $jfw]);
+        $kfw = [];
+        $funk_k  = $_POST['kfw_funktion'] ?? [];
+        $name_k  = $_POST['kfw_name']     ?? [];
+        $tel_k   = $_POST['kfw_telefon']  ?? [];
+        $mail_k  = $_POST['kfw_email']    ?? [];
+        foreach ($funk_k as $i => $funk) {
+            if (trim($name_k[$i] ?? '') === '' && trim($funk) === '') continue;
+            $kfw[] = [
+                'funktion' => trim($funk),
+                'name'     => trim($name_k[$i] ?? ''),
+                'telefon'  => trim($tel_k[$i]  ?? ''),
+                'email'    => trim($mail_k[$i] ?? ''),
+            ];
+        }
+
+        saveFuehrung(['aktive_wehr' => $aktive, 'jugendfeuerwehr' => $jfw, 'kinderfeuerwehr' => $kfw]);
         $fuehrung = getFuehrung();
         $message  = 'Ansprechpartner gespeichert.';
     }
@@ -176,7 +191,7 @@ $pageTitle = 'Einstellungen';
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Adresse Gerätehaus</label>
                                 <input type="text" class="form-control" name="site_address"
-                                       placeholder="Am Weiher, 91094 Langensendelbach"
+                                       placeholder="Zum Berg 7, 91094 Langensendelbach"
                                        value="<?= h($config['site_address'] ?? '') ?>">
                             </div>
                         </div>
@@ -270,8 +285,8 @@ $pageTitle = 'Einstellungen';
                         <input type="hidden" name="csrf_token" value="<?= h($csrf) ?>">
                         <input type="hidden" name="save_fuehrung" value="1">
 
-                        <!-- Aktive Wehr -->
-                        <h6 class="fw-bold mb-3">Aktive Wehr</h6>
+                        <!-- Vorstandschaft & Wehrführung -->
+                        <h6 class="fw-bold mb-3">Vorstandschaft &amp; Wehrführung</h6>
                         <div class="table-responsive mb-2">
                             <table class="table table-sm align-middle" id="aw-table">
                                 <thead class="table-light">
@@ -330,6 +345,36 @@ $pageTitle = 'Einstellungen';
                             <i class="bi bi-plus-circle me-1"></i>Zeile hinzufügen
                         </button>
 
+                        <!-- Kinderfeuerwehr -->
+                        <h6 class="fw-bold mb-3">Kinderfeuerwehr</h6>
+                        <div class="table-responsive mb-2">
+                            <table class="table table-sm align-middle" id="kfw-table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Funktion</th>
+                                        <th>Name</th>
+                                        <th>Telefon</th>
+                                        <th>E-Mail</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="kfw-tbody">
+                                    <?php foreach ($fuehrung['kinderfeuerwehr'] as $p): ?>
+                                    <tr class="kfw-row">
+                                        <td><input type="text" class="form-control form-control-sm" name="kfw_funktion[]" value="<?= h($p['funktion']) ?>" placeholder="Leiterin Kinderfeuerwehr"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="kfw_name[]"     value="<?= h($p['name'])     ?>" placeholder="Vorname Nachname"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="kfw_telefon[]"  value="<?= h($p['telefon'])  ?>" placeholder="+49 ..."></td>
+                                        <td><input type="email" class="form-control form-control-sm" name="kfw_email[]"   value="<?= h($p['email'])    ?>" placeholder="name@example.de"></td>
+                                        <td><button type="button" class="btn btn-sm btn-outline-danger remove-row"><i class="bi bi-trash"></i></button></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary mb-4" id="add-kfw">
+                            <i class="bi bi-plus-circle me-1"></i>Zeile hinzufügen
+                        </button>
+
                         <div>
                             <button type="submit" class="btn btn-danger">
                                 <i class="bi bi-save me-1"></i>Ansprechpartner speichern
@@ -359,6 +404,8 @@ document.getElementById('add-aw').addEventListener('click', () =>
     document.getElementById('aw-tbody').appendChild(makeRow('aw')));
 document.getElementById('add-jfw').addEventListener('click', () =>
     document.getElementById('jfw-tbody').appendChild(makeRow('jfw')));
+document.getElementById('add-kfw').addEventListener('click', () =>
+    document.getElementById('kfw-tbody').appendChild(makeRow('kfw')));
 document.getElementById('fuehrungForm').addEventListener('click', e => {
     if (e.target.closest('.remove-row')) e.target.closest('tr').remove();
 });
