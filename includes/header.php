@@ -101,13 +101,15 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
                     <a class="nav-link<?= isActive('formulare.php') ?>" href="/formulare.php">Formulare</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle<?= isActiveParent(['ueber-uns.php','links.php']) ?>"
+                    <a class="nav-link dropdown-toggle<?= isActiveParent(['ueber-uns.php','buergerecke.php','links.php']) ?>"
                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Über uns
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item<?= isActive('ueber-uns.php') ?>" href="/ueber-uns.php">
                             <i class="bi bi-people-fill me-2"></i>Über uns</a></li>
+                        <li><a class="dropdown-item<?= isActive('buergerecke.php') ?>" href="/buergerecke.php">
+                            <i class="bi bi-info-square me-2"></i>Bürgerecke</a></li>
                         <li><a class="dropdown-item<?= isActive('links.php') ?>" href="/links.php">
                             <i class="bi bi-link-45deg me-2"></i>Links &amp; Partner</a></li>
                     </ul>

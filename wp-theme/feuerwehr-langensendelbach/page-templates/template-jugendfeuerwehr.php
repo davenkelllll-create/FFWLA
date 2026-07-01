@@ -184,6 +184,51 @@ $jfwSlides = [
     </div>
 </section>
 
+<!-- Kinderfeuerwehr -->
+<section class="fw-section">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5">
+                <span class="fw-badge badge-jugend mb-2 d-inline-block">Seit 2010</span>
+                <h2 class="fw-section-title mb-3">Kinderfeuerwehr</h2>
+                <p class="text-muted">
+                    Schon die Kleinsten dürfen Feuerwehrluft schnuppern: In unserer Kinderfeuerwehr
+                    werden Kinder von <strong>6 bis 12 Jahren</strong> spielerisch an die Feuerwehr
+                    herangeführt – seit ihrer Gründung im Frühjahr 2010.
+                </p>
+                <p class="text-muted mb-0">
+                    Mit <strong>12&nbsp;Jahren</strong> geht es dann nahtlos in die Jugendfeuerwehr weiter.
+                    Die Ansprechpartnerinnen findest du weiter unten.
+                </p>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <?php
+                    $kfw = [
+                        ['icon' => 'emoji-smile-fill', 'titel' => 'Spielerisch lernen', 'text' => 'Feuerwehr zum Anfassen: Geräte kennenlernen, ausprobieren und verstehen.'],
+                        ['icon' => 'palette-fill',     'titel' => 'Basteln & Kreatives', 'text' => 'Basteln, malen und gemeinsame Aktionen rund ums Thema Feuerwehr.'],
+                        ['icon' => 'shield-check',     'titel' => 'Sicher verhalten',   'text' => 'Richtiges Verhalten im Notfall und der Umgang mit Gefahren.'],
+                        ['icon' => 'balloon-heart-fill','titel' => 'Ausflüge & Spaß',   'text' => 'Ausflüge, Feste und jede Menge Spaß in der Gemeinschaft.'],
+                    ];
+                    foreach ($kfw as $k): ?>
+                    <div class="col-sm-6">
+                        <div class="d-flex gap-3 p-3 rounded h-100" style="background:var(--fw-gray-100);">
+                            <div style="width:44px;height:44px;background:#e07800;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                                <i class="bi bi-<?= esc_attr($k['icon']) ?> text-white fs-5"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block mb-1"><?= esc_html($k['titel']) ?></strong>
+                                <span class="text-muted small"><?= esc_html($k['text']) ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Ansprechpartner -->
 <section class="fw-section">
     <div class="container">

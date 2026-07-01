@@ -19,7 +19,7 @@ function fw_customizer_register(WP_Customize_Manager $wp_customize): void {
         'fw_phone'   => ['label' => 'Telefonnummer',  'type' => 'text',  'default' => ''],
         'fw_email'   => ['label' => 'E-Mail-Adresse', 'type' => 'email', 'default' => 'vorstand@ff-langensendelbach.de'],
         'fw_address' => ['label' => 'Adresse',        'type' => 'text',  'default' => 'Zum Berg 7, 91094 Langensendelbach'],
-        'fw_founded' => ['label' => 'Gründungsjahr',  'type' => 'number','default' => '1952'],
+        'fw_founded' => ['label' => 'Gründungsjahr',  'type' => 'number','default' => '1878'],
         'fw_members' => ['label' => 'Aktive Mitglieder', 'type' => 'number', 'default' => '45'],
     ] as $id => $args) {
         $wp_customize->add_setting($id, ['default' => $args['default'], 'sanitize_callback' => 'sanitize_text_field', 'transport' => 'refresh']);

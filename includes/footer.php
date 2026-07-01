@@ -70,6 +70,7 @@ $socialYoutube   = $config['social_youtube']   ?? '';
                 <h6 class="fw-footer-heading">Informationen</h6>
                 <ul class="list-unstyled fw-footer-links">
                     <li><a href="/ueber-uns.php">Über uns</a></li>
+                    <li><a href="/buergerecke.php">Bürgerecke</a></li>
                     <li><a href="/kontakt.php">Kontakt</a></li>
                     <li><a href="/links.php">Links &amp; Partner</a></li>
                     <li><a href="/impressum.php">Impressum</a></li>

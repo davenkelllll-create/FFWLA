@@ -24,8 +24,6 @@ $fuehrung = [
         ['funktion' => 'Betreuerin Kinderfeuerwehr', 'name' => 'Lara Arold',         'email' => ''],
     ],
 ];
-$founded = fw_option('fw_founded', '1952');
-$members = fw_option('fw_members', '45');
 ?>
 
 <!-- Page Header -->
@@ -35,7 +33,7 @@ $members = fw_option('fw_members', '45');
             <a href="<?= esc_url(home_url('/')) ?>">Startseite</a> / Über uns
         </nav>
         <h1><i class="bi bi-people-fill me-2 text-fw-red"></i>Über uns</h1>
-        <p class="text-muted mb-0">Unsere Wehr, Fahrzeuge und Ansprechpartner</p>
+        <p class="text-muted mb-0">Geschichte, Fahrzeuge und Ansprechpartner</p>
     </div>
 </div>
 
@@ -49,19 +47,60 @@ $members = fw_option('fw_members', '45');
 </section>
 <?php endif; endwhile; endif; ?>
 
-<!-- Gründungsjahr + Ansprechpartner -->
+<!-- Geschichte -->
 <section class="fw-section">
     <div class="container">
         <div class="row g-5 align-items-start">
-            <div class="col-lg-4">
-                <div class="p-4 rounded text-center" style="background:var(--fw-red);color:#fff;">
-                    <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;opacity:.85;">Gegründet</div>
-                    <div style="font-size:3rem;font-weight:900;line-height:1.1;"><?= esc_html($founded) ?></div>
-                    <p class="mb-0 small" style="opacity:.9;">Im Dienst für Langensendelbach und seine Bürgerinnen und Bürger.</p>
+            <div class="col-lg-7">
+                <h2 class="fw-section-title mb-4">Unsere Geschichte</h2>
+                <div class="fw-timeline">
+                    <div class="fw-timeline-item">
+                        <div class="fw-timeline-year">1840</div>
+                        <div class="fw-timeline-title">Die erste Feuerspritze</div>
+                        <p class="text-muted small">Langensendelbach erhält seine erste Feuerspritze; das Spritzenhaus entsteht an der Hauptstraße.</p>
+                    </div>
+                    <div class="fw-timeline-item">
+                        <div class="fw-timeline-year">1878</div>
+                        <div class="fw-timeline-title">Gründung der Freiwilligen Feuerwehr</div>
+                        <p class="text-muted small">Am 9.&nbsp;März 1878 gründen 48 Männer den Verein „Freiwillige Feuerwehr Langensendelbach" unter dem Leitspruch »Gott zur Ehr, dem Nächsten zur Wehr«. Zum ersten Kommandanten wird Joachim Müller gewählt – bis heute der <strong>älteste Verein der Gemeinde</strong>.</p>
+                    </div>
+                    <div class="fw-timeline-item">
+                        <div class="fw-timeline-year">2005</div>
+                        <div class="fw-timeline-title">Erweiterung des Gerätehauses</div>
+                        <p class="text-muted small">Nach dem Spatenstich im November 2004 wird das erweiterte und sanierte Gerätehaus am 1.&nbsp;Oktober 2005 feierlich eingeweiht und gesegnet.</p>
+                    </div>
+                    <div class="fw-timeline-item">
+                        <div class="fw-timeline-year">2010</div>
+                        <div class="fw-timeline-title">Gründung der Kinderfeuerwehr</div>
+                        <p class="text-muted small">Seit dem Frühjahr 2010 gibt es die Kinderfeuerwehr für Kinder von 6 bis 12 Jahren.</p>
+                    </div>
+                    <div class="fw-timeline-item">
+                        <div class="fw-timeline-year">Heute</div>
+                        <div class="fw-timeline-title">Moderne Wehr mit Tradition</div>
+                        <p class="text-muted small mb-0">Mit rund 90 aktiven Feuerwehrfrauen und -männern sowie Jugend- und Kinderfeuerwehr sind wir bestens für die Zukunft aufgestellt.</p>
+                    </div>
                 </div>
             </div>
+            <div class="col-lg-5">
+                <div class="p-4 rounded text-center" style="background:var(--fw-red);color:#fff;">
+                    <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;opacity:.85;">Gegründet</div>
+                    <div style="font-size:3rem;font-weight:900;line-height:1.1;"><?= esc_html(fw_option('fw_founded','1878')) ?></div>
+                    <p class="mb-3 small" style="opacity:.9;">Ältester Verein der Gemeinde Langensendelbach.</p>
+                    <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.25);">
+                        <em>»Gott zur Ehr, dem Nächsten zur Wehr«</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ansprechpartner -->
+<section class="fw-section fw-section--gray">
+    <div class="container">
+        <h2 class="fw-section-title mb-4">Ansprechpartner</h2>
+        <div class="row">
             <div class="col-lg-8">
-                <h2 class="fw-section-title mb-4">Ansprechpartner</h2>
                 <?php
                 $gruppen = [
                     'Vorstandschaft & Wehrführung' => $fuehrung['aktive_wehr'],
@@ -90,7 +129,7 @@ $members = fw_option('fw_members', '45');
 </section>
 
 <!-- Fahrzeuge -->
-<section class="fw-section fw-section--gray">
+<section class="fw-section">
     <div class="container">
         <h2 class="fw-section-title mb-4">Unsere Fahrzeuge</h2>
         <div class="row g-4">

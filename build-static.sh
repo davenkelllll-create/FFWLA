@@ -41,6 +41,7 @@ PAGES=(
   "jugendfeuerwehr.php:jugendfeuerwehr.html"
   "formulare.php:formulare.html"
   "ueber-uns.php:ueber-uns.html"
+  "buergerecke.php:buergerecke.html"
   "links.php:links.html"
   "kontakt.php:kontakt.html"
   "impressum.php:impressum.html"
@@ -98,7 +99,7 @@ done
 # 2) Generischer .php → .html Rewrite
 PHP_LINKS=(
   "index.php" "nachrichten.php" "kalender.php" "galerie.php"
-  "jugendfeuerwehr.php" "formulare.php" "ueber-uns.php"
+  "jugendfeuerwehr.php" "formulare.php" "ueber-uns.php" "buergerecke.php"
   "links.php" "kontakt.php" "impressum.php" "datenschutz.php" "404.php"
 )
 for f in "$DOCS_DIR"/*.html; do
