@@ -20,7 +20,7 @@ Strato-Hosting (auch die `.htaccess`-Dateien greifen).
    - Windows: `C:\xampp\htdocs\ffwla\`
    - macOS:   `/Applications/XAMPP/htdocs/ffwla/`
    So, dass `index.php` direkt in diesem `ffwla`-Ordner liegt.
-   (Die Ordner `docs/` und `wp-theme/` sowie `build-static.sh` brauchst du
+   (Den Ordner `docs/` sowie `build-static.sh` brauchst du
    zum Testen **nicht** – kannst sie aber drin lassen, stören nicht.)
 5. Im Browser öffnen:
    - Website: **http://localhost/ffwla/**
@@ -57,7 +57,7 @@ des Ordners.** Zum Veröffentlichen lädst du denselben Ordner hoch:
 2. Den **Inhalt deines `ffwla`-Ordners** per FTP/File-Manager ins
    Web-Hauptverzeichnis hochladen – **inklusive** deiner lokal gepflegten
    `data/` und `uploads/`. Damit sind alle Inhalte sofort online.
-3. Nicht hochladen: `docs/`, `wp-theme/`, `build-static.sh`, `.git/`.
+3. Nicht hochladen: `docs/`, `build-static.sh`, `.git/`.
 4. Versteckte `.htaccess`-Dateien mitnehmen (siehe `DEPLOY-STRATO.md`).
 
 Details zum Strato-Upload stehen in **`DEPLOY-STRATO.md`**.

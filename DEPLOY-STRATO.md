@@ -34,7 +34,6 @@ favicon.svg  robots.txt
 **NICHT hochladen** (nur für Entwicklung/Backup):
 ```
 docs/            (statische GitHub-Pages-Vorschau – auf dem PHP-Server überflüssig)
-wp-theme/        (nur falls man stattdessen WordPress nutzen wollte)
 build-static.sh  .git/   *.md
 ```
 
