@@ -8,7 +8,7 @@ function adminActive(string $page): string {
 <aside class="admin-sidebar" style="min-width:220px;max-width:220px;">
     <div class="admin-logo">
         <div class="fw-logo-circle fw-logo-circle--sm">
-            <i class="bi bi-shield-fill-exclamation"></i>
+            <img src="/images/branding/wappen-schild.png" alt="Wappen FF Langensendelbach">
         </div>
         <span>FF Langensendelbach</span>
     </div>

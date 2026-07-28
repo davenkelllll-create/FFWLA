@@ -10,6 +10,9 @@ $latestGalerien = getGalerien(6);
 include 'includes/header.php';
 ?>
 
+<!-- Wappen als dezentes Wasserzeichen im Hintergrund der Startseite -->
+<img src="/images/branding/wappen-voll.png" alt="" aria-hidden="true" class="fw-page-watermark">
+
 <!-- Hero Carousel -->
 <?php
 // Slide-Konfiguration – Texte hier anpassen, Bilder unter /images/hero/ ablegen

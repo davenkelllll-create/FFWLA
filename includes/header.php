@@ -27,8 +27,9 @@ function isActiveParent(array $pages): string {
     <meta property="og:locale" content="de_DE">
     <meta property="og:image" content="/images/og-default.svg">
     <meta name="theme-color" content="#CC0000">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="mask-icon" href="/favicon.svg" color="#CC0000">
+    <link rel="icon" href="/images/branding/favicon-192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="/images/branding/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/images/branding/favicon-192.png">
     <title><?= h(!empty($pageTitle) ? $pageTitle . ' – ' . $siteShort : $siteName) ?></title>
 
     <!-- Bootstrap 5 -->
@@ -63,7 +64,7 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
             <div class="fw-logo-circle">
-                <i class="bi bi-shield-fill-exclamation"></i>
+                <img src="/images/branding/wappen-schild.png" alt="Wappen der Freiwilligen Feuerwehr Langensendelbach">
             </div>
             <div class="fw-brand-text">
                 <span class="fw-brand-name"><?= h($siteShort) ?></span>

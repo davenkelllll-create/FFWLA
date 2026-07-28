@@ -90,6 +90,12 @@ img { max-width: 100%; height: auto; }
     font-size: 1.4rem;
     color: var(--fw-red);
 }
+.fw-logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 .fw-logo-circle--sm {
     width: 34px;
     height: 34px;
@@ -1010,4 +1016,25 @@ img { max-width: 100%; height: auto; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; color: #555; }
     .fw-section { padding: 1rem 0 !important; }
     .container { max-width: 100% !important; width: 100% !important; }
+}
+
+/* ============================================================
+   Wappen-Wasserzeichen (Startseite) – dezent im Hintergrund
+   ============================================================ */
+.fw-page-watermark {
+    position: fixed;
+    top: 90px;
+    right: -80px;
+    width: min(560px, 55vw);
+    height: auto;
+    opacity: .05;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+}
+@media (max-width: 767px) {
+    .fw-page-watermark { display: none; } /* auf Mobilgeräten eher störend als schön */
+}
+@media print {
+    .fw-page-watermark { display: none; }
 }

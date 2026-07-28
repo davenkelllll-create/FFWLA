@@ -9,8 +9,9 @@
     <meta property="og:locale" content="de_DE">
     <meta property="og:image" content="images/og-default.svg">
     <meta name="theme-color" content="#CC0000">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="mask-icon" href="favicon.svg" color="#CC0000">
+    <link rel="icon" href="images/branding/favicon-192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="images/branding/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="images/branding/favicon-192.png">
     <title>Freiwillige Feuerwehr Langensendelbach</title>
 
     <!-- Bootstrap 5 -->
@@ -32,7 +33,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
             <div class="fw-logo-circle">
-                <i class="bi bi-shield-fill-exclamation"></i>
+                <img src="images/branding/wappen-schild.png" alt="Wappen der Freiwilligen Feuerwehr Langensendelbach">
             </div>
             <div class="fw-brand-text">
                 <span class="fw-brand-name">FF Langensendelbach</span>
@@ -96,6 +97,9 @@
 
 <main id="main-content">
 
+<!-- Wappen als dezentes Wasserzeichen im Hintergrund der Startseite -->
+<img src="images/branding/wappen-voll.png" alt="" aria-hidden="true" class="fw-page-watermark">
+
 <!-- Hero Carousel -->
 <div id="heroCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
 
@@ -115,16 +119,13 @@
 
             <!-- Background: real image or gradient placeholder -->
             <div class="fw-slide-bg"
-                                  style="background:linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%);"
+                                  style="background-image:url('/images/hero/slide-1.jpg'), linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%);"
                  >
 
                 <!-- Overlay -->
                 <div class="fw-slide-overlay"></div>
 
                 <!-- Placeholder icon (hidden when real image is loaded) -->
-                                <div class="fw-slide-placeholder-icon">
-                    <i class="bi bi-fire"></i>
-                </div>
                             </div>
 
             <!-- Caption -->
@@ -431,7 +432,7 @@
             <div class="col-lg-4">
                 <div class="d-flex align-items-center gap-2 mb-3">
                     <div class="fw-logo-circle fw-logo-circle--sm">
-                        <i class="bi bi-shield-fill-exclamation"></i>
+                        <img src="images/branding/wappen-schild.png" alt="Wappen FF Langensendelbach">
                     </div>
                     <span class="fw-footer-brand">Freiwillige Feuerwehr Langensendelbach</span>
                 </div>
