@@ -114,6 +114,9 @@ for f in "$DOCS_DIR"/*.html; do
   sed -i 's|src="/js/|src="js/|g;  s|src="/css/|src="css/|g' "$f"
   sed -i 's|href="/favicon.svg"|href="favicon.svg"|g' "$f"
   sed -i 's|href="/images/|href="images/|g; s|src="/images/|src="images/|g; s|content="/images/|content="images/|g' "$f"
+  # Inline-Style-Hintergrundbilder (z.B. Hero-Carousel: style="background-image:url('/images/...')")
+  # werden von den href=/src=-Regeln oben NICHT erfasst – eigene Regel dafür.
+  sed -i -E "s#url\((['\"]?)/(images|css|js|uploads)/#url(\1\2/#g" "$f"
 done
 
 # 3) Cookie-Banner verlinkt die Datenschutzseite – im statischen Export auf .html
