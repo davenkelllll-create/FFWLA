@@ -40,19 +40,20 @@ $siteAddr  = $config['site_address'] ?? '';
         .wip-logo {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
+            border-radius: 10px;
             background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
             box-shadow: 0 4px 30px rgba(0,0,0,.3);
+            padding: 6px;
         }
         .wip-logo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+            object-fit: contain;
+            border-radius: 6px;
         }
         h1 {
             font-size: 1.8rem;
