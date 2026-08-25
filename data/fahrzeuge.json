@@ -1,0 +1,41 @@
+[
+    {
+        "id": "lf-10",
+        "name": "LF 10 – Löschgruppenfahrzeug",
+        "kategorie": "Löschfahrzeug",
+        "badge_class": "badge-einsatz",
+        "baujahr": "2018",
+        "funkrufname": "",
+        "besatzung": "1\/8",
+        "beschreibung": "Modernes Löschgruppenfahrzeug mit 1.000 Liter Löschwassertank, Schnellangriff und umfangreicher technischer Hilfeleistungsausrüstung.",
+        "icon": "truck-front-fill",
+        "image": "",
+        "thumbnail": ""
+    },
+    {
+        "id": "tlf-3000",
+        "name": "TLF 3000 – Tanklöschfahrzeug",
+        "kategorie": "Tanklöschfahrzeug",
+        "badge_class": "badge-einsatz",
+        "baujahr": "2005",
+        "funkrufname": "",
+        "besatzung": "1\/2",
+        "beschreibung": "Tanklöschfahrzeug mit 3.000 Liter Wassertank für Einsätze mit eingeschränkter Wasserversorgung (z.B. Waldbrände, Außenbereiche).",
+        "icon": "truck-front",
+        "image": "",
+        "thumbnail": ""
+    },
+    {
+        "id": "mtf",
+        "name": "MTF – Mannschaftstransportfahrzeug",
+        "kategorie": "Mannschaftstransport",
+        "badge_class": "badge-uebung",
+        "baujahr": "2015",
+        "funkrufname": "",
+        "besatzung": "1\/8",
+        "beschreibung": "Mannschaftstransportfahrzeug für den Transport von bis zu 9 Einsatzkräften sowie für Führungsaufgaben und Erkundung.",
+        "icon": "car-front-fill",
+        "image": "",
+        "thumbnail": ""
+    }
+]

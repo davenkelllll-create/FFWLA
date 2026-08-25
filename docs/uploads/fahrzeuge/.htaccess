@@ -1,0 +1,7 @@
+# Uploaded files must never be executed as scripts.
+php_flag engine off
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phar
+<FilesMatch "\.(php|phtml|phar|phps|cgi|pl|py|sh)$">
+    Require all denied
+</FilesMatch>

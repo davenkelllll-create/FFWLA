@@ -3,7 +3,9 @@ require_once 'includes/functions.php';
 $pageTitle = 'Über uns';
 $pageDescription = 'Die Freiwillige Feuerwehr Langensendelbach – Geschichte seit 1878, Fahrzeuge und Ansprechpartner.';
 
-$fuehrung = getFuehrung();
+$fuehrung   = getFuehrung();
+$geschichte = getGeschichte();
+$fahrzeuge  = getFahrzeuge();
 include 'includes/header.php';
 ?>
 
@@ -24,43 +26,37 @@ include 'includes/header.php';
         <div class="row g-5 align-items-start">
             <div class="col-lg-7">
                 <h2 class="fw-section-title mb-4">Unsere Geschichte</h2>
+                <?php if (empty($geschichte['eintraege'])): ?>
+                <p class="text-muted">Noch keine Einträge hinterlegt.</p>
+                <?php else: ?>
                 <div class="fw-timeline">
+                    <?php foreach ($geschichte['eintraege'] as $i => $e):
+                        $isLast = $i === array_key_last($geschichte['eintraege']); ?>
                     <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">1840</div>
-                        <div class="fw-timeline-title">Die erste Feuerspritze</div>
-                        <p class="text-muted small">Langensendelbach erhält seine erste Feuerspritze; das Spritzenhaus entsteht an der Hauptstraße.</p>
+                        <div class="fw-timeline-year"><?= h($e['jahr'] ?? '') ?></div>
+                        <div class="fw-timeline-title"><?= h($e['titel'] ?? '') ?></div>
+                        <p class="text-muted small<?= $isLast ? ' mb-0' : '' ?>"><?= h($e['text'] ?? '') ?></p>
                     </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">1878</div>
-                        <div class="fw-timeline-title">Gründung der Freiwilligen Feuerwehr</div>
-                        <p class="text-muted small">Am 9.&nbsp;März 1878 gründen 48 Männer den Verein „Freiwillige Feuerwehr Langensendelbach" unter dem Leitspruch »Gott zur Ehr, dem Nächsten zur Wehr«. Zum ersten Kommandanten wird Joachim Müller gewählt – bis heute der <strong>älteste Verein der Gemeinde</strong>.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">2005</div>
-                        <div class="fw-timeline-title">Erweiterung des Gerätehauses</div>
-                        <p class="text-muted small">Nach dem Spatenstich im November 2004 wird das erweiterte und sanierte Gerätehaus am 1.&nbsp;Oktober 2005 feierlich eingeweiht und gesegnet.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">2010</div>
-                        <div class="fw-timeline-title">Gründung der Kinderfeuerwehr</div>
-                        <p class="text-muted small">Seit dem Frühjahr 2010 gibt es die Kinderfeuerwehr für Kinder von 6 bis 12 Jahren.</p>
-                    </div>
-                    <div class="fw-timeline-item">
-                        <div class="fw-timeline-year">Heute</div>
-                        <div class="fw-timeline-title">Moderne Wehr mit Tradition</div>
-                        <p class="text-muted small mb-0">Mit rund 90 aktiven Feuerwehrfrauen und -männern sowie Jugend- und Kinderfeuerwehr sind wir bestens für die Zukunft aufgestellt.</p>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="col-lg-5">
+                <?php $hl = $geschichte['highlight']; ?>
+                <?php if (!empty($hl['jahr'])): ?>
                 <div class="p-4 rounded text-center" style="background:var(--fw-red);color:#fff;">
-                    <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;opacity:.85;">Gegründet</div>
-                    <div style="font-size:3rem;font-weight:900;line-height:1.1;">1878</div>
-                    <p class="mb-3 small" style="opacity:.9;">Ältester Verein der Gemeinde Langensendelbach.</p>
+                    <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;opacity:.85;"><?= h($hl['label'] ?? 'Gegründet') ?></div>
+                    <div style="font-size:3rem;font-weight:900;line-height:1.1;"><?= h($hl['jahr']) ?></div>
+                    <?php if (!empty($hl['text'])): ?>
+                    <p class="mb-3 small" style="opacity:.9;"><?= h($hl['text']) ?></p>
+                    <?php endif; ?>
+                    <?php if (!empty($hl['motto'])): ?>
                     <div class="pt-3" style="border-top:1px solid rgba(255,255,255,.25);">
-                        <em>»Gott zur Ehr, dem Nächsten zur Wehr«</em>
+                        <em><?= h($hl['motto']) ?></em>
                     </div>
+                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -103,53 +99,47 @@ include 'includes/header.php';
 <section class="fw-section">
     <div class="container">
         <h2 class="fw-section-title mb-4">Unsere Fahrzeuge</h2>
+        <?php if (empty($fahrzeuge)): ?>
+        <p class="text-muted">Noch keine Fahrzeuge hinterlegt.</p>
+        <?php else: ?>
         <div class="row g-4">
+            <?php foreach ($fahrzeuge as $f): ?>
             <div class="col-md-6 col-lg-4">
                 <div class="fw-card">
+                    <?php if (!empty($f['thumbnail'])): ?>
+                    <img src="<?= h($f['thumbnail']) ?>" alt="<?= h($f['name'] ?? '') ?>" class="fw-card__img">
+                    <?php else: ?>
                     <div class="fw-card__img--placeholder">
-                        <i class="bi bi-truck-front-fill"></i>
+                        <i class="bi bi-<?= h($f['icon'] ?? 'truck-front-fill') ?>"></i>
                     </div>
+                    <?php endif; ?>
                     <div class="fw-card__body">
                         <div class="fw-card__meta">
-                            <span class="fw-badge badge-einsatz">Löschfahrzeug</span>
-                            <span>Baujahr 2018</span>
+                            <?php if (!empty($f['kategorie'])): ?>
+                            <span class="fw-badge <?= h($f['badge_class'] ?? 'badge-einsatz') ?>"><?= h($f['kategorie']) ?></span>
+                            <?php endif; ?>
+                            <?php if (!empty($f['baujahr'])): ?>
+                            <span>Baujahr <?= h($f['baujahr']) ?></span>
+                            <?php endif; ?>
                         </div>
-                        <h3 class="fw-card__title">LF 10 – Löschgruppenfahrzeug</h3>
-                        <p class="fw-card__excerpt">Modernes Löschgruppenfahrzeug mit 1.000 Liter Löschwassertank, Schnellangriff und umfangreicher technischer Hilfeleistungsausrüstung.</p>
+                        <h3 class="fw-card__title"><?= h($f['name'] ?? '') ?></h3>
+                        <p class="fw-card__excerpt"><?= h($f['beschreibung'] ?? '') ?></p>
+                        <?php if (!empty($f['funkrufname']) || !empty($f['besatzung'])): ?>
+                        <div class="fw-card__meta mt-2">
+                            <?php if (!empty($f['funkrufname'])): ?>
+                            <span><i class="bi bi-broadcast me-1"></i><?= h($f['funkrufname']) ?></span>
+                            <?php endif; ?>
+                            <?php if (!empty($f['besatzung'])): ?>
+                            <span><i class="bi bi-people me-1"></i><?= h($f['besatzung']) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="fw-card">
-                    <div class="fw-card__img--placeholder">
-                        <i class="bi bi-truck-front"></i>
-                    </div>
-                    <div class="fw-card__body">
-                        <div class="fw-card__meta">
-                            <span class="fw-badge badge-einsatz">Tanklöschfahrzeug</span>
-                            <span>Baujahr 2005</span>
-                        </div>
-                        <h3 class="fw-card__title">TLF 3000 – Tanklöschfahrzeug</h3>
-                        <p class="fw-card__excerpt">Tanklöschfahrzeug mit 3.000 Liter Wassertank für Einsätze mit eingeschränkter Wasserversorgung (z.B. Waldbrände, Außenbereiche).</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="fw-card">
-                    <div class="fw-card__img--placeholder">
-                        <i class="bi bi-car-front-fill"></i>
-                    </div>
-                    <div class="fw-card__body">
-                        <div class="fw-card__meta">
-                            <span class="fw-badge badge-uebung">Mannschaftstransport</span>
-                            <span>Baujahr 2015</span>
-                        </div>
-                        <h3 class="fw-card__title">MTF – Mannschaftstransportfahrzeug</h3>
-                        <p class="fw-card__excerpt">Mannschaftstransportfahrzeug für den Transport von bis zu 9 Einsatzkräften sowie für Führungsaufgaben und Erkundung.</p>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
+        <?php endif; ?>
     </div>
 </section>
 

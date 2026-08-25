@@ -1,0 +1,35 @@
+{
+    "highlight": {
+        "label": "Gegründet",
+        "jahr": "1878",
+        "text": "Ältester Verein der Gemeinde Langensendelbach.",
+        "motto": "»Gott zur Ehr, dem Nächsten zur Wehr«"
+    },
+    "eintraege": [
+        {
+            "jahr": "1840",
+            "titel": "Die erste Feuerspritze",
+            "text": "Langensendelbach erhält seine erste Feuerspritze; das Spritzenhaus entsteht an der Hauptstraße."
+        },
+        {
+            "jahr": "1878",
+            "titel": "Gründung der Freiwilligen Feuerwehr",
+            "text": "Am 9. März 1878 gründen 48 Männer den Verein „Freiwillige Feuerwehr Langensendelbach\" unter dem Leitspruch »Gott zur Ehr, dem Nächsten zur Wehr«. Zum ersten Kommandanten wird Joachim Müller gewählt – bis heute der älteste Verein der Gemeinde."
+        },
+        {
+            "jahr": "2005",
+            "titel": "Erweiterung des Gerätehauses",
+            "text": "Nach dem Spatenstich im November 2004 wird das erweiterte und sanierte Gerätehaus am 1. Oktober 2005 feierlich eingeweiht und gesegnet."
+        },
+        {
+            "jahr": "2010",
+            "titel": "Gründung der Kinderfeuerwehr",
+            "text": "Seit dem Frühjahr 2010 gibt es die Kinderfeuerwehr für Kinder von 6 bis 12 Jahren."
+        },
+        {
+            "jahr": "Heute",
+            "titel": "Moderne Wehr mit Tradition",
+            "text": "Mit rund 90 aktiven Feuerwehrfrauen und -männern sowie Jugend- und Kinderfeuerwehr sind wir bestens für die Zukunft aufgestellt."
+        }
+    ]
+}

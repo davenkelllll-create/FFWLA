@@ -28,18 +28,10 @@ include 'includes/header.php';
                 <div class="col-md-9">
                     <h2 class="text-white mb-3">Im Notfall richtig anrufen – die 5 W</h2>
                     <div class="row g-2">
-                        <?php
-                        $w = [
-                            ['Wo', 'ist es passiert? (Ort, Straße, Hausnummer)'],
-                            ['Was', 'ist passiert? (Brand, Unfall, Person in Gefahr …)'],
-                            ['Wie viele', 'Personen sind betroffen oder verletzt?'],
-                            ['Welche', 'Verletzungen / Besonderheiten liegen vor?'],
-                            ['Warten', 'auf Rückfragen – nicht sofort auflegen!'],
-                        ];
-                        foreach ($w as $item): ?>
+                        <?php foreach (getInhalte('buergerecke_fuenf_w') as $item): ?>
                         <div class="col-12">
                             <i class="bi bi-check-circle-fill me-2"></i>
-                            <strong><?= h($item[0]) ?></strong> <span style="opacity:.9;"><?= h($item[1]) ?></span>
+                            <strong><?= h($item['wort'] ?? '') ?></strong> <span style="opacity:.9;"><?= h($item['text'] ?? '') ?></span>
                         </div>
                         <?php endforeach; ?>
                     </div>
@@ -54,23 +46,14 @@ include 'includes/header.php';
     <div class="container">
         <h2 class="fw-section-title mb-4">Tipps für Ihre Sicherheit</h2>
         <div class="row g-4">
-            <?php
-            $tipps = [
-                ['icon' => 'bell-fill',            'color' => '#CC0000', 'titel' => 'Rauchmelder retten Leben', 'text' => 'In Bayern sind Rauchmelder in Schlaf- und Kinderzimmern sowie Fluren Pflicht. Prüfen Sie regelmäßig die Batterie – ein Piepen darf nie ignoriert werden.'],
-                ['icon' => 'fire',                 'color' => '#e07800', 'titel' => 'Verhalten im Brandfall', 'text' => 'Ruhe bewahren, alle Personen warnen, das Gebäude über gekennzeichnete Wege verlassen, Türen schließen (nicht abschließen) und den Notruf 112 wählen. Kein Aufzug!'],
-                ['icon' => 'droplet-fill',         'color' => '#1a4a8a', 'titel' => 'Fettbrand niemals mit Wasser löschen', 'text' => 'Brennendes Fett niemals mit Wasser löschen (Explosionsgefahr!). Topf mit einem Deckel oder einer Löschdecke abdecken und die Herdplatte ausschalten.'],
-                ['icon' => 'signpost-2-fill',      'color' => '#1a7a3c', 'titel' => 'Zufahrten freihalten', 'text' => 'Bitte Feuerwehrzufahrten, Hydranten und Rettungswege stets frei halten. Im Ernstfall zählt jede Sekunde – falsch geparkte Fahrzeuge kosten wertvolle Zeit.'],
-                ['icon' => 'tree-fill',            'color' => '#1a7a3c', 'titel' => 'Offenes Feuer & Grillen', 'text' => 'Bei Trockenheit besondere Vorsicht: kein offenes Feuer im Freien, Grill nie unbeaufsichtigt lassen und Asche erst nach vollständigem Erkalten entsorgen.'],
-                ['icon' => 'car-front-fill',       'color' => '#495057', 'titel' => 'Rettungsgasse bilden', 'text' => 'Bei stockendem Verkehr sofort eine Rettungsgasse bilden – zwischen der linken und den übrigen Spuren. So kommen Feuerwehr und Rettungsdienst schneller ans Ziel.'],
-            ];
-            foreach ($tipps as $t): ?>
+            <?php foreach (getInhalte('buergerecke_tipps') as $t): ?>
             <div class="col-md-6 col-lg-4">
                 <div class="admin-card p-4 h-100">
-                    <div class="mb-3" style="width:48px;height:48px;background:<?= $t['color'] ?>;border-radius:10px;display:flex;align-items:center;justify-content:center;">
-                        <i class="bi bi-<?= $t['icon'] ?> text-white fs-5"></i>
+                    <div class="mb-3" style="width:48px;height:48px;background:<?= h($t['color'] ?? '#CC0000') ?>;border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-<?= h($t['icon'] ?? 'info-circle-fill') ?> text-white fs-5"></i>
                     </div>
-                    <h3 class="fw-card__title mb-2" style="font-size:1.05rem;"><?= h($t['titel']) ?></h3>
-                    <p class="text-muted small mb-0"><?= h($t['text']) ?></p>
+                    <h3 class="fw-card__title mb-2" style="font-size:1.05rem;"><?= h($t['titel'] ?? '') ?></h3>
+                    <p class="text-muted small mb-0"><?= h($t['text'] ?? '') ?></p>
                 </div>
             </div>
             <?php endforeach; ?>

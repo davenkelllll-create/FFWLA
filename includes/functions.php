@@ -176,6 +176,49 @@ function getFormulare(): array {
     return loadJson('formulare.json');
 }
 
+function getFahrzeuge(): array {
+    return loadJson('fahrzeuge.json');
+}
+
+function saveFahrzeuge(array $data): bool {
+    return saveJson('fahrzeuge.json', $data);
+}
+
+function getGeschichte(): array {
+    $data = loadJson('geschichte.json');
+    return [
+        'highlight' => $data['highlight'] ?? ['label' => 'Gegründet', 'jahr' => '', 'text' => '', 'motto' => ''],
+        'eintraege' => $data['eintraege'] ?? [],
+    ];
+}
+
+function saveGeschichte(array $data): bool {
+    return saveJson('geschichte.json', $data);
+}
+
+/**
+ * Editable page content blocks (hero slides, Bürgerecke, Jugendfeuerwehr, Links).
+ * Pass a key to get a single block; the fallback keeps a page rendering even
+ * when a block was emptied in the admin area.
+ */
+function getInhalte(string $key = '', array $fallback = []): array {
+    $data = loadJson('inhalte.json');
+    if ($key === '') return $data;
+    $val = $data[$key] ?? null;
+    return is_array($val) && $val !== [] ? $val : $fallback;
+}
+
+/** Single scalar content value (e.g. an intro paragraph). */
+function getInhaltText(string $key, string $fallback = ''): string {
+    $data = loadJson('inhalte.json');
+    $val  = $data[$key] ?? '';
+    return is_string($val) && $val !== '' ? $val : $fallback;
+}
+
+function saveInhalte(array $data): bool {
+    return saveJson('inhalte.json', $data);
+}
+
 function getFuehrung(): array {
     $data = loadJson('fuehrung.json');
     return [

@@ -28,7 +28,7 @@ $jfwSlides = [
         'title'    => 'Trainieren, lernen,<br>gewinnen.',
         'text'     => 'Wir nehmen an Kreisbewerben und überregionalen Wettbewerben teil und bereiten uns mit Spaß und Ehrgeiz vor.',
         'btn1_href'=> '/kalender.php',   'btn1_label' => 'Termine ansehen',         'btn1_icon' => 'calendar3',
-        'btn2_href'=> '/galerie.php',    'btn2_label' => 'Bildergalerie',            'btn2_icon' => 'images',
+        'btn2_href'=> '/nachrichten.php','btn2_label' => 'Aktuelle Berichte',         'btn2_icon' => 'newspaper',
         'accent'   => '#c05800',
     ],
     [
@@ -99,18 +99,14 @@ $jfwSlides = [
 <div style="background:#1a1a1a;padding:1.5rem 0;">
     <div class="container">
         <div class="row g-0 text-center">
-            <div class="col-4">
-                <div style="color:#ff8c00;font-size:2rem;font-weight:900;line-height:1;">12</div>
-                <div style="color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;">Jugendliche</div>
+            <?php $jfwStats = getInhalte('jfw_stats');
+            $statCol = count($jfwStats) > 0 ? max(1, (int)floor(12 / count($jfwStats))) : 4;
+            foreach ($jfwStats as $s): ?>
+            <div class="col-<?= $statCol ?>">
+                <div style="color:#ff8c00;font-size:2rem;font-weight:900;line-height:1;"><?= h($s['wert'] ?? '') ?></div>
+                <div style="color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;"><?= h($s['label'] ?? '') ?></div>
             </div>
-            <div class="col-4">
-                <div style="color:#ff8c00;font-size:2rem;font-weight:900;line-height:1;">12–18</div>
-                <div style="color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;">Jahre</div>
-            </div>
-            <div class="col-4">
-                <div style="color:#ff8c00;font-size:2rem;font-weight:900;line-height:1;">2×/Mo</div>
-                <div style="color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;">Treffen</div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
@@ -120,20 +116,13 @@ $jfwSlides = [
     <div class="container">
         <h2 class="fw-section-title mb-4">Was machen wir?</h2>
         <div class="row g-4">
-            <?php
-            $aktivitaeten = [
-                ['icon' => 'fire',        'color' => '#CC0000', 'titel' => 'Feuerwehrtechnik'],
-                ['icon' => 'people-fill', 'color' => '#1a7a3c', 'titel' => 'Teamgeist'],
-                ['icon' => 'trophy-fill', 'color' => '#e07800', 'titel' => 'Wettbewerbe'],
-                ['icon' => 'map-fill',    'color' => '#6f42c1', 'titel' => 'Ausflüge & Zeltlager'],
-            ];
-            foreach ($aktivitaeten as $a): ?>
+            <?php foreach (getInhalte('jfw_aktivitaeten') as $a): ?>
             <div class="col-md-6 col-lg-3">
                 <div class="d-flex align-items-center gap-3 p-3 rounded h-100" style="background:var(--fw-gray-100);">
-                    <div style="width:48px;height:48px;background:<?= $a['color'] ?>;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                        <i class="bi bi-<?= $a['icon'] ?> text-white fs-5"></i>
+                    <div style="width:48px;height:48px;background:<?= h($a['color'] ?? '#CC0000') ?>;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <i class="bi bi-<?= h($a['icon'] ?? 'fire') ?> text-white fs-5"></i>
                     </div>
-                    <strong><?= h($a['titel']) ?></strong>
+                    <strong><?= h($a['titel'] ?? '') ?></strong>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -148,19 +137,10 @@ $jfwSlides = [
             <div class="col-lg-6">
                 <h2 class="fw-section-title mb-4">Wer kann mitmachen?</h2>
                 <ul class="list-unstyled">
-                    <?php
-                    $infos = [
-                        ['icon' => 'person-fill-check', 'text' => 'Alle Jugendlichen zwischen <strong>12 und 18 Jahren</strong> aus Langensendelbach und Umgebung'],
-                        ['icon' => 'gender-ambiguous',  'text' => 'Mädchen und Jungen gleichermaßen willkommen'],
-                        ['icon' => 'calendar-check',    'text' => 'Treffen alle <strong>zwei Wochen samstags</strong> am Gerätehaus'],
-                        ['icon' => 'cash-coin',         'text' => 'Kein Mitgliedsbeitrag für Jugendliche'],
-                        ['icon' => 'shield-fill-check', 'text' => 'Unfallversicherung über den Freistaat Bayern'],
-                        ['icon' => 'arrow-right-circle-fill', 'text' => 'Mit 18 Jahren nahtloser Übergang in die aktive Wehr möglich'],
-                    ];
-                    foreach ($infos as $info): ?>
+                    <?php foreach (getInhalte('jfw_mitmachen') as $info): ?>
                     <li class="d-flex gap-3 mb-3">
-                        <i class="bi bi-<?= $info['icon'] ?> text-warning fs-5 flex-shrink-0 mt-1"></i>
-                        <span><?= $info['text'] ?></span>
+                        <i class="bi bi-<?= h($info['icon'] ?? 'check-circle') ?> text-warning fs-5 flex-shrink-0 mt-1"></i>
+                        <span><?= $info['text'] ?? '' ?></span>
                     </li>
                     <?php endforeach; ?>
                 </ul>
@@ -191,36 +171,25 @@ $jfwSlides = [
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5">
-                <span class="fw-badge badge-jugend mb-2 d-inline-block">Seit 2010</span>
+                <?php $kfwBadge = getInhaltText('kfw_badge'); ?>
+                <?php if ($kfwBadge): ?>
+                <span class="fw-badge badge-jugend mb-2 d-inline-block"><?= h($kfwBadge) ?></span>
+                <?php endif; ?>
                 <h2 class="fw-section-title mb-3">Kinderfeuerwehr</h2>
-                <p class="text-muted">
-                    Schon die Kleinsten dürfen Feuerwehrluft schnuppern: In unserer Kinderfeuerwehr
-                    werden Kinder von <strong>6 bis 12 Jahren</strong> spielerisch an die Feuerwehr
-                    herangeführt – seit ihrer Gründung im Frühjahr 2010.
-                </p>
-                <p class="text-muted mb-0">
-                    Mit <strong>12&nbsp;Jahren</strong> geht es dann nahtlos in die Jugendfeuerwehr weiter.
-                    Die Ansprechpartnerinnen findest du weiter unten.
-                </p>
+                <p class="text-muted"><?= getInhaltText('kfw_text1') ?></p>
+                <p class="text-muted mb-0"><?= getInhaltText('kfw_text2') ?></p>
             </div>
             <div class="col-lg-7">
                 <div class="row g-3">
-                    <?php
-                    $kfw = [
-                        ['icon' => 'emoji-smile-fill', 'titel' => 'Spielerisch lernen', 'text' => 'Feuerwehr zum Anfassen: Geräte kennenlernen, ausprobieren und verstehen.'],
-                        ['icon' => 'palette-fill',     'titel' => 'Basteln & Kreatives', 'text' => 'Basteln, malen und gemeinsame Aktionen rund ums Thema Feuerwehr.'],
-                        ['icon' => 'shield-check',     'titel' => 'Sicher verhalten',   'text' => 'Richtiges Verhalten im Notfall und der Umgang mit Gefahren.'],
-                        ['icon' => 'balloon-heart-fill','titel' => 'Ausflüge & Spaß',   'text' => 'Ausflüge, Feste und jede Menge Spaß in der Gemeinschaft.'],
-                    ];
-                    foreach ($kfw as $k): ?>
+                    <?php foreach (getInhalte('kfw_karten') as $k): ?>
                     <div class="col-sm-6">
                         <div class="d-flex gap-3 p-3 rounded h-100" style="background:var(--fw-gray-100);">
                             <div style="width:44px;height:44px;background:#e07800;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                                <i class="bi bi-<?= $k['icon'] ?> text-white fs-5"></i>
+                                <i class="bi bi-<?= h($k['icon'] ?? 'star-fill') ?> text-white fs-5"></i>
                             </div>
                             <div>
-                                <strong class="d-block mb-1"><?= h($k['titel']) ?></strong>
-                                <span class="text-muted small"><?= h($k['text']) ?></span>
+                                <strong class="d-block mb-1"><?= h($k['titel'] ?? '') ?></strong>
+                                <span class="text-muted small"><?= h($k['text'] ?? '') ?></span>
                             </div>
                         </div>
                     </div>

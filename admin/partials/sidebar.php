@@ -29,6 +29,17 @@ function adminActive(string $page): string {
         <a href="/admin/formulare.php" class="admin-nav-link<?= adminActive('formulare.php') ?>">
             <i class="bi bi-file-earmark-pdf"></i> Formulare
         </a>
+        <hr style="border-color:rgba(255,255,255,.1);margin:.75rem 0;">
+        <a href="/admin/fahrzeuge.php" class="admin-nav-link<?= adminActive('fahrzeuge.php') ?>">
+            <i class="bi bi-truck-front-fill"></i> Fahrzeuge
+        </a>
+        <a href="/admin/geschichte.php" class="admin-nav-link<?= adminActive('geschichte.php') ?>">
+            <i class="bi bi-clock-history"></i> Geschichte
+        </a>
+        <a href="/admin/inhalte.php" class="admin-nav-link<?= adminActive('inhalte.php') ?>">
+            <i class="bi bi-fonts"></i> Seiteninhalte
+        </a>
+        <hr style="border-color:rgba(255,255,255,.1);margin:.75rem 0;">
         <a href="/admin/einstellungen.php" class="admin-nav-link<?= adminActive('einstellungen.php') ?>">
             <i class="bi bi-gear-fill"></i> Einstellungen
         </a>

@@ -7,12 +7,14 @@ $nachrichten = getNachrichten();
 $termine     = getTermine();
 $galerien    = getGalerien();
 $formulare   = getFormulare();
+$fahrzeuge   = getFahrzeuge();
 
 $stats = [
     'nachrichten' => count($nachrichten),
     'termine'     => count($termine),
     'galerien'    => count($galerien),
     'formulare'   => count($formulare),
+    'fahrzeuge'   => count($fahrzeuge),
 ];
 ?>
 <!DOCTYPE html>
@@ -49,8 +51,9 @@ $stats = [
             $statItems = [
                 ['label' => 'Nachrichten', 'count' => $stats['nachrichten'], 'icon' => 'newspaper', 'link' => 'nachrichten.php', 'color' => 'danger'],
                 ['label' => 'Termine',      'count' => $stats['termine'],     'icon' => 'calendar3',  'link' => 'termine.php',     'color' => 'warning'],
-                ['label' => 'Galerien',     'count' => $stats['galerien'],    'icon' => 'images',     'link' => 'galerie.php',     'color' => 'info'],
+                ['label' => 'Bilder-Alben', 'count' => $stats['galerien'],    'icon' => 'images',     'link' => 'galerie.php',     'color' => 'info'],
                 ['label' => 'Formulare',    'count' => $stats['formulare'],   'icon' => 'file-earmark-pdf', 'link' => 'formulare.php', 'color' => 'success'],
+                ['label' => 'Fahrzeuge',    'count' => $stats['fahrzeuge'],   'icon' => 'truck-front-fill', 'link' => 'fahrzeuge.php', 'color' => 'secondary'],
             ];
             foreach ($statItems as $s): ?>
             <div class="col-sm-6 col-xl-3">
@@ -101,7 +104,7 @@ $stats = [
                                 <a href="nachrichten.php?action=edit&id=<?= urlencode($n['id']) ?>" class="btn btn-sm btn-outline-secondary me-1">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="nachrichten.php?action=delete&id=<?= urlencode($n['id']) ?>"
+                                <a href="nachrichten.php?action=delete&id=<?= urlencode($n['id']) ?>&token=<?= csrfToken() ?>"
                                    class="btn btn-sm btn-outline-danger"
                                    onclick="return confirm('Artikel wirklich löschen?')">
                                     <i class="bi bi-trash"></i>
@@ -149,7 +152,7 @@ $stats = [
                                 <a href="termine.php?action=edit&id=<?= urlencode($t['id']) ?>" class="btn btn-sm btn-outline-secondary me-1">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <a href="termine.php?action=delete&id=<?= urlencode($t['id']) ?>"
+                                <a href="termine.php?action=delete&id=<?= urlencode($t['id']) ?>&token=<?= csrfToken() ?>"
                                    class="btn btn-sm btn-outline-danger"
                                    onclick="return confirm('Termin wirklich löschen?')">
                                     <i class="bi bi-trash"></i>

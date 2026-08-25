@@ -1,0 +1,106 @@
+{
+    "hero_slides": [
+        {
+            "eyebrow": "Freiwillige Feuerwehr · Langensendelbach",
+            "title": "Für Euch da –<br>rund um die Uhr.",
+            "text": "Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.",
+            "image": "/images/hero/slide-1.jpg",
+            "icon": "fire",
+            "gradient": "linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%)",
+            "btn1_label": "Aktuelle Meldungen",
+            "btn1_href": "/nachrichten.php",
+            "btn1_icon": "newspaper",
+            "btn2_label": "Jetzt Mitglied werden",
+            "btn2_href": "/formulare.php",
+            "btn2_icon": "person-plus-fill"
+        },
+        {
+            "eyebrow": "Ausbildung &amp; Übungen",
+            "title": "Bestens ausgebildet –<br>für jeden Einsatz.",
+            "text": "Regelmäßige Übungen und Fortbildungen sorgen dafür, dass unsere Mannschaft immer einsatzbereit ist.",
+            "image": "/images/hero/slide-2.jpg",
+            "icon": "gear-wide-connected",
+            "gradient": "linear-gradient(135deg,#1a1a1a 0%,#3a0000 50%,#cc0000 100%)",
+            "btn1_label": "Termine ansehen",
+            "btn1_href": "/kalender.php",
+            "btn1_icon": "calendar3",
+            "btn2_label": "Über uns",
+            "btn2_href": "/ueber-uns.php",
+            "btn2_icon": "people-fill"
+        },
+        {
+            "eyebrow": "Gemeinschaft &amp; Nachwuchs",
+            "title": "Werde Teil unserer<br>Feuerwehrfamilie.",
+            "text": "Ob aktives Mitglied, Jugendfeuerwehr oder Fördermitglied – bei uns ist jeder willkommen!",
+            "image": "/images/hero/slide-3.jpg",
+            "icon": "people-fill",
+            "gradient": "linear-gradient(135deg,#0d2a0d 0%,#1a4a1a 50%,#1a7a3c 100%)",
+            "btn1_label": "Jugendfeuerwehr",
+            "btn1_href": "/jugendfeuerwehr.php",
+            "btn1_icon": "stars",
+            "btn2_label": "Über uns",
+            "btn2_href": "/ueber-uns.php",
+            "btn2_icon": "info-circle"
+        }
+    ],
+    "jfw_stats": [
+        { "wert": "12", "label": "Jugendliche" },
+        { "wert": "12–18", "label": "Jahre" },
+        { "wert": "2×/Mo", "label": "Treffen" }
+    ],
+    "jfw_aktivitaeten": [
+        { "titel": "Feuerwehrtechnik", "icon": "fire", "color": "#CC0000" },
+        { "titel": "Teamgeist", "icon": "people-fill", "color": "#1a7a3c" },
+        { "titel": "Wettbewerbe", "icon": "trophy-fill", "color": "#e07800" },
+        { "titel": "Ausflüge & Zeltlager", "icon": "map-fill", "color": "#6f42c1" }
+    ],
+    "jfw_mitmachen": [
+        { "icon": "person-fill-check", "text": "Alle Jugendlichen zwischen <strong>12 und 18 Jahren</strong> aus Langensendelbach und Umgebung" },
+        { "icon": "gender-ambiguous", "text": "Mädchen und Jungen gleichermaßen willkommen" },
+        { "icon": "calendar-check", "text": "Treffen alle <strong>zwei Wochen samstags</strong> am Gerätehaus" },
+        { "icon": "cash-coin", "text": "Kein Mitgliedsbeitrag für Jugendliche" },
+        { "icon": "shield-fill-check", "text": "Unfallversicherung über den Freistaat Bayern" },
+        { "icon": "arrow-right-circle-fill", "text": "Mit 18 Jahren nahtloser Übergang in die aktive Wehr möglich" }
+    ],
+    "kfw_badge": "Seit 2010",
+    "kfw_text1": "Schon die Kleinsten dürfen Feuerwehrluft schnuppern: In unserer Kinderfeuerwehr werden Kinder von <strong>6 bis 12 Jahren</strong> spielerisch an die Feuerwehr herangeführt – seit ihrer Gründung im Frühjahr 2010.",
+    "kfw_text2": "Mit <strong>12&nbsp;Jahren</strong> geht es dann nahtlos in die Jugendfeuerwehr weiter. Die Ansprechpartnerinnen findest du weiter unten.",
+    "kfw_karten": [
+        { "titel": "Spielerisch lernen", "icon": "emoji-smile-fill", "text": "Feuerwehr zum Anfassen: Geräte kennenlernen, ausprobieren und verstehen." },
+        { "titel": "Basteln & Kreatives", "icon": "palette-fill", "text": "Basteln, malen und gemeinsame Aktionen rund ums Thema Feuerwehr." },
+        { "titel": "Sicher verhalten", "icon": "shield-check", "text": "Richtiges Verhalten im Notfall und der Umgang mit Gefahren." },
+        { "titel": "Ausflüge & Spaß", "icon": "balloon-heart-fill", "text": "Ausflüge, Feste und jede Menge Spaß in der Gemeinschaft." }
+    ],
+    "buergerecke_fuenf_w": [
+        { "wort": "Wo", "text": "ist es passiert? (Ort, Straße, Hausnummer)" },
+        { "wort": "Was", "text": "ist passiert? (Brand, Unfall, Person in Gefahr …)" },
+        { "wort": "Wie viele", "text": "Personen sind betroffen oder verletzt?" },
+        { "wort": "Welche", "text": "Verletzungen / Besonderheiten liegen vor?" },
+        { "wort": "Warten", "text": "auf Rückfragen – nicht sofort auflegen!" }
+    ],
+    "buergerecke_tipps": [
+        { "titel": "Rauchmelder retten Leben", "icon": "bell-fill", "color": "#CC0000", "text": "In Bayern sind Rauchmelder in Schlaf- und Kinderzimmern sowie Fluren Pflicht. Prüfen Sie regelmäßig die Batterie – ein Piepen darf nie ignoriert werden." },
+        { "titel": "Verhalten im Brandfall", "icon": "fire", "color": "#e07800", "text": "Ruhe bewahren, alle Personen warnen, das Gebäude über gekennzeichnete Wege verlassen, Türen schließen (nicht abschließen) und den Notruf 112 wählen. Kein Aufzug!" },
+        { "titel": "Fettbrand niemals mit Wasser löschen", "icon": "droplet-fill", "color": "#1a4a8a", "text": "Brennendes Fett niemals mit Wasser löschen (Explosionsgefahr!). Topf mit einem Deckel oder einer Löschdecke abdecken und die Herdplatte ausschalten." },
+        { "titel": "Zufahrten freihalten", "icon": "signpost-2-fill", "color": "#1a7a3c", "text": "Bitte Feuerwehrzufahrten, Hydranten und Rettungswege stets frei halten. Im Ernstfall zählt jede Sekunde – falsch geparkte Fahrzeuge kosten wertvolle Zeit." },
+        { "titel": "Offenes Feuer & Grillen", "icon": "tree-fill", "color": "#1a7a3c", "text": "Bei Trockenheit besondere Vorsicht: kein offenes Feuer im Freien, Grill nie unbeaufsichtigt lassen und Asche erst nach vollständigem Erkalten entsorgen." },
+        { "titel": "Rettungsgasse bilden", "icon": "car-front-fill", "color": "#495057", "text": "Bei stockendem Verkehr sofort eine Rettungsgasse bilden – zwischen der linken und den übrigen Spuren. So kommen Feuerwehr und Rettungsdienst schneller ans Ziel." }
+    ],
+    "links_uebergeordnet": [
+        { "titel": "Kreisbrandinspektion Forchheim", "url": "https://www.landkreis-forchheim.de/Landratsamt/Fachbereiche/Brandschutz-und-Rettungswesen/", "text": "Zuständige Kreisbrandinspektion für den Landkreis Forchheim", "domain": "landkreis-forchheim.de", "icon": "shield-fill", "icon_color": "", "icon_bg": "" },
+        { "titel": "Landesfeuerwehrverband Bayern e.V.", "url": "https://www.lfv-bayern.de", "text": "Dachverband der bayerischen Feuerwehren", "domain": "lfv-bayern.de", "icon": "shield-fill", "icon_color": "", "icon_bg": "" },
+        { "titel": "Bezirksfeuerwehrverband Oberfranken", "url": "https://www.feuerwehr-oberfranken.de", "text": "Bezirksverband für den Regierungsbezirk Oberfranken", "domain": "feuerwehr-oberfranken.de", "icon": "shield-fill", "icon_color": "", "icon_bg": "" },
+        { "titel": "Jugendfeuerwehr Bayern", "url": "https://www.jugendfeuerwehr-bayern.de", "text": "Landesverband der Jugendfeuerwehren in Bayern", "domain": "jugendfeuerwehr-bayern.de", "icon": "stars", "icon_color": "#e07800", "icon_bg": "#fff3e0" }
+    ],
+    "links_behoerden": [
+        { "titel": "Bundesamt für Bevölkerungsschutz (BBK)", "url": "https://www.bbk.bund.de", "text": "Informationen zu Warnung, Notfallvorsorge und Zivilschutz", "domain": "", "icon": "building-fill", "icon_color": "#1a4a8a", "icon_bg": "#e8f0ff" },
+        { "titel": "Gemeinde Langensendelbach", "url": "https://www.gemeinde-langensendelbach.de", "text": "Offizielle Website der Gemeinde Langensendelbach", "domain": "", "icon": "house-fill", "icon_color": "#1a7a3c", "icon_bg": "#e8f5ee" },
+        { "titel": "Technisches Hilfswerk (THW)", "url": "https://www.thw.de", "text": "Partnerorganisation im Katastrophenschutz", "domain": "", "icon": "tools", "icon_color": "#1a4a8a", "icon_bg": "#e8f0ff" }
+    ],
+    "links_notrufnummern": [
+        { "num": "112", "label": "Feuerwehr & Rettungsdienst", "color": "#CC0000" },
+        { "num": "110", "label": "Polizei", "color": "#1a4a8a" },
+        { "num": "116 117", "label": "Ärztlicher Bereitschaftsdienst", "color": "#1a7a3c" },
+        { "num": "0800 191 0 112", "label": "Giftnotrufzentrale (kostenlos)", "color": "#6f42c1" }
+    ]
+}
