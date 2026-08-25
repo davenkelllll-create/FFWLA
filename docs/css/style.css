@@ -122,7 +122,8 @@ img { max-width: 100%; height: auto; }
 
 .fw-navbar .nav-link {
     color: rgba(255,255,255,.9) !important;
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 1.05rem;
     padding: .5rem .85rem !important;
     border-radius: var(--radius-sm);
     transition: background var(--transition);

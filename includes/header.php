@@ -21,7 +21,7 @@ function isActiveParent(array $pages): string {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= h($pageDescription ?? 'Offizielle Website der ' . $siteName . ' – Aktuelles, Einsätze, Galerie und Veranstaltungen.') ?>">
+    <meta name="description" content="<?= h($pageDescription ?? 'Offizielle Website der ' . $siteName . ' – Aktuelles, Einsätze und Veranstaltungen.') ?>">
     <meta property="og:title" content="<?= h(!empty($pageTitle) ? $pageTitle . ' – ' . $siteShort : $siteName) ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
@@ -91,9 +91,6 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
                         <li><a class="dropdown-item<?= isActive('kalender.php') ?>" href="/kalender.php">
                             <i class="bi bi-calendar3 me-2"></i>Veranstaltungskalender</a></li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link<?= isActive('galerie.php') ?>" href="/galerie.php">Galerie</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link<?= isActive('jugendfeuerwehr.php') ?>" href="/jugendfeuerwehr.php">Jugendfeuerwehr</a>

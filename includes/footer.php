@@ -59,7 +59,6 @@ $socialYoutube   = $config['social_youtube']   ?? '';
                     <li><a href="/">Startseite</a></li>
                     <li><a href="/nachrichten.php">Nachrichten</a></li>
                     <li><a href="/kalender.php">Kalender</a></li>
-                    <li><a href="/galerie.php">Galerie</a></li>
                     <li><a href="/formulare.php">Formulare</a></li>
                     <li><a href="/jugendfeuerwehr.php">Jugendfeuerwehr</a></li>
                 </ul>

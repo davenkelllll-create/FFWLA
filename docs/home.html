@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aktuelle Nachrichten, Einsatzberichte und Pressemitteilungen der Freiwilligen Feuerwehr Langensendelbach.">
-    <meta property="og:title" content="Nachrichten – FF Langensendelbach">
+    <meta name="description" content="Offizielle Website der Freiwilligen Feuerwehr Langensendelbach – Aktuelles, Einsätze, Veranstaltungen und mehr.">
+    <meta property="og:title" content="Freiwillige Feuerwehr Langensendelbach">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_DE">
     <meta property="og:image" content="images/og-default.svg">
@@ -12,7 +12,7 @@
     <link rel="icon" href="images/branding/favicon-192.png" sizes="192x192" type="image/png">
     <link rel="icon" href="images/branding/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="images/branding/favicon-192.png">
-    <title>Nachrichten – FF Langensendelbach</title>
+    <title>Freiwillige Feuerwehr Langensendelbach</title>
 
     <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -47,15 +47,15 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto align-items-lg-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="home.html">Startseite</a>
+                    <a class="nav-link active" aria-current="page" href="home.html">Startseite</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active"
+                    <a class="nav-link dropdown-toggle"
                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Aktuelles
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item active" aria-current="page" href="nachrichten.html">
+                        <li><a class="dropdown-item" href="nachrichten.html">
                             <i class="bi bi-newspaper me-2"></i>Nachrichten</a></li>
                         <li><a class="dropdown-item" href="kalender.html">
                             <i class="bi bi-calendar3 me-2"></i>Veranstaltungskalender</a></li>
@@ -94,39 +94,153 @@
 
 <main id="main-content">
 
-<!-- Page Header -->
-<div class="fw-page-header">
-    <div class="container">
-        <nav aria-label="Breadcrumb" class="fw-breadcrumb mb-1">
-            <a href="home.html">Startseite</a> / Nachrichten
-        </nav>
-        <h1><i class="bi bi-newspaper me-2 text-fw-red"></i>Nachrichten</h1>
-        <p class="text-muted mb-0">Einsatzberichte, Übungen und Veranstaltungen</p>
-    </div>
+<!-- Wappen als dezentes Wasserzeichen im Hintergrund der Startseite -->
+<img src="images/branding/wappen-voll.png" alt="" aria-hidden="true" class="fw-page-watermark">
+
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide fw-hero-carousel" data-bs-ride="carousel" data-bs-interval="5000">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+                class="active" aria-current="true"                aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+            </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+                <div class="carousel-item active">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background-image:url('images/hero/slide-1.jpg'), linear-gradient(135deg,#8b0000 0%,#cc0000 60%,#e60000 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Freiwillige Feuerwehr · Langensendelbach                    </p>
+                    <h1 class="animate-slide">Für Euch da –<br>rund um die Uhr.</h1>
+                    <p class="fw-slide-text animate-fade">Wir schützen Leben und Eigentum, helfen in Not und halten unsere Gemeinschaft zusammen.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="nachrichten.html" class="btn-fw">
+                            <i class="bi bi-newspaper"></i>
+                            Aktuelle Meldungen                        </a>
+                        <a href="formulare.html" class="btn-fw-outline">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Jetzt Mitglied werden                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="carousel-item ">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background:linear-gradient(135deg,#1a1a1a 0%,#3a0000 50%,#cc0000 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-gear-wide-connected"></i>
+                </div>
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Ausbildung &amp; Übungen                    </p>
+                    <h1 class="animate-slide">Bestens ausgebildet –<br>für jeden Einsatz.</h1>
+                    <p class="fw-slide-text animate-fade">Regelmäßige Übungen und Fortbildungen sorgen dafür, dass unsere Mannschaft immer einsatzbereit ist.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="kalender.html" class="btn-fw">
+                            <i class="bi bi-calendar3"></i>
+                            Termine ansehen                        </a>
+                        <a href="ueber-uns.html" class="btn-fw-outline">
+                            <i class="bi bi-people-fill"></i>
+                            Über uns                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="carousel-item ">
+
+            <!-- Background: real image or gradient placeholder -->
+            <div class="fw-slide-bg"
+                                  style="background:linear-gradient(135deg,#0d2a0d 0%,#1a4a1a 50%,#1a7a3c 100%);"
+                 >
+
+                <!-- Overlay -->
+                <div class="fw-slide-overlay"></div>
+
+                <!-- Placeholder icon (hidden when real image is loaded) -->
+                                <div class="fw-slide-placeholder-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                            </div>
+
+            <!-- Caption -->
+            <div class="carousel-caption fw-slide-caption">
+                <div class="container">
+                    <p class="fw-hero__eyebrow animate-fade">
+                        <i class="bi bi-shield-fill-exclamation me-1"></i>
+                        Gemeinschaft &amp; Nachwuchs                    </p>
+                    <h1 class="animate-slide">Werde Teil unserer<br>Feuerwehrfamilie.</h1>
+                    <p class="fw-slide-text animate-fade">Ob aktives Mitglied, Jugendfeuerwehr oder Fördermitglied – bei uns ist jeder willkommen!</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-start animate-fade">
+                        <a href="jugendfeuerwehr.html" class="btn-fw">
+                            <i class="bi bi-stars"></i>
+                            Jugendfeuerwehr                        </a>
+                        <a href="ueber-uns.html" class="btn-fw-outline">
+                            <i class="bi bi-info-circle"></i>
+                            Über uns                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+    <!-- Prev / Next controls -->
+    <button class="carousel-control-prev fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Zurück</span>
+    </button>
+    <button class="carousel-control-next fw-carousel-ctrl" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Weiter</span>
+    </button>
 </div>
 
+<!-- Latest News -->
 <section class="fw-section">
     <div class="container">
-
-        <!-- Filter -->
-        <div class="d-flex flex-wrap gap-2 mb-4">
-            <button class="btn btn-danger btn-sm active" data-filter-type="alle">Alle</button>
-            <button class="btn btn-outline-secondary btn-sm" data-filter-type="einsatz">
-                <i class="bi bi-fire me-1"></i>Einsätze
-            </button>
-            <button class="btn btn-outline-secondary btn-sm" data-filter-type="uebung">
-                <i class="bi bi-gear-wide-connected me-1"></i>Übungen
-            </button>
-            <button class="btn btn-outline-secondary btn-sm" data-filter-type="veranstaltung">
-                <i class="bi bi-calendar-event me-1"></i>Veranstaltungen
-            </button>
-            <button class="btn btn-outline-secondary btn-sm" data-filter-type="presse">
-                <i class="bi bi-megaphone me-1"></i>Presse
-            </button>
+        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-section-title">Aktuelles</h2>
+                <p class="text-muted mt-2 mb-0">Die neuesten Meldungen aus unserem Bereich</p>
+            </div>
+            <a href="nachrichten.html" class="btn btn-outline-danger btn-sm">
+                Alle Nachrichten <i class="bi bi-arrow-right ms-1"></i>
+            </a>
         </div>
-
-                <div class="row g-4" id="news-grid">
-                        <div class="col-md-6 col-lg-4" data-news-type="uebung">
+                <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
                 <div class="fw-card">
                                         <div class="fw-card__img--placeholder">
                         <i class="bi bi-gear-wide-connected"></i>
@@ -142,15 +256,14 @@
                         </h3>
                         <p class="fw-card__excerpt">Am vergangenen Samstag führte die FF Langensendelbach eine mehrstündige Atemschutzübung im nördlichen Ortsteil durch. Insgesamt 18 Einsatzkräfte nahmen teil.</p>
                     </div>
-                    <div class="fw-card__footer d-flex align-items-center justify-content-between">
+                    <div class="fw-card__footer">
                         <a href="nachrichten-detail-uebung-atemschutz-2024-03.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
-                                                <small class="text-muted"><i class="bi bi-person me-1"></i>Pressewart</small>
-                                            </div>
+                    </div>
                 </div>
             </div>
-                        <div class="col-md-6 col-lg-4" data-news-type="einsatz">
+                        <div class="col-md-6 col-lg-4">
                 <div class="fw-card">
                                         <div class="fw-card__img--placeholder">
                         <i class="bi bi-fire"></i>
@@ -166,15 +279,14 @@
                         </h3>
                         <p class="fw-card__excerpt">In den frühen Morgenstunden des 28. Februar wurden wir zu einem Scheunenbrand alarmiert. Dank des schnellen Eingreifens konnte ein Übergreifen auf das Wohngebäude verhindert werden.</p>
                     </div>
-                    <div class="fw-card__footer d-flex align-items-center justify-content-between">
+                    <div class="fw-card__footer">
                         <a href="nachrichten-detail-einsatz-brand-scheune-2024-02.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
-                                                <small class="text-muted"><i class="bi bi-person me-1"></i>Pressewart</small>
-                                            </div>
+                    </div>
                 </div>
             </div>
-                        <div class="col-md-6 col-lg-4" data-news-type="veranstaltung">
+                        <div class="col-md-6 col-lg-4">
                 <div class="fw-card">
                                         <div class="fw-card__img--placeholder">
                         <i class="bi bi-calendar-event"></i>
@@ -190,16 +302,79 @@
                         </h3>
                         <p class="fw-card__excerpt">Bei der diesjährigen Jahreshauptversammlung wurden verdiente Mitglieder geehrt und der Vorstand neu gewählt. Rückblick auf ein erfolgreiches Einsatzjahr.</p>
                     </div>
-                    <div class="fw-card__footer d-flex align-items-center justify-content-between">
+                    <div class="fw-card__footer">
                         <a href="nachrichten-detail-jahresfeier-2024-01.html" class="btn btn-link btn-sm text-danger p-0">
                             Weiterlesen <i class="bi bi-arrow-right ms-1"></i>
                         </a>
-                                                <small class="text-muted"><i class="bi bi-person me-1"></i>Kommandant</small>
-                                            </div>
+                    </div>
                 </div>
             </div>
                     </div>
             </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="fw-section fw-section--gray">
+    <div class="container">
+        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-section-title">Nächste Termine</h2>
+                <p class="text-muted mt-2 mb-0">Veranstaltungen und Übungen der FF Langensendelbach</p>
+            </div>
+            <a href="kalender.html" class="btn btn-outline-danger btn-sm">
+                Alle Termine <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+        <div class="d-flex flex-column gap-3" style="max-width: 680px;">
+                        <div class="fw-termin">
+                <div class="fw-termin__date">
+                    <div class="fw-termin__day">04</div>
+                    <div class="fw-termin__month">Sep</div>
+                </div>
+                <div class="fw-termin__info">
+                    <div class="fw-termin__title">Monatsübung September</div>
+                    <div class="fw-termin__meta">
+                        <span><i class="bi bi-clock me-1"></i>19:00 Uhr</span>
+                                                <span><i class="bi bi-geo-alt me-1"></i>Gerätehaus Langensendelbach</span>
+                                            </div>
+                </div>
+            </div>
+                        <div class="fw-termin">
+                <div class="fw-termin__date">
+                    <div class="fw-termin__day">26</div>
+                    <div class="fw-termin__month">Sep</div>
+                </div>
+                <div class="fw-termin__info">
+                    <div class="fw-termin__title">Atemschutz-Leistungsprüfung</div>
+                    <div class="fw-termin__meta">
+                        <span><i class="bi bi-clock me-1"></i>09:00 Uhr</span>
+                                                <span><i class="bi bi-geo-alt me-1"></i>Übungsgelände</span>
+                                            </div>
+                </div>
+            </div>
+                    </div>
+    </div>
+</section>
+
+
+<!-- CTA: Mitmachen -->
+<section class="fw-section fw-section--red">
+    <div class="container text-center">
+        <i class="bi bi-people-fill fs-1 mb-3 d-block opacity-75"></i>
+        <h2 class="mb-3">Werde Teil unserer Gemeinschaft</h2>
+        <p class="mb-4" style="max-width:520px; margin:0 auto 1.5rem;">
+            Ob aktive Feuerwehrfrau / Feuerwehrmann, Fördermitglied oder Jugendfeuerwehr –
+            bei uns ist jeder willkommen!
+        </p>
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <a href="formulare.html" class="btn-fw-outline">
+                <i class="bi bi-file-earmark-arrow-down"></i> Formulare herunterladen
+            </a>
+            <a href="kontakt.html" class="btn bg-white text-danger fw-bold">
+                <i class="bi bi-envelope me-1"></i> Kontakt aufnehmen
+            </a>
+        </div>
+    </div>
 </section>
 
 </main><!-- /#main-content -->

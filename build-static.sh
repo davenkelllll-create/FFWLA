@@ -34,10 +34,10 @@ mkdir -p "$DOCS_DIR"
 
 echo "→ Statische Seiten rendern..."
 PAGES=(
-  "index.php:index.html"
+  "wip.php:index.html"
+  "index.php:home.html"
   "nachrichten.php:nachrichten.html"
   "kalender.php:kalender.html"
-  "galerie.php:galerie.html"
   "jugendfeuerwehr.php:jugendfeuerwehr.html"
   "formulare.php:formulare.html"
   "ueber-uns.php:ueber-uns.html"
@@ -57,23 +57,17 @@ done
 # ---- Detailseiten je Datensatz rendern (sonst 404 im statischen Export) ----
 echo "→ Detailseiten rendern..."
 NEWS_IDS=$(php -r '$a=json_decode(file_get_contents("data/nachrichten.json"),true)?:[];foreach($a as $i){echo $i["id"],"\n";}')
-GAL_IDS=$(php -r '$a=json_decode(file_get_contents("data/galerien.json"),true)?:[];foreach($a as $i){echo $i["id"],"\n";}')
 for nid in $NEWS_IDS; do
   [ -z "$nid" ] && continue
   curl -s "http://127.0.0.1:$PORT/nachrichten-detail.php?id=$nid" -o "$DOCS_DIR/nachrichten-detail-$nid.html"
   echo "  ✓ nachrichten-detail-$nid.html"
-done
-for gid in $GAL_IDS; do
-  [ -z "$gid" ] && continue
-  curl -s "http://127.0.0.1:$PORT/galerie-detail.php?id=$gid" -o "$DOCS_DIR/galerie-detail-$gid.html"
-  echo "  ✓ galerie-detail-$gid.html"
 done
 
 echo "→ Assets kopieren..."
 cp -r "$SCRIPT_DIR/css" "$DOCS_DIR/"
 cp -r "$SCRIPT_DIR/js"  "$DOCS_DIR/"
 cp -r "$SCRIPT_DIR/images" "$DOCS_DIR/" 2>/dev/null || true
-cp -r "$SCRIPT_DIR/uploads" "$DOCS_DIR/" 2>/dev/null || mkdir -p "$DOCS_DIR/uploads/galerie" "$DOCS_DIR/uploads/formulare"
+cp -r "$SCRIPT_DIR/uploads" "$DOCS_DIR/" 2>/dev/null || mkdir -p "$DOCS_DIR/uploads/formulare"
 cp "$SCRIPT_DIR/favicon.svg" "$DOCS_DIR/" 2>/dev/null || true
 # WICHTIG: data/ NICHT kopieren – enthält Zugangsdaten und wird nicht clientseitig gelesen.
 rm -rf "$DOCS_DIR/data"
@@ -89,16 +83,10 @@ for nid in $NEWS_IDS; do
     sed -i "s|/nachrichten-detail\.php?id=$nid|nachrichten-detail-$nid.html|g" "$f"
   done
 done
-for gid in $GAL_IDS; do
-  [ -z "$gid" ] && continue
-  for f in "$DOCS_DIR"/*.html; do
-    sed -i "s|/galerie-detail\.php?id=$gid|galerie-detail-$gid.html|g" "$f"
-  done
-done
 
 # 2) Generischer .php → .html Rewrite
 PHP_LINKS=(
-  "index.php" "nachrichten.php" "kalender.php" "galerie.php"
+  "index.php" "nachrichten.php" "kalender.php"
   "jugendfeuerwehr.php" "formulare.php" "ueber-uns.php" "buergerecke.php"
   "links.php" "kontakt.php" "impressum.php" "datenschutz.php" "404.php"
 )
@@ -108,7 +96,7 @@ for f in "$DOCS_DIR"/*.html; do
     sed -i "s|href=\"/$page\"|href=\"${base}.html\"|g" "$f"
     sed -i "s|href=\"/$page?|href=\"${base}.html?|g" "$f"
   done
-  sed -i 's|href="/"|href="index.html"|g' "$f"
+  sed -i 's|href="/"|href="home.html"|g' "$f"
   # Asset-Pfade relativ machen
   sed -i 's|href="/css/|href="css/|g; s|href="/js/|href="js/|g' "$f"
   sed -i 's|src="/js/|src="js/|g;  s|src="/css/|src="css/|g' "$f"

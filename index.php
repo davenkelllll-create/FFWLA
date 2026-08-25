@@ -5,7 +5,7 @@ $pageDescription = 'Offizielle Website der Freiwilligen Feuerwehr Langensendelba
 
 $latestNews = getNachrichten(3);
 $upcomingEvents = getTermine(3, true);
-$latestGalerien = getGalerien(6);
+
 
 include 'includes/header.php';
 ?>
@@ -35,7 +35,7 @@ $heroSlides = [
         'title'    => 'Bestens ausgebildet –<br>für jeden Einsatz.',
         'text'     => 'Regelmäßige Übungen und Fortbildungen sorgen dafür, dass unsere Mannschaft immer einsatzbereit ist.',
         'btn1_href'=> '/kalender.php',    'btn1_label' => 'Termine ansehen',     'btn1_icon' => 'calendar3',
-        'btn2_href'=> '/galerie.php',     'btn2_label' => 'Bildergalerie',        'btn2_icon' => 'images',
+        'btn2_href'=> '/ueber-uns.php',   'btn2_label' => 'Über uns',              'btn2_icon' => 'people-fill',
     ],
     [
         'image'    => '/images/hero/slide-3.jpg',
@@ -212,40 +212,6 @@ $heroSlides = [
 </section>
 <?php endif; ?>
 
-<!-- Gallery Preview -->
-<?php if (!empty($latestGalerien)): ?>
-<section class="fw-section">
-    <div class="container">
-        <div class="d-flex align-items-end justify-content-between mb-4 flex-wrap gap-2">
-            <div>
-                <h2 class="fw-section-title">Galerie</h2>
-                <p class="text-muted mt-2 mb-0">Eindrücke aus Einsätzen und Veranstaltungen</p>
-            </div>
-            <a href="/galerie.php" class="btn btn-outline-danger btn-sm">
-                Alle Alben <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-        </div>
-        <div class="fw-gallery-grid">
-            <?php foreach ($latestGalerien as $album): ?>
-            <a href="/galerie-detail.php?id=<?= h($album['id']) ?>" class="fw-album-card text-decoration-none" title="<?= h($album['title']) ?>">
-                <?php if (!empty($album['cover_thumb'])): ?>
-                <img src="<?= h($album['cover_thumb']) ?>" alt="<?= h($album['title']) ?>">
-                <?php else: ?>
-                <div class="fw-album-card__placeholder"><i class="bi bi-images"></i></div>
-                <?php endif; ?>
-                <?php if (!empty($album['photo_count'])): ?>
-                <span class="fw-album-card__count"><i class="bi bi-images me-1"></i><?= (int)$album['photo_count'] ?></span>
-                <?php endif; ?>
-                <div class="fw-album-card__overlay">
-                    <div class="fw-album-card__title"><?= h($album['title']) ?></div>
-                    <div class="fw-album-card__meta"><?= formatDate($album['date']) ?></div>
-                </div>
-            </a>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
 
 <!-- CTA: Mitmachen -->
 <section class="fw-section fw-section--red">

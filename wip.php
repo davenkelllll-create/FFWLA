@@ -1,13 +1,22 @@
+<?php
+require_once 'includes/functions.php';
+$config    = loadConfig();
+$siteName  = $config['site_name']  ?? 'Freiwillige Feuerwehr Langensendelbach';
+$siteShort = $config['site_short'] ?? 'FF Langensendelbach';
+$siteEmail = $config['site_email'] ?? '';
+$sitePhone = $config['site_phone'] ?? '';
+$siteAddr  = $config['site_address'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Die neue Website der Freiwillige Feuerwehr Langensendelbach wird gerade aufgebaut. Bald sind wir online!">
+    <meta name="description" content="Die neue Website der <?= h($siteName) ?> wird gerade aufgebaut. Bald sind wir online!">
     <meta name="theme-color" content="#CC0000">
-    <link rel="icon" href="images/branding/favicon-192.png" sizes="192x192" type="image/png">
-    <link rel="icon" href="images/branding/favicon-32.png" sizes="32x32" type="image/png">
-    <title>Freiwillige Feuerwehr Langensendelbach – Bald online!</title>
+    <link rel="icon" href="/images/branding/favicon-192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="/images/branding/favicon-32.png" sizes="32x32" type="image/png">
+    <title><?= h($siteName) ?> – Bald online!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -131,14 +140,14 @@
 <body>
     <div class="wip-container">
         <div class="wip-logo">
-            <img src="images/branding/wappen-schild.png" alt="Wappen FF Langensendelbach">
+            <img src="/images/branding/wappen-schild.png" alt="Wappen <?= h($siteShort) ?>">
         </div>
 
         <div class="wip-badge">
             <i class="bi bi-gear-wide-connected"></i> Website im Aufbau
         </div>
 
-        <h1>Freiwillige Feuerwehr Langensendelbach</h1>
+        <h1><?= h($siteName) ?></h1>
         <p class="wip-subtitle">
             Unsere neue Website wird gerade aufgebaut.<br>
             Bald finden Sie hier alle Informationen rund um unsere Feuerwehr.
@@ -147,24 +156,35 @@
         <div class="wip-contact">
             <h2><i class="bi bi-info-circle me-1"></i> Kontakt &amp; Erreichbarkeit</h2>
 
-                        <div class="wip-contact-item">
+            <?php if ($siteAddr): ?>
+            <div class="wip-contact-item">
                 <i class="bi bi-geo-alt-fill"></i>
-                <span>Zum Berg 7, 91094 Langensendelbach</span>
+                <span><?= h($siteAddr) ?></span>
             </div>
-            
-                        <div class="wip-contact-item">
+            <?php endif; ?>
+
+            <?php if ($siteEmail): ?>
+            <div class="wip-contact-item">
                 <i class="bi bi-envelope-fill"></i>
-                <a href="mailto:vorstand@ff-langensendelbach.de">vorstand@ff-langensendelbach.de</a>
+                <a href="mailto:<?= h($siteEmail) ?>"><?= h($siteEmail) ?></a>
             </div>
-            
-                    </div>
+            <?php endif; ?>
+
+            <?php if ($sitePhone): ?>
+            <div class="wip-contact-item">
+                <i class="bi bi-telephone-fill"></i>
+                <a href="tel:<?= h(preg_replace('/\s+/', '', $sitePhone)) ?>"><?= h($sitePhone) ?></a>
+            </div>
+            <?php endif; ?>
+        </div>
 
         <a href="tel:112" class="wip-notruf">
             <i class="bi bi-telephone-fill"></i> Notruf 112
         </a>
 
         <div class="wip-footer">
-            &copy; 2026 Freiwillige Feuerwehr Langensendelbach        </div>
+            &copy; <?= date('Y') ?> <?= h($siteName) ?>
+        </div>
     </div>
 </body>
 </html>
