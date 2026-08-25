@@ -38,16 +38,14 @@ $siteAddr  = $config['site_address'] ?? '';
             width: 100%;
         }
         .wip-logo {
-            width: 140px;
-            height: 140px;
-            background: none;
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 2rem;
         }
         .wip-logo img {
-            width: 100%;
+            width: auto;
             height: 100%;
             object-fit: contain;
         }
@@ -137,7 +135,7 @@ $siteAddr  = $config['site_address'] ?? '';
 <body>
     <div class="wip-container">
         <div class="wip-logo">
-            <img src="/images/branding/wappen-schild.png" alt="Wappen <?= h($siteShort) ?>">
+            <img src="/images/branding/wappen-voll.png" alt="Wappen <?= h($siteShort) ?>">
         </div>
 
         <div class="wip-badge">

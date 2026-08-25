@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="login-card">
         <div class="text-center mb-4">
-            <div class="fw-logo-circle mx-auto mb-3" style="width:80px;height:80px;">
-                <img src="/images/branding/wappen-schild.png" alt="Wappen FF Langensendelbach">
+            <div class="fw-logo-circle mx-auto mb-3" style="height:88px;">
+                <img src="/images/branding/wappen-voll.png" alt="Wappen FF Langensendelbach">
             </div>
             <h1 class="h4 fw-bold">FF Langensendelbach</h1>
             <p class="text-muted small">Admin-Bereich</p>

@@ -64,7 +64,7 @@ if (!empty($alert['active']) && !empty($alert['message'])): ?>
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
             <div class="fw-logo-circle">
-                <img src="/images/branding/wappen-schild.png" alt="Wappen der Freiwilligen Feuerwehr Langensendelbach">
+                <img src="/images/branding/wappen-voll.png" alt="Wappen der Freiwilligen Feuerwehr Langensendelbach">
             </div>
             <div class="fw-brand-text">
                 <span class="fw-brand-name"><?= h($siteShort) ?></span>

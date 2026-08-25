@@ -20,7 +20,7 @@ $socialYoutube   = $config['social_youtube']   ?? '';
             <div class="col-lg-4">
                 <div class="d-flex align-items-center gap-2 mb-3">
                     <div class="fw-logo-circle fw-logo-circle--sm">
-                        <img src="/images/branding/wappen-schild.png" alt="Wappen FF Langensendelbach">
+                        <img src="/images/branding/wappen-voll.png" alt="Wappen FF Langensendelbach">
                     </div>
                     <span class="fw-footer-brand"><?= h($siteName) ?></span>
                 </div>
