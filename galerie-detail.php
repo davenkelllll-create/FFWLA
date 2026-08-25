@@ -3,7 +3,7 @@ require_once 'includes/functions.php';
 
 $id = $_GET['id'] ?? '';
 if (empty($id)) {
-    header('Location: /galerie.php');
+    header('Location: /nachrichten.php');
     exit;
 }
 
@@ -16,7 +16,7 @@ if (!$album) {
     header('HTTP/1.0 404 Not Found');
     $pageTitle = 'Galerie nicht gefunden';
     include 'includes/header.php';
-    echo '<div class="container fw-section text-center py-5"><i class="bi bi-images fs-1 text-muted d-block mb-3"></i><h2>Galerie nicht gefunden</h2><a href="/galerie.php" class="btn btn-danger mt-3">Zurück zur Galerie</a></div>';
+    echo '<div class="container fw-section text-center py-5"><i class="bi bi-images fs-1 text-muted d-block mb-3"></i><h2>Galerie nicht gefunden</h2><a href="/nachrichten.php" class="btn btn-danger mt-3">Zurück zu den Nachrichten</a></div>';
     include 'includes/footer.php';
     exit;
 }
@@ -42,7 +42,7 @@ include 'includes/header.php';
 <div class="fw-page-header">
     <div class="container">
         <nav aria-label="Breadcrumb" class="fw-breadcrumb mb-1">
-            <a href="/">Startseite</a> / <a href="/galerie.php">Galerie</a> / <?= h($album['title']) ?>
+            <a href="/">Startseite</a> / <a href="/nachrichten.php">Nachrichten</a> / <?= h($album['title']) ?>
         </nav>
         <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mt-1">
             <div>
@@ -55,7 +55,7 @@ include 'includes/header.php';
                     </span>
                 </div>
             </div>
-            <a href="/galerie.php" class="btn btn-outline-secondary btn-sm align-self-start">
+            <a href="/nachrichten.php" class="btn btn-outline-secondary btn-sm align-self-start">
                 <i class="bi bi-arrow-left me-1"></i>Zurück
             </a>
         </div>

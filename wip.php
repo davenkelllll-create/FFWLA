@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/functions.php';
+require_once 'includes/auth.php';
 $config    = loadConfig();
 $siteName  = $config['site_name']  ?? 'Freiwillige Feuerwehr Langensendelbach';
 $siteShort = $config['site_short'] ?? 'FF Langensendelbach';
@@ -176,6 +176,15 @@ $siteAddr  = $config['site_address'] ?? '';
         <a href="tel:112" class="wip-notruf">
             <i class="bi bi-telephone-fill"></i> Notruf 112
         </a>
+
+        <?php if (isLoggedIn()): ?>
+        <div style="margin-top:2rem;padding:.75rem 1rem;background:rgba(0,0,0,.35);border-radius:8px;font-size:.85rem;">
+            <i class="bi bi-person-check-fill me-1"></i>
+            Sie sind angemeldet –
+            <a href="/index.php" style="color:#fff;font-weight:600;">Website ansehen</a> ·
+            <a href="/admin/einstellungen.php" style="color:#fff;font-weight:600;">Aufbaumodus beenden</a>
+        </div>
+        <?php endif; ?>
 
         <div class="wip-footer">
             &copy; <?= date('Y') ?> <?= h($siteName) ?>

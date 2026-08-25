@@ -16,6 +16,19 @@ PORT=8181
 # Leer lassen => es wird keine sitemap.xml erzeugt (statt einer mit falscher Domain).
 BASE_URL=""
 
+# Der Aufbaumodus leitet Besucher auf wip.php um – beim Rendern würde das
+# leere Seiten erzeugen. Für die Dauer des Builds deaktivieren und danach
+# in JEDEM Fall wiederherstellen (auch bei Abbruch).
+CONFIG="$SCRIPT_DIR/data/config.json"
+CONFIG_BACKUP="$(mktemp)"
+cp "$CONFIG" "$CONFIG_BACKUP"
+restore_config() {
+  cp "$CONFIG_BACKUP" "$CONFIG"
+  rm -f "$CONFIG_BACKUP"
+}
+trap 'restore_config; kill $PHP_PID 2>/dev/null' EXIT
+php -r '$f=$argv[1];$c=json_decode(file_get_contents($f),true);$c["wip_mode"]=false;file_put_contents($f,json_encode($c,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));' "$CONFIG"
+
 echo "→ PHP-Server starten..."
 php -S 127.0.0.1:$PORT -t "$SCRIPT_DIR" > /tmp/fw-build.log 2>&1 &
 PHP_PID=$!

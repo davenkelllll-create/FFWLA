@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_config'])) {
         $config['site_email']   = trim($_POST['site_email'] ?? '');
         $config['site_phone']   = trim($_POST['site_phone'] ?? '');
         $config['site_address'] = trim($_POST['site_address'] ?? '');
+        $config['wip_mode']     = !empty($_POST['wip_mode']);
         $config['map_lat']      = trim($_POST['map_lat'] ?? '');
         $config['map_lon']      = trim($_POST['map_lon'] ?? '');
         $config['social_facebook']  = trim($_POST['social_facebook']  ?? '');
@@ -197,6 +198,28 @@ $pageTitle = 'Einstellungen';
                                        value="<?= h($config['site_address'] ?? '') ?>">
                             </div>
                         </div>
+
+                        <hr class="my-4">
+                        <h6 class="fw-bold mb-1"><i class="bi bi-cone-striped me-2"></i>Aufbaumodus</h6>
+                        <p class="text-muted small mb-2">
+                            Solange der Aufbaumodus aktiv ist, werden alle Besucher auf die
+                            Baustellen-Seite mit den Kontaktdaten geleitet. Sie selbst sehen die
+                            Website weiterhin normal, solange Sie hier angemeldet sind – so können
+                            Sie in Ruhe Inhalte pflegen und alles vorab prüfen.
+                        </p>
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                   name="wip_mode" value="1" id="wipMode"
+                                   <?= !empty($config['wip_mode']) ? 'checked' : '' ?>>
+                            <label class="form-check-label fw-semibold" for="wipMode">
+                                Website im Aufbau – Besucher sehen die Baustellen-Seite
+                            </label>
+                        </div>
+                        <p class="text-muted small mb-0">
+                            <i class="bi bi-exclamation-triangle me-1"></i>
+                            Zum Start der Seite diesen Schalter ausschalten. Danach ist die
+                            Website öffentlich erreichbar.
+                        </p>
 
                         <hr class="my-4">
                         <h6 class="fw-bold mb-1"><i class="bi bi-geo-alt me-2"></i>Karte (Standort Gerätehaus)</h6>

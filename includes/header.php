@@ -1,7 +1,16 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) session_start();
-require_once __DIR__ . '/functions.php';
+// auth.php startet die Session mit den sicheren Cookie-Parametern und zieht
+// functions.php mit – deshalb hier statt eines nackten session_start().
+require_once __DIR__ . '/auth.php';
+
 $config   = loadConfig();
+
+// Aufbaumodus: Besucher landen auf der Baustellen-Seite. Angemeldete
+// Admins sehen die Seite normal und können sie so in Ruhe vorbereiten.
+if (!empty($config['wip_mode']) && !isLoggedIn()) {
+    header('Location: /wip.php');
+    exit;
+}
 $siteName = $config['site_name'] ?? 'Freiwillige Feuerwehr Langensendelbach';
 $siteShort = $config['site_short'] ?? 'FF Langensendelbach';
 
@@ -46,6 +55,15 @@ function isActiveParent(array $pages): string {
 
 <!-- Skip to content (Tastatur-Bedienung) -->
 <a href="#main-content" class="fw-skip-link">Zum Inhalt springen</a>
+
+<!-- Hinweis für angemeldete Admins, solange der Aufbaumodus läuft -->
+<?php if (!empty($config['wip_mode'])): ?>
+<div style="background:#1a1a1a;color:#ffc107;text-align:center;padding:.45rem 1rem;font-size:.85rem;font-weight:600;">
+    <i class="bi bi-cone-striped me-1"></i>
+    Aufbaumodus aktiv – Besucher sehen die Baustellen-Seite. Sie sehen die Website, weil Sie angemeldet sind.
+    <a href="/admin/einstellungen.php" style="color:#fff;">Ausschalten</a>
+</div>
+<?php endif; ?>
 
 <!-- Emergency Alert Strip (shown when data/alert.json is active) -->
 <?php

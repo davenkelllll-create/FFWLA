@@ -40,7 +40,6 @@ include 'includes/header.php';
                 $seitenmap = [
                     ['href' => '/nachrichten.php',      'icon' => 'newspaper',              'label' => 'Nachrichten'],
                     ['href' => '/kalender.php',         'icon' => 'calendar3',              'label' => 'Kalender'],
-                    ['href' => '/galerie.php',          'icon' => 'images',                 'label' => 'Galerie'],
                     ['href' => '/jugendfeuerwehr.php',  'icon' => 'stars',                  'label' => 'Jugendfeuerwehr'],
                     ['href' => '/formulare.php',        'icon' => 'file-earmark-pdf',        'label' => 'Formulare'],
                     ['href' => '/ueber-uns.php',        'icon' => 'people-fill',            'label' => 'Über uns'],
