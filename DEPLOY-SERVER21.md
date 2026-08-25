@@ -1,9 +1,12 @@
-# Umzug auf web.server21.eu
+# Die neue Website beim bestehenden Hoster (Serverdrome / server21) einrichten
 
 ## Wichtigste Erkenntnis vorweg
 
-`web.server21.eu` ist **kein neuer Anbieter, den ihr buchen müsst** – es ist der
-Server, auf dem **eure jetzige Website bereits läuft**:
+Es muss **nichts umgezogen** werden. `web.server21.eu` ist kein neuer Anbieter,
+sondern der Server bei eurem bestehenden Hoster **Serverdrome**, auf dem eure
+jetzige Website bereits läuft.
+
+Per DNS überprüft:
 
 | Hostname | IP-Adresse |
 |---|---|
@@ -11,51 +14,75 @@ Server, auf dem **eure jetzige Website bereits läuft**:
 | `www.ff-langensendelbach.de` | 136.243.152.21 |
 | `web.server21.eu` | 136.243.152.21 |
 | `mail.server21.eu` | 136.243.152.21 |
+| `serverdrome.de` (Firmenseite) | 116.202.246.200 |
 
-Alles zeigt auf dieselbe Maschine (ein Server im Rechenzentrum von Hetzner,
-Deutschland). `web.` und `mail.` sind die üblichen Servicenamen eines
-Shared-Hosting-Servers.
+Die Rückwärtsauflösung von 136.243.152.21 ergibt `web.server21.eu`. Beide
+IP-Adressen liegen im Netz von Hetzner – Serverdrome betreibt also gemietete
+Maschinen in einem deutschen Rechenzentrum, und `server21` ist der
+Kundenserver, auf dem euer Webspace liegt. Das ist ein ganz üblicher Aufbau
+für einen kleineren Hoster.
 
-**Das bedeutet:**
+**Was daraus folgt:**
 
-- Es muss **nichts umgezogen** werden. Kein neuer Vertrag, keine DNS-Änderung,
-  kein Domain-Transfer.
-- Auf dem Server läuft **eure aktuelle Joomla-Seite** – die neue Seite ersetzt sie.
-- **Auch eure E-Mails laufen über diese Maschine.** Beim Aufräumen dürft ihr
-  nur den Website-Ordner anfassen, nichts anderes.
-- Ansprechpartner ist, wer den Server bisher betreut (Webmaster, örtliche
-  IT-Firma oder Vereinsmitglied). Von dort kommen auch die Zugangsdaten.
+- Kein neuer Vertrag, keine DNS-Änderung, kein Domain-Transfer.
+- Auf dem Server läuft **eure aktuelle Joomla-Seite** – die neue ersetzt sie.
+- **Auch eure E-Mails laufen über diese Maschine** (`mail.server21.eu`).
+  Beim Aufräumen darf ausschließlich der Website-Ordner angefasst werden.
+- Zugangsdaten kommen aus dem **Serverdrome-Kundenbereich** oder von der
+  Person, die den Vertrag betreut.
 
-> **Was ich prüfen konnte und was nicht:** Die Zuordnung oben habe ich per
-> DNS-Abfrage verifiziert. Den Server selbst – Verwaltungsoberfläche,
-> PHP-Version, Webserver-Software – konnte ich aus meiner Umgebung heraus
-> **nicht** erreichen. Diese Punkte klärt der System-Check in Schritt 4,
-> der direkt auf dem Server läuft.
+> **Was ich prüfen konnte und was nicht:** Die Zuordnung oben ist per DNS
+> belegt. Den Server selbst und die Serverdrome-Website konnte ich aus meiner
+> Umgebung heraus **nicht** aufrufen – Verwaltungsoberfläche, PHP-Version und
+> Webserver-Software bleiben deshalb offen. Genau diese Punkte klärt der
+> System-Check in Schritt 5, der direkt auf dem Server läuft.
+
+> **Zur Einordnung:** In Hosting-Foren finden sich kritische Erfahrungsberichte
+> zu Serverdrome – die stammen allerdings aus den Jahren 2008/2009 und sagen
+> über den heutigen Betrieb wenig aus. Kein Grund zur Sorge, aber ein Grund,
+> beim Support zügige Antworten zu erwarten und **eigene Backups** zu führen
+> (siehe Schritt 7).
 
 ---
 
 ## 1. Zugangsdaten besorgen
 
-Fragt beim bisherigen Betreuer nach:
+Im **Serverdrome-Kundenbereich** anmelden (Zugang steht in der
+Auftragsbestätigung; sonst beim Support anfragen). Ihr braucht:
 
-1. **FTP- oder SFTP-Zugang** (Server, Benutzername, Passwort, Port)
-2. **Zugang zur Verwaltungsoberfläche**, falls vorhanden – üblich sind
+1. **FTP- oder SFTP-Zugang** – Server, Benutzername, Passwort, Port
+2. **Zugang zur Verwaltungsoberfläche**, falls vorhanden. Üblich sind
    Plesk (`https://web.server21.eu:8443`), ISPConfig (`:8080`) oder
    cPanel (`:2083`). Damit lassen sich PHP-Version und SSL selbst einstellen.
-3. **Welcher Ordner ist das Web-Verzeichnis** der Domain? Je nach System heißt er
-   `httpdocs`, `public_html`, `htdocs` oder `web`.
+3. **Welcher Ordner ist das Web-Verzeichnis** der Domain? Je nach System heißt
+   er `httpdocs`, `public_html`, `htdocs` oder `web`.
 
 ## 2. Diese drei Fragen unbedingt klären
 
-Davon hängt ab, ob die Seite sicher läuft:
+Davon hängt ab, ob die Seite sicher läuft. Falls im Kundenbereich nicht
+ersichtlich, genügt eine kurze Mail an den Serverdrome-Support:
+
+> Guten Tag,
+> für unseren Webspace zu **ff-langensendelbach.de** auf `web.server21.eu`
+> stellen wir die Website auf eine neue PHP-Anwendung um. Bitte teilen Sie uns mit:
+>
+> 1. Welche **PHP-Version** ist eingestellt, und können wir auf **PHP 8.2**
+>    wechseln (selbst oder durch Sie)?
+> 2. Läuft der Webspace unter **Apache oder nginx**? Werden **`.htaccess`-Dateien
+>    ausgewertet**? Falls nein: Wie können wir den Unterordner `data/`
+>    zuverlässig gegen direkten Zugriff aus dem Web sperren?
+> 3. Sind die PHP-Erweiterungen **GD** und **fileinfo** aktiv?
+> 4. Ist für die Domain ein **SSL-Zertifikat** aktiv (Let's Encrypt)?
+>
+> Vielen Dank!
 
 | Frage | Warum wichtig |
 |---|---|
 | **PHP 8.0 oder neuer?** | Die Seite nutzt moderne PHP-Syntax und startet sonst gar nicht. |
-| **Apache oder nginx?** | Bei **nginx** werden `.htaccess`-Dateien **ignoriert** – dann wäre `data/secrets.json` mit dem Passwort-Hash öffentlich abrufbar. Der Administrator muss den Ordner `data/` dann serverseitig sperren. |
-| **Sind GD und fileinfo aktiv?** | Ohne GD keine Bild-Vorschauen, ohne fileinfo keine sichere Upload-Prüfung. |
+| **Apache oder nginx?** | Bei **nginx** werden `.htaccess`-Dateien **ignoriert** – dann wäre `data/secrets.json` mit dem Passwort-Hash öffentlich abrufbar. Der Ordner muss dann serverseitig gesperrt werden. |
+| **GD und fileinfo aktiv?** | Ohne GD keine Bild-Vorschauen, ohne fileinfo keine sichere Upload-Prüfung. |
 
-Der System-Check in Schritt 4 beantwortet alle drei automatisch.
+Der System-Check in Schritt 5 beantwortet alle drei auch selbst.
 
 ## 3. Erst in einem Unterordner testen – nicht die laufende Seite überschreiben
 

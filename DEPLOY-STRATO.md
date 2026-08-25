@@ -1,5 +1,11 @@
 # Umzug der Website zu Strato (PHP-Webhosting)
 
+> **Hinweis:** Diese Anleitung beschreibt einen **Anbieterwechsel zu Strato**.
+> Aktuell liegt die Website bei **Serverdrome** auf `web.server21.eu` – dort
+> ist kein Umzug nötig, die neue Seite ersetzt einfach die alte.
+> Der reguläre Weg steht in **`DEPLOY-SERVER21.md`**.
+> Diese Datei hier ist nur relevant, falls ihr den Hoster tatsächlich wechselt.
+
 Diese Website ist ein einfaches PHP-Projekt **ohne Datenbank** – alle Inhalte
 liegen als Dateien (`data/*.json`) und Uploads (`uploads/`). Dadurch ist der
 Umzug unkompliziert: Dateien hochladen, PHP-Version einstellen, fertig.
