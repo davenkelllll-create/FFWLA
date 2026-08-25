@@ -71,8 +71,9 @@ cp -r "$SCRIPT_DIR/uploads" "$DOCS_DIR/" 2>/dev/null || mkdir -p "$DOCS_DIR/uplo
 cp "$SCRIPT_DIR/favicon.svg" "$DOCS_DIR/" 2>/dev/null || true
 # WICHTIG: data/ NICHT kopieren – enthält Zugangsdaten und wird nicht clientseitig gelesen.
 rm -rf "$DOCS_DIR/data"
-# Keine ausführbaren PHP-Reste im statischen Export
-rm -f "$DOCS_DIR/uploads/.htaccess"
+# Keine ausführbaren PHP-Reste im statischen Export.
+# .htaccess wirkt auf GitHub Pages ohnehin nicht – auch aus Unterordnern entfernen.
+find "$DOCS_DIR" -name ".htaccess" -delete 2>/dev/null || true
 touch "$DOCS_DIR/.nojekyll"
 
 echo "→ Links anpassen..."
