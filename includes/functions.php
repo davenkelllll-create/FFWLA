@@ -166,12 +166,6 @@ function getTermine(int $limit = 0, bool $upcoming = false): array {
     return $limit > 0 ? array_slice($items, 0, $limit) : $items;
 }
 
-function getGalerien(int $limit = 0): array {
-    $items = loadJson('galerien.json');
-    usort($items, fn($a, $b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));
-    return $limit > 0 ? array_slice($items, 0, $limit) : $items;
-}
-
 function getFormulare(): array {
     return loadJson('formulare.json');
 }

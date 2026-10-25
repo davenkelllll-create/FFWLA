@@ -40,7 +40,7 @@ $checks[] = pruefung(
 );
 
 // ---- Erweiterungen ----
-foreach (['gd' => 'Bild-Vorschauen (Fahrzeuge, Galerie)', 'fileinfo' => 'Upload-Prüfung (MIME-Erkennung)'] as $ext => $wofuer) {
+foreach (['gd' => 'Bild-Vorschauen (Fahrzeuge, Nachrichten)', 'fileinfo' => 'Upload-Prüfung (MIME-Erkennung)'] as $ext => $wofuer) {
     $has = extension_loaded($ext);
     $checks[] = pruefung(
         'PHP-Erweiterung: ' . $ext,
@@ -74,7 +74,7 @@ $testUrl = $scheme . '://' . $host . '/data/secrets.json';
 foreach ([
     'data'              => 'Inhalte speichern',
     'uploads'           => 'Datei-Uploads',
-    'uploads/galerie'   => 'Fotos zu Nachrichten',
+    'uploads/nachrichten' => 'Fotos zu Nachrichten',
     'uploads/formulare' => 'PDF-Formulare',
     'uploads/fahrzeuge' => 'Fahrzeugfotos',
 ] as $dir => $wofuer) {
@@ -94,7 +94,7 @@ foreach ([
 
 // ---- Datendateien vorhanden? ----
 $fehlend = [];
-foreach (['config.json','secrets.json','nachrichten.json','termine.json','fuehrung.json','fahrzeuge.json','geschichte.json','inhalte.json','formulare.json','galerien.json'] as $f) {
+foreach (['config.json','secrets.json','nachrichten.json','termine.json','fuehrung.json','fahrzeuge.json','geschichte.json','inhalte.json','formulare.json'] as $f) {
     if (!file_exists($root . '/data/' . $f)) $fehlend[] = $f;
 }
 $checks[] = pruefung(

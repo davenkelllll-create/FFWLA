@@ -10,9 +10,8 @@ Passwort ändern: **Einstellungen → Admin-Passwort**.
 | Menüpunkt | Was damit gepflegt wird | Wirkt sich aus auf |
 |---|---|---|
 | **Dashboard** | Überblick, Schnellzugriff | – |
-| **Nachrichten** | Berichte zu Einsätzen, Übungen, Veranstaltungen, Presse | Startseite, Nachrichten |
+| **Nachrichten** | Berichte zu Einsätzen, Übungen, Veranstaltungen, Presse – inkl. Headerbild und Beitragsbildern | Startseite, Nachrichten |
 | **Termine** | Veranstaltungen und Übungen | Startseite, Kalender |
-| **Bilder-Alben** | Fotos, die an Nachrichten angehängt werden | Nachrichten-Detailseiten |
 | **Formulare** | PDF-Downloads (Mitgliedsantrag etc.) | Formulare |
 | **Fahrzeuge** | Fuhrpark inkl. Fotos | Über uns |
 | **Geschichte** | Zeitleiste und Gründungs-Kasten | Über uns |
@@ -20,6 +19,22 @@ Passwort ändern: **Einstellungen → Admin-Passwort**.
 | **Einstellungen** | Kontaktdaten, Karte, Ansprechpartner, Social Media, Notfall-Banner, Passwort | alle Seiten |
 
 ---
+
+## Nachrichten
+
+**Admin → Nachrichten → Neuer Artikel / Bearbeiten**
+
+- **Headerbild**: ein Bild, groß oben im Artikel und gleichzeitig Vorschaubild
+  auf Startseite und Nachrichtenübersicht. Ein neues Bild ersetzt das alte;
+  per Haken „Headerbild entfernen“ wird es gelöscht.
+- **Weitere Bilder zum Beitrag**: beliebig viele, mehrere auf einmal
+  auswählbar. Sie erscheinen unter dem Text und öffnen sich per Klick groß.
+  Bildunterschriften und „entfernen“ gibt es nach dem Speichern unter
+  *Bearbeiten*.
+- JPG, PNG, GIF oder WebP, max. 12 MB je Bild. Pro Speichervorgang darf alles
+  zusammen das Server-Limit (Hinweis unter dem Feld) nicht überschreiten –
+  bei vielen Fotos in mehreren Durchgängen hochladen.
+- Beim Löschen eines Artikels werden auch dessen Bilddateien entfernt.
 
 ## Fahrzeuge
 

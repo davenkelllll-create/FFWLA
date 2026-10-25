@@ -156,7 +156,7 @@ Ist alles grün:
 3. Die neuen Dateien ins Wurzelverzeichnis legen, sodass `index.php`
    direkt dort liegt.
 4. Schreibrechte setzen, falls das Speichern im Admin scheitert:
-   `data/`, `uploads/`, `uploads/galerie/`, `uploads/formulare/`,
+   `data/`, `uploads/`, `uploads/nachrichten/`, `uploads/formulare/`,
    `uploads/fahrzeuge/` auf **755** (notfalls 775), Dateien darin auf **644**.
 
 Die Website startet im **Aufbaumodus**: Besucher sehen die Baustellen-Seite mit
