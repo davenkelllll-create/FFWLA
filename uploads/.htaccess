@@ -1,7 +1,28 @@
 # Uploaded files must never be executed as scripts.
-php_flag engine off
-RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phar
-RemoveType .php .phtml .php3 .php4 .php5 .php7 .phar
-<FilesMatch "\.(php|phtml|phar|phps|cgi|pl|py|sh)$">
+#
+# "php_flag" is only understood when PHP runs as an Apache module (mod_php).
+# Most shared hosts run PHP via FastCGI/PHP-FPM instead – there an unguarded
+# php_flag line makes Apache answer EVERY request in this folder with
+# "500 Internal Server Error" (images and PDFs included). Hence the guards.
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php5.c>
+    php_flag engine off
+</IfModule>
+
+# Works with every PHP handler: script files are simply not served.
+<FilesMatch "\.(php|phtml|phar|phps|php3|php4|php5|php7|php8|cgi|pl|py|sh)$">
     Require all denied
 </FilesMatch>
+
+# Serve PDFs as real downloads with the correct type.
+AddType application/pdf .pdf
+<IfModule mod_headers.c>
+    <FilesMatch "\.pdf$">
+        Header set Content-Disposition "attachment"
+    </FilesMatch>
+</IfModule>

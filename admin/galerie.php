@@ -94,8 +94,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'upload') {
             $fullFile  = $base . '.' . $ext;
             $thumbFile = 'thumb_' . $base . '.' . $ext;
 
-            move_uploaded_file($tmpName, $albumDir . $fullFile);
+            if (!move_uploaded_file($tmpName, $albumDir . $fullFile)) { $skipped++; continue; }
             resizeImage($albumDir . $fullFile, $albumDir . $thumbFile, 400, 300);
+            // Without GD no thumbnail is written – fall back to the original
+            // instead of referencing a file that does not exist.
+            if (!is_file($albumDir . $thumbFile)) $thumbFile = $fullFile;
 
             $caption = $_POST['captions'][$i] ?? '';
             $photos[] = ['thumb' => $thumbFile, 'full' => $fullFile, 'caption' => $caption];
