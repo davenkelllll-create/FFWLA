@@ -64,8 +64,9 @@ include 'includes/header.php';
             <div class="col-lg-8">
 
                 <?php if ($headerBild): ?>
-                <img src="<?= h($headerBild) ?>" alt="<?= h($artikel['title']) ?>"
-                     class="img-fluid rounded mb-4" style="width:100%;max-height:400px;object-fit:cover;">
+                <div class="fw-article-header-img mb-4">
+                    <img src="<?= h($headerBild) ?>" alt="<?= h($artikel['title']) ?>">
+                </div>
                 <?php endif; ?>
 
                 <!-- Article body -->
