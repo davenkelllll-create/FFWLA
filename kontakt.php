@@ -4,6 +4,19 @@ $pageTitle = 'Kontakt';
 $pageDescription = 'Kontaktdaten der Freiwilligen Feuerwehr Langensendelbach – Adresse, Telefon und Anfahrt.';
 
 $config = loadConfig();
+
+// Ansprechpartner mit E-Mail – dieselben Daten wie auf „Über uns“
+// (Admin → Einstellungen → Ansprechpartner).
+$fuehrung = getFuehrung();
+$mailGruppen = [];
+foreach ([
+    'Vorstandschaft & Wehrführung' => $fuehrung['aktive_wehr'],
+    'Jugendfeuerwehr'              => $fuehrung['jugendfeuerwehr'],
+    'Kinderfeuerwehr'              => $fuehrung['kinderfeuerwehr'],
+] as $titel => $personen) {
+    $mitMail = array_values(array_filter($personen, fn($p) => !empty($p['email'])));
+    if ($mitMail) $mailGruppen[$titel] = $mitMail;
+}
 include 'includes/header.php';
 ?>
 
@@ -71,6 +84,28 @@ include 'includes/header.php';
                             <a href="mailto:<?= h($config['site_email']) ?>" class="text-muted">
                                 <?= h($config['site_email']) ?>
                             </a>
+                        </div>
+                    </li>
+                    <?php endif; ?>
+
+                    <?php if ($mailGruppen): ?>
+                    <li class="d-flex gap-3 mb-3">
+                        <div style="width:40px;height:40px;background:var(--fw-red);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <i class="bi bi-people-fill text-white"></i>
+                        </div>
+                        <div class="flex-grow-1" style="min-width:0;">
+                            <strong class="d-block">Ansprechpartner</strong>
+                            <?php foreach ($mailGruppen as $titel => $personen): ?>
+                            <div class="text-uppercase text-muted fw-semibold mt-2 mb-1" style="font-size:.72rem;letter-spacing:.06em;"><?= h($titel) ?></div>
+                            <ul class="list-unstyled mb-0 small">
+                                <?php foreach ($personen as $p): ?>
+                                <li class="mb-1">
+                                    <span class="text-muted"><?= h($p['funktion']) ?>:</span> <?= h($p['name']) ?><br>
+                                    <a href="mailto:<?= h($p['email']) ?>" class="text-muted" style="overflow-wrap:anywhere;"><?= h($p['email']) ?></a>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endforeach; ?>
                         </div>
                     </li>
                     <?php endif; ?>

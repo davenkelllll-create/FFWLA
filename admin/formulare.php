@@ -38,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $items = loadJson('formulare.json');
 
+        $formDir = UPLOADS_DIR . 'formulare/';
+        if (!is_dir($formDir)) @mkdir($formDir, 0755, true);
+
         // Handle file upload for new formulare
         $dateiName = '';
         if (!$postId && !empty($_FILES['datei']['tmp_name'])) {
@@ -48,9 +51,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error = 'Nur PDF-Dateien sind erlaubt.';
             } else {
                 $safeFile = slugify(pathinfo($origName, PATHINFO_FILENAME)) . '.pdf';
-                $dest     = UPLOADS_DIR . 'formulare/' . $safeFile;
-                move_uploaded_file($tmpFile, $dest);
-                $dateiName = $safeFile;
+                $dest     = $formDir . $safeFile;
+                if (move_uploaded_file($tmpFile, $dest)) {
+                    $dateiName = $safeFile;
+                } else {
+                    $error = 'Die PDF konnte nicht gespeichert werden. Bitte Schreibrechte des Ordners uploads/formulare/ prüfen (775 oder 777).';
+                }
             }
         }
 
@@ -67,9 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $mimeType = mime_content_type($tmpFile);
                             if ($mimeType === 'application/pdf') {
                                 $safeFile = slugify(pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME)) . '.pdf';
-                                move_uploaded_file($tmpFile, UPLOADS_DIR . 'formulare/' . $safeFile);
-                                $item['datei']   = $safeFile;
-                                $item['version'] = date('Y-m'); // refresh version when the PDF is replaced
+                                if (move_uploaded_file($tmpFile, $formDir . $safeFile)) {
+                                    $item['datei']   = $safeFile;
+                                    $item['version'] = date('Y-m'); // refresh version when the PDF is replaced
+                                }
                             }
                         }
                         break;

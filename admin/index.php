@@ -5,14 +5,12 @@ require_once '../includes/functions.php';
 
 $nachrichten = getNachrichten();
 $termine     = getTermine();
-$galerien    = getGalerien();
 $formulare   = getFormulare();
 $fahrzeuge   = getFahrzeuge();
 
 $stats = [
     'nachrichten' => count($nachrichten),
     'termine'     => count($termine),
-    'galerien'    => count($galerien),
     'formulare'   => count($formulare),
     'fahrzeuge'   => count($fahrzeuge),
 ];
@@ -51,7 +49,6 @@ $stats = [
             $statItems = [
                 ['label' => 'Nachrichten', 'count' => $stats['nachrichten'], 'icon' => 'newspaper', 'link' => 'nachrichten.php', 'color' => 'danger'],
                 ['label' => 'Termine',      'count' => $stats['termine'],     'icon' => 'calendar3',  'link' => 'termine.php',     'color' => 'warning'],
-                ['label' => 'Bilder-Alben', 'count' => $stats['galerien'],    'icon' => 'images',     'link' => 'galerie.php',     'color' => 'info'],
                 ['label' => 'Formulare',    'count' => $stats['formulare'],   'icon' => 'file-earmark-pdf', 'link' => 'formulare.php', 'color' => 'success'],
                 ['label' => 'Fahrzeuge',    'count' => $stats['fahrzeuge'],   'icon' => 'truck-front-fill', 'link' => 'fahrzeuge.php', 'color' => 'secondary'],
             ];

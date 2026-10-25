@@ -26,6 +26,12 @@ if (!$artikel) {
 
 $pageTitle = $artikel['title'];
 $pageDescription = $artikel['excerpt'] ?? '';
+$headerBild = ($artikel['header_image'] ?? '') ?: ($artikel['thumbnail'] ?? '');
+$bilder     = $artikel['images'] ?? [];
+if ($bilder) {
+    $extraCss = ['https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css'];
+    $extraJs  = ['https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js', '/js/galerie.js'];
+}
 include 'includes/header.php';
 ?>
 
@@ -57,9 +63,10 @@ include 'includes/header.php';
         <div class="row justify-content-center">
             <div class="col-lg-8">
 
-                <?php if (!empty($artikel['thumbnail'])): ?>
-                <img src="<?= h($artikel['thumbnail']) ?>" alt="<?= h($artikel['title']) ?>"
-                     class="img-fluid rounded mb-4" style="width:100%;max-height:400px;object-fit:cover;">
+                <?php if ($headerBild): ?>
+                <div class="fw-article-header-img mb-4">
+                    <img src="<?= h($headerBild) ?>" alt="<?= h($artikel['title']) ?>">
+                </div>
                 <?php endif; ?>
 
                 <!-- Article body -->
@@ -67,13 +74,21 @@ include 'includes/header.php';
                     <?= $artikel['body_html'] ?? '<p>Kein Inhalt vorhanden.</p>' ?>
                 </div>
 
-                <?php if (!empty($artikel['album_id'])): ?>
-                <div class="mt-4 p-3 rounded" style="background:var(--fw-red-pale);border-left:4px solid var(--fw-red);">
-                    <i class="bi bi-images me-2 text-danger"></i>
-                    <strong>Bildergalerie:</strong>
-                    <a href="/galerie-detail.php?id=<?= h($artikel['album_id']) ?>" class="ms-2">
-                        Fotos zum Einsatz ansehen <i class="bi bi-arrow-right ms-1"></i>
-                    </a>
+                <?php if ($bilder): ?>
+                <!-- Beitragsbilder -->
+                <div class="row g-2 mt-4">
+                    <?php foreach ($bilder as $img): ?>
+                    <div class="col-6 col-md-4">
+                        <a href="<?= h($img['full'] ?? '') ?>" class="glightbox d-block" data-gallery="artikel"
+                           <?php if (!empty($img['caption'])): ?>data-description="<?= h($img['caption']) ?>"<?php endif; ?>>
+                            <img src="<?= h($img['thumb'] ?? $img['full'] ?? '') ?>" alt="<?= h($img['caption'] ?? $artikel['title']) ?>"
+                                 loading="lazy" class="img-fluid rounded" style="width:100%;aspect-ratio:4/3;object-fit:cover;">
+                        </a>
+                        <?php if (!empty($img['caption'])): ?>
+                        <div class="small text-muted mt-1"><?= h($img['caption']) ?></div>
+                        <?php endif; ?>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
 

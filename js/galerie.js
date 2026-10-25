@@ -1,5 +1,5 @@
 /**
- * FF Langensendelbach – Galerie (GLightbox)
+ * FF Langensendelbach – Bild-Lightbox für Beitragsbilder (GLightbox)
  */
 document.addEventListener('DOMContentLoaded', function () {
     if (typeof GLightbox !== 'undefined') {

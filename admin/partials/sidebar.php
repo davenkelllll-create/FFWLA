@@ -23,9 +23,6 @@ function adminActive(string $page): string {
         <a href="/admin/termine.php" class="admin-nav-link<?= adminActive('termine.php') ?>">
             <i class="bi bi-calendar3"></i> Termine
         </a>
-        <a href="/admin/galerie.php" class="admin-nav-link<?= adminActive('galerie.php') ?>">
-            <i class="bi bi-images"></i> Galerie
-        </a>
         <a href="/admin/formulare.php" class="admin-nav-link<?= adminActive('formulare.php') ?>">
             <i class="bi bi-file-earmark-pdf"></i> Formulare
         </a>
