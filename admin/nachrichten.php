@@ -34,6 +34,7 @@ function nachrichtBildSpeichern(string $tmp, int $err, int $size, int $maxW, int
     if (!move_uploaded_file($tmp, $uploadDir . $full)) {
         $grund = 'konnte nicht gespeichert werden (Schreibrechte uploads/nachrichten/ prüfen)'; return null;
     }
+    normalizeUploadedImage($uploadDir . $full);
     resizeImage($uploadDir . $full, $uploadDir . $thumb, $maxW, $maxH);
     // Ohne GD entsteht keine Vorschau – dann das Original verwenden.
     if (!is_file($uploadDir . $thumb)) $thumb = $full;

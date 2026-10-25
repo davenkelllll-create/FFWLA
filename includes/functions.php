@@ -147,6 +147,86 @@ function resizeImage(string $src, string $dst, int $maxW = 400, int $maxH = 300)
     return $result;
 }
 
+/**
+ * Bringt ein frisch hochgeladenes Foto in das Standardformat der Seite:
+ * Querformat 4:3, Hochformat 3:4 (mittig zugeschnitten), längste Kante
+ * höchstens $maxLong px. Die EXIF-Drehung von Handyfotos wird dabei
+ * übernommen, sonst lägen Hochformat-Bilder nach dem Speichern quer.
+ * Überschreibt die Datei; ohne GD bleibt sie unverändert.
+ */
+function normalizeUploadedImage(string $path, int $maxLong = 2000): bool {
+    if (!function_exists('imagecreatefromjpeg')) return false;
+    $info = @getimagesize($path);
+    if (!$info) return false;
+    [$w, $h, $type] = [$info[0], $info[1], $info[2]];
+
+    // EXIF-Ausrichtung (nur JPEG): 3 = 180°, 6 = 90° rechts, 8 = 90° links.
+    $orientation = 1;
+    if ($type === IMAGETYPE_JPEG && function_exists('exif_read_data')) {
+        $exif = @exif_read_data($path);
+        $orientation = (int)($exif['Orientation'] ?? 1);
+    }
+    $quer = in_array($orientation, [6, 8], true);
+
+    // Zielverhältnis bezogen auf das angezeigte Bild, dann auf die
+    // gespeicherten Pixel zurückgerechnet.
+    [$dw, $dh] = $quer ? [$h, $w] : [$w, $h];
+    $ziel = $dw >= $dh ? 4 / 3 : 3 / 4;
+    if ($quer) $ziel = 1 / $ziel;
+
+    $cropW = $w; $cropH = $h;
+    if (abs($w / $h - $ziel) > 0.01) {
+        if ($w / $h > $ziel) $cropW = (int)round($h * $ziel);
+        else                 $cropH = (int)round($w / $ziel);
+    }
+    $scale = min(1, $maxLong / max($cropW, $cropH));
+    $newW  = max(1, (int)round($cropW * $scale));
+    $newH  = max(1, (int)round($cropH * $scale));
+
+    $nichtsZuTun = $cropW === $w && $cropH === $h && $scale >= 1
+                && !in_array($orientation, [3, 6, 8], true);
+    if ($nichtsZuTun) return true;
+
+    @ini_set('memory_limit', '256M'); // große Handyfotos brauchen viel RAM
+    $source = match($type) {
+        IMAGETYPE_JPEG => @imagecreatefromjpeg($path),
+        IMAGETYPE_PNG  => @imagecreatefrompng($path),
+        IMAGETYPE_GIF  => @imagecreatefromgif($path),
+        IMAGETYPE_WEBP => @imagecreatefromwebp($path),
+        default        => false,
+    };
+    if (!$source) return false;
+
+    $out = imagecreatetruecolor($newW, $newH);
+    if ($type !== IMAGETYPE_JPEG) {
+        imagealphablending($out, false);
+        imagesavealpha($out, true);
+        imagefilledrectangle($out, 0, 0, $newW, $newH, imagecolorallocatealpha($out, 0, 0, 0, 127));
+    }
+    $srcX = (int)(($w - $cropW) / 2);
+    $srcY = (int)(($h - $cropH) / 2);
+    imagecopyresampled($out, $source, 0, 0, $srcX, $srcY, $newW, $newH, $cropW, $cropH);
+    imagedestroy($source);
+
+    // Erst nach dem Verkleinern drehen – spart Arbeitsspeicher.
+    $winkel = [3 => 180, 6 => -90, 8 => 90][$orientation] ?? 0;
+    if ($winkel) {
+        $gedreht = imagerotate($out, $winkel, 0);
+        if ($gedreht) { imagedestroy($out); $out = $gedreht; }
+    }
+
+    $ok = match($type) {
+        IMAGETYPE_JPEG => imagejpeg($out, $path, 85),
+        IMAGETYPE_PNG  => imagepng($out, $path),
+        IMAGETYPE_GIF  => imagegif($out, $path),
+        IMAGETYPE_WEBP => imagewebp($out, $path, 85),
+        default        => false,
+    };
+    imagedestroy($out);
+    clearstatcache(true, $path);
+    return $ok;
+}
+
 function getNachrichten(int $limit = 0, string $type = ''): array {
     $items = loadJson('nachrichten.json');
     usort($items, fn($a, $b) => strcmp($b['date'] ?? '', $a['date'] ?? ''));

@@ -35,6 +35,11 @@ Passwort ändern: **Einstellungen → Admin-Passwort**.
   zusammen das Server-Limit (Hinweis unter dem Feld) nicht überschreiten –
   bei vielen Fotos in mehreren Durchgängen hochladen.
 - Beim Löschen eines Artikels werden auch dessen Bilddateien entfernt.
+- **Bildformat**: Alle hochgeladenen Fotos (Nachrichten und Fahrzeuge) werden
+  automatisch auf **4:3 (quer)** bzw. **3:4 (hoch)** gebracht – abweichende
+  Formate wie 16:9 oder Screenshots werden mittig zugeschnitten – und auf
+  höchstens 2000 px Kantenlänge verkleinert. Die Drehung von Handyfotos wird
+  dabei berücksichtigt. Normale Handyfotos (4:3) werden nur verkleinert.
 
 ## Fahrzeuge
 

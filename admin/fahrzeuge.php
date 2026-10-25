@@ -105,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $full  = $base . '.' . $ext;
                 $thumb = 'thumb_' . $base . '.' . $ext;
                 if (move_uploaded_file($_FILES['bild']['tmp_name'], $uploadDir . $full)) {
+                    normalizeUploadedImage($uploadDir . $full);
                     resizeImage($uploadDir . $full, $uploadDir . $thumb, 800, 600);
                     $record['image']     = '/uploads/fahrzeuge/' . $full;
                     $record['thumbnail'] = is_file($uploadDir . $thumb)
